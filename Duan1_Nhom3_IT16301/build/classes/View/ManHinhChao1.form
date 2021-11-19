@@ -49,12 +49,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jProgressBar1" alignment="0" max="32767" attributes="0"/>
+              <Component id="prgloading" alignment="0" max="32767" attributes="0"/>
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel1" min="-2" pref="897" max="-2" attributes="0"/>
+                          <Component id="lblbanner" min="-2" pref="897" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="381" max="-2" attributes="0"/>
@@ -70,28 +70,23 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="jLabel1" pref="328" max="32767" attributes="0"/>
+                  <Component id="lblbanner" pref="328" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblload" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lbln" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jProgressBar1" min="-2" pref="17" max="-2" attributes="0"/>
+                  <Component id="prgloading" min="-2" pref="17" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel1">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\DELL 7480\Downloads\2.jpg"/>
-            </Property>
-          </Properties>
+        <Component class="javax.swing.JLabel" name="lblbanner">
         </Component>
-        <Component class="javax.swing.JProgressBar" name="jProgressBar1">
+        <Component class="javax.swing.JProgressBar" name="prgloading">
         </Component>
         <Component class="javax.swing.JLabel" name="lblload">
           <Properties>
