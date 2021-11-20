@@ -5,7 +5,8 @@
  */
 package Helpper;
 
-import Model.NhanVien;
+import Model.TaiKhoanNV;
+import Model.TaiKhoanKH;
 import java.awt.Image;
 import java.io.File;
 import java.nio.file.Files;
@@ -23,7 +24,7 @@ public class ShareHelper {
     public static final Image APP_ICON;
 
     static {
-        String file = "/duanmau_lab1/icon/fpt.png";
+        String file = "/logo/2.png";
         APP_ICON = new ImageIcon(ShareHelper.class.getResource(file)).getImage();
     }
 
@@ -54,7 +55,8 @@ public class ShareHelper {
     /**
      * * Đối tượng này chứa thông tin người sử dụng sau khi đăng nhập
      */
-    public static NhanVien USER = null;
+    public static TaiKhoanNV USER = null;
+    public static TaiKhoanKH USERkh = null;
 
     /**
      * * Xóa thông tin của người sử dụng khi có yêu cầu đăng xuất
@@ -62,12 +64,17 @@ public class ShareHelper {
     public static void logoff() {
         ShareHelper.USER = null;
     }
-
+   public static void logoff1() {
+        ShareHelper.USERkh = null;
+    }
     /**
      * * Kiểm tra xem đăng nhập hay chưa * @return đăng nhập hay chưa
      */
     public static boolean authenticated() {
         return ShareHelper.USER != null;
+    }
+    public static boolean authenticated1() {
+        return ShareHelper.USERkh != null;
     }
 }
 

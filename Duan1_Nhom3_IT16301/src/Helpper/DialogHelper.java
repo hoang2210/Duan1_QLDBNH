@@ -28,7 +28,7 @@ public class DialogHelper {
      * quả nhận được true/false
      */
     public static boolean confirm(Component parent, String message) {
-        int result = JOptionPane.showConfirmDialog(parent, message, "Hệ thống quản lý đào tạo", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        int result = JOptionPane.showConfirmDialog(parent, message, "", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         return result == JOptionPane.YES_OPTION;
     }
 
@@ -38,6 +38,6 @@ public class DialogHelper {
      * quả nhận được từ người sử dụng nhập vào
      */
     public static String prompt(Component parent, String message) {
-        return JOptionPane.showInputDialog(parent, message, "Hệ thống quản lý đào tạo", JOptionPane.INFORMATION_MESSAGE);
+        return JOptionPane.showInputDialog(parent, message, "", JOptionPane.INFORMATION_MESSAGE);
     }
 }
