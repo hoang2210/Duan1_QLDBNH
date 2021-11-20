@@ -88,7 +88,7 @@ public class ManHinhChao1 extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 102));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL 7480\\Downloads\\2.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo/2.jpg"))); // NOI18N
 
         lblload.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblload.setForeground(new java.awt.Color(255, 102, 0));
@@ -120,7 +120,7 @@ public class ManHinhChao1 extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblload)
