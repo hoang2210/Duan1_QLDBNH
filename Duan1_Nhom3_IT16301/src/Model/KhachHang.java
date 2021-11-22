@@ -1,14 +1,13 @@
 
 package Model;
 
-import Helper.DateHelper;
 import java.util.Date;
 
 public class KhachHang {
     private int MaKH;
     private String username;
     private String hoTen;
-    private Date ngaySinh = DateHelper.now();
+    private Date ngaySinh;
     private String sdt;
     private String email;
     private boolean gioiTinh;
