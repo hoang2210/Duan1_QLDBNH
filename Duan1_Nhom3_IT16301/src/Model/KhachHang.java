@@ -1,13 +1,25 @@
 
 package Model;
 
+import Helper.DateHelper;
+import java.util.Date;
+
 public class KhachHang {
     private int MaKH;
     private String username;
     private String hoTen;
+    private Date ngaySinh = DateHelper.now();
     private String sdt;
     private String email;
     private boolean gioiTinh;
+
+    public void setNgaySinh(Date ngaySinh) {
+        this.ngaySinh = ngaySinh;
+    }
+
+    public Date getNgaySinh() {
+        return ngaySinh;
+    }
 
     public int getMaKH() {
         return MaKH;
