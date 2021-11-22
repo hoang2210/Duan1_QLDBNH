@@ -45,9 +45,8 @@ public class KhachHangDAO {
      * @param entity là thực thể chứa thông tin bản ghi mới
      */
     public void insert(KhachHang entity) {
-        String sql = "INSERT INTO ThongTinKH (MaKH, Username, Hoten, NgaySinh, SDT, Email, GioiTinh) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO ThongTinKH (Username, Hoten, NgaySinh, SDT, Email, GioiTinh) VALUES (?, ?, ?, ?, ?, ?)";
         JdbcHelper.executeUpdate(sql,
-                entity.getMaKH(),
                 entity.getUsername(),
                 entity.getHoTen(),
                 entity.getNgaySinh(),

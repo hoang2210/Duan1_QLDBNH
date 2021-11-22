@@ -5,20 +5,22 @@
  */
 package View;
 
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 import javax.swing.Timer;
 
 /**
  *
  * @author DELL 7480
  */
-public class ManHinhChao1 extends javax.swing.JFrame {
+public class ManHinhChao extends javax.swing.JFrame {
 
     /**
      * Creates new form ManHinhChao
      */
-    public ManHinhChao1() {
+    public ManHinhChao() {
         initComponents();
         intit();
     }
@@ -30,6 +32,10 @@ public class ManHinhChao1 extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
      void intit(){
+        ImageIcon banner = new ImageIcon("src/Logo/2.jpg");
+        Image im = banner.getImage();
+        ImageIcon icon = new ImageIcon(im.getScaledInstance(lblbanner.getWidth(), lblbanner.getHeight(), im.SCALE_SMOOTH));
+        lblbanner.setIcon(icon);
         new Timer(50, new ActionListener() {
             @Override
              public void actionPerformed(ActionEvent e) {
@@ -60,7 +66,7 @@ public class ManHinhChao1 extends javax.swing.JFrame {
                 }else{
                     check+="Stop";     
                     checkwwin();
-                 ManHinhChao1.this.dispose();
+                 ManHinhChao.this.dispose();
                          
                     }
                 
@@ -79,7 +85,7 @@ public class ManHinhChao1 extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblbanner = new javax.swing.JLabel();
         jProgressBar1 = new javax.swing.JProgressBar();
         lblload = new javax.swing.JLabel();
         lbln = new javax.swing.JLabel();
@@ -87,8 +93,6 @@ public class ManHinhChao1 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 102));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo/2.jpg"))); // NOI18N
 
         lblload.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblload.setForeground(new java.awt.Color(255, 102, 0));
@@ -106,22 +110,18 @@ public class ManHinhChao1 extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 897, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(381, 381, 381)
-                        .addComponent(lblload)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lbln)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(381, 381, 381)
+                .addComponent(lblload)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbln)
+                .addContainerGap(460, Short.MAX_VALUE))
+            .addComponent(lblbanner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblbanner, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblload)
                     .addComponent(lbln))
@@ -165,29 +165,31 @@ public class ManHinhChao1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManHinhChao1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhChao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManHinhChao1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhChao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManHinhChao1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhChao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManHinhChao1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhChao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManHinhChao1().setVisible(true);
+                new ManHinhChao().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JLabel lblbanner;
     private javax.swing.JLabel lblload;
     private javax.swing.JLabel lbln;
     // End of variables declaration//GEN-END:variables
