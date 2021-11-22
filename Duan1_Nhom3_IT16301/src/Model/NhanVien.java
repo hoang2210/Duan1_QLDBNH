@@ -6,11 +6,28 @@ import java.util.Date;
 public class NhanVien {
     private String MaNV;
     private String username;
-    private Date namSinh;
+    private String hoTen;
+    private Date ngaySinh;
     private String sdt;
     private String diaChi;
     private boolean gioiTinh;
     private String avatar;
+
+    public String getHoTen() {
+        return hoTen;
+    }
+
+    public void setHoTen(String hoTen) {
+        this.hoTen = hoTen;
+    }
+
+    public Date getNgaySinh() {
+        return ngaySinh;
+    }
+
+    public void setNgaySinh(Date ngaySinh) {
+        this.ngaySinh = ngaySinh;
+    }
 
     public String getMaNV() {
         return MaNV;
@@ -26,14 +43,6 @@ public class NhanVien {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public Date getNamSinh() {
-        return namSinh;
-    }
-
-    public void setNamSinh(Date namSinh) {
-        this.namSinh = namSinh;
     }
 
     public String getSdt() {
