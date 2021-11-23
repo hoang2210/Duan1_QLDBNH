@@ -5,7 +5,7 @@
  */
 package View;
 
-import Dao.TaiKhoanKHDAO;
+import DAO.TaiKhoanKHDAO;
 import Helper.DialogHelper;
 import Model.TaiKhoanKH;
 import java.awt.Color;

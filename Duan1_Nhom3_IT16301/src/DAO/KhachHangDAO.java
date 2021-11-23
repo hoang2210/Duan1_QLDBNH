@@ -2,6 +2,7 @@ package DAO;
 
 import Helper.JdbcHelper;
 import Model.KhachHang;
+import Model.TaiKhoanKH;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -99,7 +100,7 @@ public class KhachHangDAO {
      * @return thực thể chứa thông tin của bản ghi
      */
     public KhachHang findById(String id) {
-        String sql = "SELECT * FROM ThongTinKH WHERE MaKH=?";
+        String sql = "SELECT * FROM ThongTinKH WHERE Username=?";
         List<KhachHang> list = select(sql, id);
         return list.size() > 0 ? list.get(0) : null;
     }
