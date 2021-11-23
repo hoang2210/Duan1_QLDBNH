@@ -6,13 +6,12 @@
 package View;
 
 
-import Dao.TaiKhoanNVDAO;
+import DAO.TaiKhoanNVDAO;
 import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.ImageIcon;
 import Helper.DialogHelper;
-import Model.TaiKhoanKH;
 import Model.TaiKhoanNV;
 import javax.swing.JFrame;
 
