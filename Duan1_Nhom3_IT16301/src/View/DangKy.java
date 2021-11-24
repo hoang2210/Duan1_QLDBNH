@@ -38,7 +38,7 @@ public class DangKy extends javax.swing.JFrame {
         lblDangNhap = new javax.swing.JLabel();
         txtUserName = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 204, 204));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -426,6 +426,8 @@ public class DangKy extends javax.swing.JFrame {
 
     private void lblDangNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDangNhapMouseClicked
         lblDangNhap.setForeground(new java.awt.Color(150,150,255));
+        new Login_KH().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_lblDangNhapMouseClicked
 
     private void txtUserNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserNameFocusGained
