@@ -5,6 +5,19 @@ public class LoaiMon {
     private String MaLoaiMon;
     private String tenLoaiMon;
 
+    @Override 
+    public String toString(){
+        return this.tenLoaiMon;
+    }
+
+    public LoaiMon() {
+    }
+
+    public LoaiMon(String MaLoaiMon, String tenLoaiMon) {
+        this.MaLoaiMon = MaLoaiMon;
+        this.tenLoaiMon = tenLoaiMon;
+    }
+    
     public String getMaLoaiMon() {
         return MaLoaiMon;
     }

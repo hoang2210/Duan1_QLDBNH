@@ -24,12 +24,12 @@ public class ShareHelper {
     public static final Image APP_ICON;
 
     static {
-        String file = "/logo/2.png";
+        String file = "/Images/Icon/fpt.png";
         APP_ICON = new ImageIcon(ShareHelper.class.getResource(file)).getImage();
     }
 
     public static boolean saveLogo(File file) {
-        File dir = new File("logos");
+        File dir = new File("Images");
         if (!dir.exists()) {
             dir.mkdirs();
         }
@@ -49,7 +49,7 @@ public class ShareHelper {
      * @return ảnh đọc được
      */
     public static ImageIcon readLogo(String fileName) {
-        File path = new File("logos", fileName);
+        File path = new File("Images", fileName);
         return new ImageIcon(path.getAbsolutePath());
     }
     /**

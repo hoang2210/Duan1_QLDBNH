@@ -46,7 +46,7 @@ public class NhanVienDAO {
      * @param entity là thực thể chứa thông tin bản ghi mới
      */
     public void insert(NhanVien entity) {
-        String sql = "INSERT INTO ThongTinNV (MaNV, Username, Hoten, SDT, Email, GioiTinh) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO ThongTinNV (MaNV, Username, Hoten,NgaySinh, SDT, DiaChi, GioiTinh,Avatar) VALUES (?,?, ?, ?, ?, ?, ?,?)";
         JdbcHelper.executeUpdate(sql,
                 entity.getMaNV(),
                 entity.getUsername(),

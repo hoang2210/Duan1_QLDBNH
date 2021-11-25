@@ -1,13 +1,18 @@
-
 package Model;
 
 public class MonAn {
+
     private String MaMon;
     private String MaLoaiMon;
     private String tenMon;
     private double giaTien;
     private String hinhAnh;
     private String gioiThieu;
+
+    @Override
+    public String toString() {
+        return this.tenMon;
+    }
 
     public String getMaMon() {
         return MaMon;
@@ -56,6 +61,5 @@ public class MonAn {
     public void setGioiThieu(String gioiThieu) {
         this.gioiThieu = gioiThieu;
     }
-    
-    
+
 }
