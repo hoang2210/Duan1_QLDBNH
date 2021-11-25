@@ -103,4 +103,10 @@ public class KhachHangDAO {
         List<KhachHang> list = select(sql, id);
         return list.size() > 0 ? list.get(0) : null;
     }
+    
+    public KhachHang findByUser(String user) {
+        String sql = "SELECT * FROM ThongTinKH WHERE Username=?";
+        List<KhachHang> list = select(sql, user);
+        return list.size() > 0 ? list.get(0) : null;
+    }
 }

@@ -5,8 +5,9 @@
  */
 package View;
 
-import Dao.TaiKhoanKHDAO;
+import DAO.TaiKhoanKHDAO;
 import Helper.DialogHelper;
+import Helper.ShareHelper;
 import Model.TaiKhoanKH;
 import java.awt.Color;
 import java.awt.event.FocusEvent;
@@ -51,6 +52,7 @@ public class Login_KH extends javax.swing.JFrame {
             if (tk != null) {
                 String ps1 = tk.getPass();
                 if (ps.equals(ps1)) {
+                    ShareHelper.USERkh = tk;
                     DialogHelper.alert(this, "Đăng nhập thành công !");
                 } else {
                     DialogHelper.alert(this, "Đăng nhập thất bại!");
