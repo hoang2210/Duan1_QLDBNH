@@ -21,12 +21,12 @@ import javax.swing.ImageIcon;
  */
 public class ShareHelper {
 
-    //public static final Image APP_ICON;
+    public static final Image APP_ICON;
 
-//    static {
-//        String file = "/logo/2.png";
-//        APP_ICON = new ImageIcon(ShareHelper.class.getResource(file)).getImage();
-//    }
+   static {
+        String file = "/logo/2.jpg";
+        APP_ICON = new ImageIcon(ShareHelper.class.getResource(file)).getImage();
+    }
 
     public static boolean saveLogo(File file) {
         File dir = new File("logos");
