@@ -5,6 +5,10 @@ public class LoaiMon {
     private String MaLoaiMon;
     private String tenLoaiMon;
 
+    @Override
+    public String toString(){
+        return this.getTenLoaiMon();
+    }
     public String getMaLoaiMon() {
         return MaLoaiMon;
     }
