@@ -27,7 +27,7 @@ public class QuenMatKhau extends javax.swing.JFrame {
      */
     public QuenMatKhau() {
         initComponents();
-        
+        setLocationRelativeTo(null);
         txt_TaiKhoan.setForeground(Color.GRAY);
         txt_Phone.setForeground(Color.GRAY);
         ImageIcon logo = new ImageIcon("src/Logo/LogoNH.png");
@@ -126,6 +126,7 @@ public class QuenMatKhau extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Quay lại");
 
         lb_DN.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -141,9 +142,9 @@ public class QuenMatKhau extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(34, 34, 34)
                 .addComponent(lb_Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_Phone, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_TaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)

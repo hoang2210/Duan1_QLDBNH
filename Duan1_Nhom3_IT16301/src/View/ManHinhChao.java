@@ -65,9 +65,8 @@ public class ManHinhChao extends javax.swing.JFrame {
                     }
                 }else{
                     check+="Stop";     
-                    checkwwin();
-                 ManHinhChao.this.dispose();
-                         
+                    ManHinhChao.this.dispose();
+                    checkwwin();                                      
                     }
                 
             }
@@ -78,7 +77,7 @@ public class ManHinhChao extends javax.swing.JFrame {
     }
     void checkwwin(){
           if(check.equals("Stop")){
-//            openWelcome();
+              new Login_KH().setVisible(true);
         }
      }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -91,6 +90,7 @@ public class ManHinhChao extends javax.swing.JFrame {
         lbln = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 102));
 
