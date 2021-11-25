@@ -24,7 +24,7 @@ public class ShareHelper {
     public static final Image APP_ICON;
 
     static {
-        String file = "/Images/Icon/fpt.png";
+        String file = "/Images/fpt.png";
         APP_ICON = new ImageIcon(ShareHelper.class.getResource(file)).getImage();
     }
 
