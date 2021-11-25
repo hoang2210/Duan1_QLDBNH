@@ -27,12 +27,6 @@ public class ShareHelper {
        String file = "/logo/2.jpg";        
        APP_ICON = new ImageIcon(ShareHelper.class.getResource(file)).getImage();
   }
-//   public static final Image APP_ICON1;
-//
-//    static {
-//        String file = "/Images/fpt.png";
-//        APP_ICON1 = new ImageIcon(ShareHelper.class.getResource(file)).getImage();
-//    }
 
     public static boolean saveLogo(File file) {
         File dir = new File("Images");
