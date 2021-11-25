@@ -21,7 +21,13 @@ import javax.swing.ImageIcon;
  */
 public class ShareHelper {
 
-//    public static final Image APP_ICON1;
+    public static final Image APP_ICON;
+
+  static {
+       String file = "/logo/2.png";        
+       APP_ICON = new ImageIcon(ShareHelper.class.getResource(file)).getImage();
+  }
+//   public static final Image APP_ICON1;
 //
 //    static {
 //        String file = "/Images/fpt.png";
