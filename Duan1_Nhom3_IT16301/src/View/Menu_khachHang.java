@@ -11,6 +11,7 @@ import Helper.DialogHelper;
 import Helper.ShareHelper;
 import Model.LoaiMon;
 import Model.MonAn;
+import java.awt.Image;
 import java.io.File;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -81,7 +82,10 @@ public class Menu_khachHang extends javax.swing.JFrame {
 //        ImageIcon icon = new ImageIcon(im.getScaledInstance(lb_Anh.getWidth(), lb_Anh.getHeight(), im.SCALE_SMOOTH));
         lb_Anh.setToolTipText(model.getHinhAnh());
         if (model.getHinhAnh() != null) {
-            lb_Anh.setIcon(ShareHelper.readLogo(model.getHinhAnh()));
+              ImageIcon icon1 = ShareHelper.readLogo(model.getHinhAnh());
+                Image im = icon1.getImage();
+                ImageIcon icon = new ImageIcon(im.getScaledInstance(lb_Anh.getWidth(), lb_Anh.getHeight(), im.SCALE_SMOOTH));
+            lb_Anh.setIcon(icon);
         }
     }
 
