@@ -1,33 +1,33 @@
 
 package Model;
 
-import java.sql.Time;
 import java.util.Date;
 
 public class PhieuDat {
     private int MaPD;
     private int MaKH;
     private Date dateBook;
-    private Time TimeBook;
+    private Date TimeBook;
     private int soNguoi;
-    private Time TimeXacNhan;
+    private Date TimeXacNhan;
     private String ghiChu;
 
-    public Time getTimeBook() {
+    public Date getTimeBook() {
         return TimeBook;
     }
 
-    public void setTimeBook(Time TimeBook) {
+    public void setTimeBook(Date TimeBook) {
         this.TimeBook = TimeBook;
     }
 
-    public Time getTimeXacNhan() {
+    public Date getTimeXacNhan() {
         return TimeXacNhan;
     }
 
-    public void setTimeXacNhan(Time TimeXacNhan) {
+    public void setTimeXacNhan(Date TimeXacNhan) {
         this.TimeXacNhan = TimeXacNhan;
     }
+
     private String TrangThai; 
 
     public int getMaPD() {

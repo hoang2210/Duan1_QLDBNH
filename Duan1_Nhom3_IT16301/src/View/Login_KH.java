@@ -5,9 +5,11 @@
  */
 package View;
 
+import DAO.KhachHangDAO;
 import DAO.TaiKhoanKHDAO;
 import Helper.DialogHelper;
 import Helper.ShareHelper;
+import Model.KhachHang;
 import Model.TaiKhoanKH;
 import java.awt.Color;
 import java.awt.event.FocusEvent;
@@ -33,7 +35,7 @@ public class Login_KH extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     TaiKhoanKHDAO tkkh = new TaiKhoanKHDAO();
-
+    KhachHangDAO daoKH = new KhachHangDAO();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,12 +46,15 @@ public class Login_KH extends javax.swing.JFrame {
         String ps = new String(txt_Password.getPassword());
         try {
             TaiKhoanKH tk = tkkh.findById(us);
+            KhachHang khachHang = daoKH.findByUser(us); 
+            
             if (tk != null) {
                 String ps1 = tk.getPass();
                 if (ps.equals(ps1)) {
-                    ShareHelper.USERkh = tk;
+                    ShareHelper.USERkh = khachHang;
                     DialogHelper.alert(this, "Đăng nhập thành công !");
-                    
+                    new TrangChu().setVisible(true);
+                    this.dispose();
                 } else {
                     DialogHelper.alert(this, "Mật khẩu không chính xác!");
                 }
