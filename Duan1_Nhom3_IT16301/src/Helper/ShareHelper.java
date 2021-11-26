@@ -5,6 +5,8 @@
  */
 package Helper;
 
+import Model.KhachHang;
+import Model.NhanVien;
 import Model.TaiKhoanNV;
 import Model.TaiKhoanKH;
 import java.awt.Image;
@@ -55,8 +57,8 @@ public class ShareHelper {
     /**
      * * Đối tượng này chứa thông tin người sử dụng sau khi đăng nhập
      */
-    public static TaiKhoanNV USER = null;
-    public static TaiKhoanKH USERkh = null;
+    public static NhanVien USER = null;
+    public static KhachHang USERkh = null;
 
     /**
      * * Xóa thông tin của người sử dụng khi có yêu cầu đăng xuất

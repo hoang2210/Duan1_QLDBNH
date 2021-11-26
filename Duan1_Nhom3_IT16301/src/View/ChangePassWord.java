@@ -130,7 +130,7 @@ public class ChangePassWord extends javax.swing.JFrame {
             }
         });
 
-        btnDangnhap.setText("Đăng nhập");
+        btnDangnhap.setText("Về trang chủ");
         btnDangnhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDangnhapActionPerformed(evt);
@@ -264,8 +264,9 @@ public class ChangePassWord extends javax.swing.JFrame {
 
     private void btnDangnhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangnhapActionPerformed
         // TODO add your handling code here:
-        Login_KH login = new Login_KH();        
-        login.setVisible(true);
+//        Login_KH login = new Login_KH();        
+//        login.setVisible(true);
+        new TrangChu().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnDangnhapActionPerformed
 
