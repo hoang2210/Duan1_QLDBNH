@@ -508,7 +508,7 @@ public class TrangChu extends javax.swing.JFrame {
         );
         pnDangXuatXTLayout.setVerticalGroup(
             pnDangXuatXTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblDangXuatXT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+            .addComponent(lblDangXuatXT, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
         );
 
         pnDoiMK.setBackground(new java.awt.Color(240, 240, 255));
