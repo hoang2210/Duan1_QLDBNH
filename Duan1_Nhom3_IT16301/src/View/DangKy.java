@@ -29,7 +29,6 @@ public class DangKy extends javax.swing.JFrame {
         txtHoTen = new javax.swing.JTextField();
         rdoNam = new javax.swing.JRadioButton();
         rdoNu = new javax.swing.JRadioButton();
-        txtNgaySinh = new javax.swing.JTextField();
         txtSDT = new javax.swing.JTextField();
         btnDangKy = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -37,6 +36,7 @@ public class DangKy extends javax.swing.JFrame {
         txtMatKhau = new javax.swing.JPasswordField();
         lblDangNhap = new javax.swing.JLabel();
         txtUserName = new javax.swing.JTextField();
+        txtNgaySinh = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 204, 204));
@@ -100,20 +100,6 @@ public class DangKy extends javax.swing.JFrame {
         btnGroupGT.add(rdoNu);
         rdoNu.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         rdoNu.setText("Nữ");
-
-        txtNgaySinh.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtNgaySinh.setForeground(new java.awt.Color(153, 153, 153));
-        txtNgaySinh.setText("dd/mm/yyyy");
-        txtNgaySinh.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtNgaySinhFocusGained(evt);
-            }
-        });
-        txtNgaySinh.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtNgaySinhMouseClicked(evt);
-            }
-        });
 
         txtSDT.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtSDT.setForeground(new java.awt.Color(153, 153, 153));
@@ -195,6 +181,8 @@ public class DangKy extends javax.swing.JFrame {
             }
         });
 
+        txtNgaySinh.setDateFormatString("dd/MM/yyyy");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -206,7 +194,6 @@ public class DangKy extends javax.swing.JFrame {
                         .addComponent(rdoNam)
                         .addGap(18, 18, 18)
                         .addComponent(rdoNu))
-                    .addComponent(txtNgaySinh)
                     .addComponent(txtSDT)
                     .addComponent(txtMatKhau)
                     .addComponent(txtHoTen)
@@ -218,7 +205,8 @@ public class DangKy extends javax.swing.JFrame {
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblDangNhap, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))
-                    .addComponent(txtUserName))
+                    .addComponent(txtUserName)
+                    .addComponent(txtNgaySinh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -288,24 +276,6 @@ public class DangKy extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_txtHoTenFocusGained
 
-    private void txtNgaySinhFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNgaySinhFocusGained
-        txtNgaySinh.addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                txtNgaySinh.setBackground(new java.awt.Color(255,255,255));
-                if (txtNgaySinh.getText().equals("")) {
-                    txtNgaySinh.setText("dd/mm/yyyy");
-                    txtNgaySinh.setForeground(Color.GRAY);
-                }
-            }
-        });
-    }//GEN-LAST:event_txtNgaySinhFocusGained
-
     private void txtSDTFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSDTFocusGained
         txtSDT.addFocusListener(new FocusListener() {
             @Override
@@ -366,14 +336,6 @@ public class DangKy extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         txtMatKhau.setEchoChar((char) 0);
     }//GEN-LAST:event_formWindowOpened
-
-    private void txtNgaySinhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNgaySinhMouseClicked
-        txtNgaySinh.setBackground(new java.awt.Color(220,204,255));
-        if (txtNgaySinh.getText().equals("dd/mm/yyyy")) {
-            txtNgaySinh.setText("");
-            txtNgaySinh.setForeground(Color.BLACK);
-        }
-    }//GEN-LAST:event_txtNgaySinhMouseClicked
 
     private void txtSDTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSDTMouseClicked
         txtSDT.setBackground(new java.awt.Color(220,204,255));
@@ -506,7 +468,7 @@ public class DangKy extends javax.swing.JFrame {
     private javax.swing.JRadioButton rdoNu;
     private javax.swing.JTextField txtHoTen;
     private javax.swing.JPasswordField txtMatKhau;
-    private javax.swing.JTextField txtNgaySinh;
+    private com.toedter.calendar.JDateChooser txtNgaySinh;
     private javax.swing.JTextField txtSDT;
     private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
@@ -544,7 +506,7 @@ public class DangKy extends javax.swing.JFrame {
         } else {
             model.setGioiTinh(false);
         }
-        model.setNgaySinh(DateHelper.toDate(txtNgaySinh.getText()));
+        model.setNgaySinh(txtNgaySinh.getDate());
         model.setSdt(txtSDT.getText());
         model.setUsername(txtUserName.getText());
         return model;
