@@ -11,6 +11,7 @@ import java.util.List;
 public class PhieuDatDAO {
     private PhieuDat readFromResultSet(ResultSet rs) throws SQLException {
         PhieuDat model = new PhieuDat();
+        model.setMaPD(rs.getInt("MaPD"));
         model.setMaKH(rs.getInt("MaKH"));
         model.setDateBook(rs.getDate("DateBook"));
         model.setTimeBook(rs.getTime("TimeBook"));
@@ -77,7 +78,7 @@ public class PhieuDatDAO {
      *
      * @param id là mã của bản ghi cần xóa
      */
-    public void delete(String id) {
+    public void delete(int id) {
         String sql = "DELETE FROM PhieuDat WHERE MaPD=?";
         JdbcHelper.executeUpdate(sql, id);
     }
@@ -98,7 +99,7 @@ public class PhieuDatDAO {
      * @param id là mã của bản ghi được truy vấn
      * @return thực thể chứa thông tin của bản ghi
      */
-    public PhieuDat findById(String id) {
+    public PhieuDat findById(int id) {
         String sql = "SELECT * FROM PhieuDat WHERE MaPD=?";
         List<PhieuDat> list = select(sql, id);
         return list.size() > 0 ? list.get(0) : null;

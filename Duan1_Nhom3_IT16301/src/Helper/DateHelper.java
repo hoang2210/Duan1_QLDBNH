@@ -5,11 +5,9 @@
  */
 package Helper;
 
-import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.SimpleTimeZone;
 
 /**
  *
@@ -99,7 +97,7 @@ public class DateHelper {
         return now;
     }
 
-    static final SimpleDateFormat TIME_FORMATER = new SimpleDateFormat("hh:mm");
+    static final SimpleDateFormat TIME_FORMATER = new SimpleDateFormat("HH:mm");
 
     public static Date toTime(String time, String... pattern) {
         try {
@@ -117,6 +115,21 @@ public class DateHelper {
             throw new RuntimeException(ex);
         }
     }
+    
+    public static String timetoString(Date time, String... pattern) {
+
+            if (pattern.length > 0) {
+
+                TIME_FORMATER.applyPattern(pattern[0]);
+
+            }
+            if (time == null) {
+                //return DateHelper.now();
+            }
+            return TIME_FORMATER.format(time);
+
+    }
+    
 //    public static Time nowTime() {
 //        Date time = new Date();
 //        SimpleDateFormat fm = new SimpleDateFormat("hh:mm");
