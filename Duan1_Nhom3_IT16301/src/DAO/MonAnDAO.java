@@ -48,6 +48,33 @@ public class MonAnDAO {
         return list;
     }
 
+    
+    public void insert(MonAn entity) {
+        String sql = "INSERT INTO MonAn  (MaMon,MaLoaiMon,TenMon,GiaTien,Anh,GioiThieu) VALUES (?, ?, ?, ?,?, ?)";
+        JdbcHelper.executeUpdate(sql,
+                entity.getMaMon(),
+                entity.getMaLoaiMon(),
+                entity.getTenMon(),
+                entity.getGiaTien(),
+                entity.getHinhAnh(),
+                entity.getGioiThieu());
+
+    }
+    public void update(MonAn entity) {
+        String sql = "UPDATE MonAn SET MaLoaiMon=?, TenMon=?, GiaTien=?, Anh=?, GioiThieu=? WHERE MaMon=?";
+        JdbcHelper.executeUpdate(sql,
+                entity.getMaLoaiMon(),
+                entity.getTenMon(),
+                entity.getGiaTien(),
+                entity.getHinhAnh(),
+                entity.getGioiThieu(),
+                entity.getMaMon());
+
+    }
+    public void delete(String id) {
+        String sql = "DELETE FROM MonAn WHERE MaMon=?";
+        JdbcHelper.executeUpdate(sql, id);
+    }
     public List<MonAn> select() {
         String sql = "SELECT * FROM MonAn";
         return select(sql);
