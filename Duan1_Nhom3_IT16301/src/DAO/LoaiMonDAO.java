@@ -26,7 +26,31 @@ public class LoaiMonDAO {
 
         return model;
     }
+    public void insert(LoaiMon entity) {
+        String sql = "INSERT INTO LoaiMon  (MaLoaiMon,TenLoaiMon) VALUES (?, ?)";
+        JdbcHelper.executeUpdate(sql,
+                entity.getMaLoaiMon(),
+                entity.getTenLoaiMon());
 
+    }
+
+    public void update(LoaiMon entity) {
+        String sql = "UPDATE LoaiMon SET TenLoaiMon=? WHERE MaLoaiMon=?";
+        JdbcHelper.executeUpdate(sql,
+                entity.getTenLoaiMon(),
+                entity.getMaLoaiMon()
+                );
+
+    }
+     public void delete(String id) {
+        String sql = "DELETE FROM LoaiMon WHERE MaLoaiMon=?";
+        JdbcHelper.executeUpdate(sql, id);
+    }
+     public LoaiMon findbyID(String id) {
+        String sql = "SELECT * FROM LoaiMon WHERE MaLoaiMon=?";
+        List<LoaiMon> list = select(sql, id);
+        return list.size() > 0 ? list.get(0) : null;
+    }
     private List<LoaiMon> select(String sql, Object... args) {
         List<LoaiMon> list = new ArrayList<>();
         try {
