@@ -32,6 +32,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="&#x110;&#x103;ng xu&#x1ea5;t"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mniDangxuatActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JCheckBoxMenuItem" name="mniDoiMK">
               <Properties>
@@ -48,6 +51,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Tho&#xe1;t"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mniThoatActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -63,6 +69,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="&#x110;&#x1a1;n &#x111;&#x1eb7;t"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mniPhieuDatActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JCheckBoxMenuItem" name="mniTrangThaiBan">
               <Properties>
@@ -181,6 +190,9 @@
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDXuatActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JToolBar$Separator" name="jSeparator1">
         </Component>
@@ -194,6 +206,9 @@
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPhieuDatActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JToolBar$Separator" name="jSeparator3">
           <Properties>
@@ -269,6 +284,11 @@
           </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel1">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+          </Properties>
 
           <Layout>
             <DimensionLayout dim="0">
@@ -279,9 +299,8 @@
                           <Component id="lblGio" min="-2" max="-2" attributes="0"/>
                           <Component id="lblNgay" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="138" max="32767" attributes="0"/>
+                      <EmptySpace pref="358" max="32767" attributes="0"/>
                       <Component id="lb3" min="-2" pref="70" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -308,7 +327,6 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Monospaced" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="dd/mm/yyyy"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblGio">
@@ -316,7 +334,6 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Monospaced" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="hh:mm:ss"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lb3">
@@ -326,22 +343,21 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel2">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lblogo" max="32767" attributes="0"/>
-              </Group>
+              <Component id="lblogo" alignment="1" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lblogo" pref="430" max="32767" attributes="0"/>
-              </Group>
+              <Component id="lblogo" alignment="1" pref="446" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>

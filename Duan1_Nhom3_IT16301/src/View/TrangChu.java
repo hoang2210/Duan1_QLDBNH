@@ -1028,13 +1028,13 @@ public class TrangChu extends javax.swing.JFrame {
     }//GEN-LAST:event_lblXemThemMouseClicked
 
     private void lblThoatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblThoatMouseClicked
-        if (DialogHelper.confirm(pnGiaoDien, "Bạn có muốn thoát chương trình không?")) {
+        if (DialogHelper.confirm(this, "Bạn có muốn thoát chương trình không?")) {
             System.exit(0);
         }
     }//GEN-LAST:event_lblThoatMouseClicked
 
     private void lblExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseClicked
-        if (DialogHelper.confirm(pnGiaoDien, "Bạn có muốn thoát chương trình không?")) {
+        if (DialogHelper.confirm(this, "Bạn có muốn thoát chương trình không?")) {
             System.exit(0);
         }
     }//GEN-LAST:event_lblExitMouseClicked

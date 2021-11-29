@@ -30,6 +30,7 @@ public class HoaDonKH extends javax.swing.JFrame {
     public HoaDonKH() {
         initComponents();
         LoadTable();
+        setLocationRelativeTo(null);
     }
     int index = 0;
     HoaDonDAO dao = new HoaDonDAO();
@@ -74,9 +75,10 @@ public class HoaDonKH extends javax.swing.JFrame {
     }
     private void LoadText() {
         String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-        String url = "jdbc:sqlserver://localhost:1433;databaseName=QLDatBan2";
+        String url = "jdbc:sqlserver://localhost:1433;databaseName=QLDatBan";
         String user = "sa";
-        String password = "123";
+//        String password = "123";
+        String password = "12345678";
         try {
             Class.forName(driver);
             Connection conn = DriverManager.getConnection(url, user, password);
@@ -147,6 +149,8 @@ public class HoaDonKH extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         lb_MaPD = new javax.swing.JLabel();
         btn_ThanhToan = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        btnPhieuDat = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -227,6 +231,20 @@ public class HoaDonKH extends javax.swing.JFrame {
             }
         });
 
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo/BackMini.png"))); // NOI18N
+        jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel12MouseClicked(evt);
+            }
+        });
+
+        btnPhieuDat.setText("Phiếu đặt");
+        btnPhieuDat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPhieuDatActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -274,16 +292,24 @@ public class HoaDonKH extends javax.swing.JFrame {
                 .addComponent(jScrollPane1)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_ThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(btnPhieuDat)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_ThanhToan)
                 .addGap(94, 94, 94)
                 .addComponent(btn_Huy, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(195, 195, 195))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel12)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(79, 79, 79)
+                .addContainerGap()
+                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -312,7 +338,8 @@ public class HoaDonKH extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_Huy)
-                            .addComponent(btn_ThanhToan)))
+                            .addComponent(btn_ThanhToan)
+                            .addComponent(btnPhieuDat)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -361,6 +388,16 @@ public class HoaDonKH extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_ThanhToanActionPerformed
 
+    private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
+        new HomeNhaHang().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel12MouseClicked
+
+    private void btnPhieuDatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPhieuDatActionPerformed
+        new PhieuDat_Form().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnPhieuDatActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -397,9 +434,11 @@ public class HoaDonKH extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnPhieuDat;
     private javax.swing.JButton btn_Huy;
     private javax.swing.JButton btn_ThanhToan;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -5,6 +5,9 @@
  */
 package View;
 
+import Helper.DialogHelper;
+import Helper.ShareHelper;
+import java.awt.Color;
 import javax.swing.ImageIcon;
 
 /**
@@ -19,6 +22,7 @@ public class HomeNhaHang extends javax.swing.JFrame {
     public HomeNhaHang() {
         initComponents();
         setLocationRelativeTo(null);
+        this.getContentPane().setBackground(Color.WHITE);
         ImageIcon user = new ImageIcon("src/Logo/2.jpg");
         lblogo.setIcon(user);
         ImageIcon dx = new ImageIcon("src/Logo/dangxuat1.png");
@@ -51,12 +55,12 @@ public class HomeNhaHang extends javax.swing.JFrame {
         btnTaiKhoan.setIcon(taikhoan1);
         ImageIcon nhanvien1 = new ImageIcon("src/Logo/add-user.png");
         btnNhanVien.setIcon(nhanvien1);
-        ImageIcon ngay = new ImageIcon("src/Logo/lich1.png");
-        lblNgay.setIcon(ngay);
-        ImageIcon gio = new ImageIcon("src/Logo/dongho2.png");
-        lblGio.setIcon(gio);
-        ImageIcon logo = new ImageIcon("src/Logo/LogoNH1.png");
-        lb3.setIcon(logo);
+//        ImageIcon ngay = new ImageIcon("src/Logo/lich1.png");
+//        lblNgay.setIcon(ngay);
+//        ImageIcon gio = new ImageIcon("src/Logo/dongho2.png");
+//        lblGio.setIcon(gio);
+//        ImageIcon logo = new ImageIcon("src/Logo/LogoNH1.png");
+//        lb3.setIcon(logo);
     }
 
     /**
@@ -119,6 +123,11 @@ public class HomeNhaHang extends javax.swing.JFrame {
         btnDXuat.setFocusable(false);
         btnDXuat.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnDXuat.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnDXuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDXuatActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnDXuat);
         jToolBar1.add(jSeparator1);
 
@@ -127,6 +136,11 @@ public class HomeNhaHang extends javax.swing.JFrame {
         btnPhieuDat.setFocusable(false);
         btnPhieuDat.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnPhieuDat.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnPhieuDat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPhieuDatActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnPhieuDat);
 
         jSeparator3.setForeground(new java.awt.Color(204, 153, 255));
@@ -185,11 +199,11 @@ public class HomeNhaHang extends javax.swing.JFrame {
         });
         jToolBar1.add(btnNhanVien);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
         lblNgay.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
-        lblNgay.setText("dd/mm/yyyy");
 
         lblGio.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
-        lblGio.setText("hh:mm:ss");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -200,9 +214,8 @@ public class HomeNhaHang extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblGio)
                     .addComponent(lblNgay))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
-                .addComponent(lb3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(113, 113, 113))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 358, Short.MAX_VALUE)
+                .addComponent(lb3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,25 +232,28 @@ public class HomeNhaHang extends javax.swing.JFrame {
 
         jToolBar1.add(jPanel1);
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(lblogo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblogo, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE))
+            .addComponent(lblogo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Hệ thống");
 
         mniDangxuat.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         mniDangxuat.setText("Đăng xuất");
+        mniDangxuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniDangxuatActionPerformed(evt);
+            }
+        });
         jMenu1.add(mniDangxuat);
 
         mniDoiMK.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -246,6 +262,11 @@ public class HomeNhaHang extends javax.swing.JFrame {
 
         mniThoat.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         mniThoat.setText("Thoát");
+        mniThoat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniThoatActionPerformed(evt);
+            }
+        });
         jMenu1.add(mniThoat);
 
         jMenuBar1.add(jMenu1);
@@ -254,6 +275,11 @@ public class HomeNhaHang extends javax.swing.JFrame {
 
         mniPhieuDat.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         mniPhieuDat.setText("Đơn đặt");
+        mniPhieuDat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniPhieuDatActionPerformed(evt);
+            }
+        });
         jMenu2.add(mniPhieuDat);
 
         mniTrangThaiBan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -322,36 +348,70 @@ public class HomeNhaHang extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mniNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniNhanVienActionPerformed
-        // TODO add your handling code here:
+        new QuanLiNhanVien().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_mniNhanVienActionPerformed
 
     private void btnHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoaDonActionPerformed
-        // TODO add your handling code here:
+        new HoaDonKH().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnHoaDonActionPerformed
 
     private void btnTaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaiKhoanActionPerformed
-        // TODO add your handling code here:
+        new Accout().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnTaiKhoanActionPerformed
 
     private void btnNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhanVienActionPerformed
-        // TODO add your handling code here:
+        new QuanLiNhanVien().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnNhanVienActionPerformed
 
     private void mniTrangThaiBanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniTrangThaiBanActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_mniTrangThaiBanActionPerformed
 
     private void mniTaikhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniTaikhoanActionPerformed
-        // TODO add your handling code here:
+        new Accout().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_mniTaikhoanActionPerformed
 
     private void mniHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniHoaDonActionPerformed
-        // TODO add your handling code here:
+        new HoaDonKH().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_mniHoaDonActionPerformed
 
     private void btnTTBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTTBActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnTTBActionPerformed
+
+    private void btnPhieuDatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPhieuDatActionPerformed
+        new PhieuDat_Form().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnPhieuDatActionPerformed
+
+    private void mniDangxuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDangxuatActionPerformed
+        ShareHelper.logoff();
+        new Login_NV().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_mniDangxuatActionPerformed
+
+    private void btnDXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDXuatActionPerformed
+        ShareHelper.logoff();
+        new Login_NV().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnDXuatActionPerformed
+
+    private void mniThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniThoatActionPerformed
+        if (DialogHelper.confirm(this, "Bạn có muốn thoát chương trình không?")) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_mniThoatActionPerformed
+
+    private void mniPhieuDatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniPhieuDatActionPerformed
+        new PhieuDat_Form().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_mniPhieuDatActionPerformed
 
     /**
      * @param args the command line arguments

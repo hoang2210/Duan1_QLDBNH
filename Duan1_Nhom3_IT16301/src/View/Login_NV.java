@@ -14,7 +14,6 @@ import javax.swing.ImageIcon;
 import Helper.DialogHelper;
 import Helper.ShareHelper;
 import Model.TaiKhoanNV;
-import javax.swing.JFrame;
 
 /**
  *
@@ -27,15 +26,13 @@ public class Login_NV extends javax.swing.JFrame {
      */
     public Login_NV() {
         initComponents();
+        setLocationRelativeTo(null);
         txt_Password.setEchoChar((char) 0);
         txt_Username.setForeground(Color.GRAY);
         txt_Password.setForeground(Color.GRAY);
         ImageIcon logo = new ImageIcon("src/Logo/LogoNH.png");
         lb_Logo.setIcon(logo);
-        ImageIcon mini = new ImageIcon("src/Logo/minimize.png");
-        lb_Minimize.setIcon(mini);
-        ImageIcon cancel = new ImageIcon("src/Logo/cancel.png");
-        lb_Cancel.setIcon(cancel);
+       
     }
     TaiKhoanNVDAO tknv = new TaiKhoanNVDAO();
 
@@ -54,6 +51,8 @@ public class Login_NV extends javax.swing.JFrame {
                 if (ps.equals(ps1)) {
                     ShareHelper.USER=tk;
                     DialogHelper.alert(this, "Đăng nhập thành công !");
+                    new HomeNhaHang().setVisible(true);
+                    this.dispose();
                 } else {
                     DialogHelper.alert(this, "Đăng nhập thất bại!");
                 }
@@ -77,9 +76,6 @@ public class Login_NV extends javax.swing.JFrame {
         btn_Dangnhap = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         lb_Logo = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        lb_Minimize = new javax.swing.JLabel();
-        lb_Cancel = new javax.swing.JLabel();
 
         jCheckBox1.setText("jCheckBox1");
 
@@ -115,7 +111,7 @@ public class Login_NV extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 19)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Đăng Nhập");
 
@@ -126,68 +122,36 @@ public class Login_NV extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(26, 26, 26)
                         .addComponent(lb_Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txt_Username)
-                                .addComponent(txt_Password, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cbx_Hienthi, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_Dangnhap, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btn_Dangnhap, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_Username)
+                            .addComponent(txt_Password, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(96, 96, 96)
+                        .addGap(89, 89, 89)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
+                .addGap(33, 33, 33)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lb_Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txt_Username, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(txt_Password, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbx_Hienthi)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_Dangnhap, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lb_Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-
-        jPanel2.setBackground(new java.awt.Color(102, 153, 255));
-
-        lb_Minimize.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lb_MinimizeMouseClicked(evt);
-            }
-        });
-
-        lb_Cancel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lb_CancelMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(482, Short.MAX_VALUE)
-                .addComponent(lb_Minimize, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lb_Cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lb_Minimize, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-            .addComponent(lb_Cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25)
+                        .addComponent(btn_Dangnhap, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -195,17 +159,12 @@ public class Login_NV extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(9, 9, 9)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -270,14 +229,6 @@ public class Login_NV extends javax.swing.JFrame {
         Login();
     }//GEN-LAST:event_btn_DangnhapActionPerformed
 
-    private void lb_MinimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_MinimizeMouseClicked
-        this.setExtendedState(JFrame.ICONIFIED);
-    }//GEN-LAST:event_lb_MinimizeMouseClicked
-
-    private void lb_CancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_CancelMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_lb_CancelMouseClicked
-
     /**
      * @param args the command line arguments
      */
@@ -319,10 +270,7 @@ public class Login_NV extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel lb_Cancel;
     private javax.swing.JLabel lb_Logo;
-    private javax.swing.JLabel lb_Minimize;
     private javax.swing.JPasswordField txt_Password;
     private javax.swing.JTextField txt_Username;
     // End of variables declaration//GEN-END:variables
