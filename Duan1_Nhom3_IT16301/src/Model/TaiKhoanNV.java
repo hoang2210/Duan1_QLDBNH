@@ -6,6 +6,11 @@ public class TaiKhoanNV {
     private String pass;
     private boolean vaiTro=false;
 
+    @Override
+    public String toString() {
+       return this.getUsername();
+    }
+
     public String getUsername() {
         return username;
     }

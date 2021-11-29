@@ -12,6 +12,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.ImageIcon;
 import Helper.DialogHelper;
+import Helper.ShareHelper;
 import Model.TaiKhoanNV;
 import javax.swing.JFrame;
 
@@ -51,6 +52,7 @@ public class Login_NV extends javax.swing.JFrame {
             if (tk != null) {
                 String ps1 = tk.getPass();
                 if (ps.equals(ps1)) {
+                    ShareHelper.USER=tk;
                     DialogHelper.alert(this, "Đăng nhập thành công !");
                 } else {
                     DialogHelper.alert(this, "Đăng nhập thất bại!");
