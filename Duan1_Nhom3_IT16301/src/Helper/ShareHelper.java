@@ -57,7 +57,7 @@ public class ShareHelper {
     /**
      * * Đối tượng này chứa thông tin người sử dụng sau khi đăng nhập
      */
-    public static NhanVien USER = null;
+    public static TaiKhoanNV USER = null;
     public static KhachHang USERkh = null;
 
     /**
