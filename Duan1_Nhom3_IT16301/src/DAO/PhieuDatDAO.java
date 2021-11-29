@@ -92,7 +92,10 @@ public class PhieuDatDAO {
         String sql = "SELECT * FROM PhieuDat";
         return select(sql);
     }
-
+    public List<PhieuDat> select(int id) {
+        String sql = "SELECT * FROM PhieuDat WHERE MaKH=?";
+        return select(sql, id);
+    }
     /**
      * Truy vấn thực thể theo mã id
      *
