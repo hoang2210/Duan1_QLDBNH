@@ -147,7 +147,7 @@ public class HomeNhaHang extends javax.swing.JFrame {
         jToolBar1.add(jSeparator3);
 
         btnTTB.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnTTB.setText("Trạng thái bàn ");
+        btnTTB.setText("Món ăn");
         btnTTB.setFocusable(false);
         btnTTB.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnTTB.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -214,7 +214,7 @@ public class HomeNhaHang extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblGio)
                     .addComponent(lblNgay))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 358, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 406, Short.MAX_VALUE)
                 .addComponent(lb3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -320,6 +320,11 @@ public class HomeNhaHang extends javax.swing.JFrame {
 
         mniThucDon.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         mniThucDon.setText("Thực đơn");
+        mniThucDon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniThucDonActionPerformed(evt);
+            }
+        });
         jMenu2.add(mniThucDon);
 
         jMenuBar1.add(jMenu2);
@@ -382,7 +387,8 @@ public class HomeNhaHang extends javax.swing.JFrame {
     }//GEN-LAST:event_mniHoaDonActionPerformed
 
     private void btnTTBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTTBActionPerformed
-        // TODO add your handling code here:
+        new QLMonAn().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnTTBActionPerformed
 
     private void btnPhieuDatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPhieuDatActionPerformed
@@ -412,6 +418,11 @@ public class HomeNhaHang extends javax.swing.JFrame {
         new PhieuDat_Form().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_mniPhieuDatActionPerformed
+
+    private void mniThucDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniThucDonActionPerformed
+        new QLLoaiMon().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_mniThucDonActionPerformed
 
     /**
      * @param args the command line arguments
