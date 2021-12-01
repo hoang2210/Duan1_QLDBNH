@@ -47,4 +47,18 @@ public class BanAnDAO {
         String sql = "SELECT * FROM BanAn";
         return select(sql);
     }
+        public BanAn findById(int TimeBook) {
+        String sql = "	select * from BanAn where SoBan \n"
+                + "	not in (Select hd.SoBan from BanAn ba \n"
+                + "	join HoaDon hd on ba.SoBan = hd.SoBan\n"
+                + "	join PhieuDat pd on hd.MaPD = pd.MaPD\n"
+                + "	where pd.TimeBook =? and pd.DateBook = ?) ";
+        List<BanAn> list = select(sql, TimeBook);
+        return list.size() > 0 ? list.get(0) : null;
+    }
+        public BanAn findById1(int id) {
+        String sql = "SELECT * FROM HoaDon WHERE MaHD=?";
+        List<BanAn> list = select(sql, id);
+        return list.size() > 0 ? list.get(0) : null;
+    }
 }

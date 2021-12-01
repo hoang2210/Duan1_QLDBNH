@@ -8,6 +8,7 @@ package View;
 import DAO.HoaDonDAO;
 import DAO.PhieuDatDAO;
 import Helper.DialogHelper;
+import Helper.JdbcHelper;
 import Model.HoaDon;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -73,19 +74,13 @@ public class HoaDonKH extends javax.swing.JFrame {
         }
     }
     private void LoadText() {
-        String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-        String url = "jdbc:sqlserver://localhost:1433;databaseName=QLDatBan2";
-        String user = "sa";
-        String password = "123";
+       
         try {
-            Class.forName(driver);
-            Connection conn = DriverManager.getConnection(url, user, password);
+           
             String sql = "select *\n"
                     + "from PhieuDat inner join ThongTinKH on ThongTinKH.MaKH = PhieuDat.MaKH\n"
                     + "where MaPD=?";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, lb_MaPD.getText());
-            ResultSet rs = ps.executeQuery();
+            ResultSet rs = JdbcHelper.executeQuery(sql, lb_MaPD.getText());
             while (rs.next()) {
                 lb_HoTen.setText(rs.getString("Hoten"));
                 lb_Sdt.setText(rs.getString("SDT"));
@@ -96,7 +91,6 @@ public class HoaDonKH extends javax.swing.JFrame {
                 lb_GioHen.setText(String.valueOf(ppstime));
                 lb_MaPD.setText(rs.getString("MaPD"));
             }
-            conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -358,7 +352,8 @@ public class HoaDonKH extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_HuyActionPerformed
 
     private void btn_ThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThanhToanActionPerformed
-        // TODO add your handling code here:
+     Integer MaHD = Integer.parseInt(lb_MaHD.getText());
+        new HoaDonForm(MaHD).setVisible(true);
     }//GEN-LAST:event_btn_ThanhToanActionPerformed
 
     /**
