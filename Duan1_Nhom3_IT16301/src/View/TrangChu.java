@@ -4,6 +4,7 @@
  */
 package View;
 
+import DAO.BanAnDAO;
 import DAO.KhachHangDAO;
 import DAO.LoaiMonDAO;
 import DAO.MonAnDAO;
@@ -13,6 +14,7 @@ import Helper.DateHelper;
 import Helper.DialogHelper;
 import Helper.JdbcHelper;
 import Helper.ShareHelper;
+import Model.BanAn;
 import Model.KhachHang;
 import Model.LoaiMon;
 import Model.MonAn;
@@ -135,6 +137,8 @@ public class TrangChu extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtNgayDat = new com.toedter.calendar.JDateChooser();
+        jLabel31 = new javax.swing.JLabel();
+        cboBanAn = new javax.swing.JComboBox<>();
         pnDonDat = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
@@ -160,6 +164,7 @@ public class TrangChu extends javax.swing.JFrame {
         jLabel30 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
+        lblBackDS1 = new javax.swing.JLabel();
         pnDanhGia = new javax.swing.JPanel();
         jLabel27 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -924,7 +929,7 @@ public class TrangChu extends javax.swing.JFrame {
                 .addComponent(lblLoiChao)
                 .addGap(61, 61, 61)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
 
         pnDatBan.setBackground(new java.awt.Color(255, 255, 255));
@@ -1032,24 +1037,31 @@ public class TrangChu extends javax.swing.JFrame {
         txtNgayDat.setDateFormatString("dd/MM/yyyy");
         txtNgayDat.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
 
+        jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo/chair.png"))); // NOI18N
+
+        cboBanAn.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+
         javax.swing.GroupLayout pnRightDBLayout = new javax.swing.GroupLayout(pnRightDB);
         pnRightDB.setLayout(pnRightDBLayout);
         pnRightDBLayout.setHorizontalGroup(
             pnRightDBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnRightDBLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnRightDBLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnRightDBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(pnRightDBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnRightDBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnDatBanNgay)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
                     .addComponent(txtSoNguoi)
                     .addComponent(cboTimeBook, 0, 293, Short.MAX_VALUE)
-                    .addComponent(txtNgayDat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtNgayDat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cboBanAn, 0, 293, Short.MAX_VALUE))
                 .addGap(74, 74, 74))
         );
         pnRightDBLayout.setVerticalGroup(
@@ -1065,13 +1077,17 @@ public class TrangChu extends javax.swing.JFrame {
                     .addComponent(cboTimeBook, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
                 .addGap(21, 21, 21)
                 .addGroup(pnRightDBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtSoNguoi, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                    .addComponent(cboBanAn, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGroup(pnRightDBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSoNguoi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(pnRightDBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDatBanNgay, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -1104,7 +1120,7 @@ public class TrangChu extends javax.swing.JFrame {
             .addGroup(pnDatBanLayout.createSequentialGroup()
                 .addGap(93, 93, 93)
                 .addComponent(pnGDDatBan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         pnDonDat.setBackground(new java.awt.Color(255, 255, 255));
@@ -1325,21 +1341,38 @@ public class TrangChu extends javax.swing.JFrame {
         jTextArea2.setText(" \n Trường hợp hủy bàn hợp lệ:\n  - Hủy bàn trước khi nhân viên nhà hàng xác nhận.\n  - Với trường hợp nhân viên nhà hàng đã xác nhận. Hủy bàn sẽ được tính \nlà hợp lệ khi thỏa mãn đồng thời hai điều kiện: \n    * Trong khoảng thời gian 3 tiếng tính từ lúc nhân viên xác nhận \nthành công.\n    * Thời gian hủy bàn phải trước thời gian đặt bàn là 3 tiếng.\n Với các trường hợp trên nhà hàng sẽ tiến hành hủy đơn đặt và hoàn lại \ntiền cọc. Ngoài ra nhà hàng sẽ hủy đơn đặt nhưng sẽ không hoàn lại tiền \ncọc. \n Trường hợp khách hàng muốn chỉnh sửa thông tin đơn đặt thì trước lúc \nnhân viên xác nhận khách hàng có thể tự do thay đổi thông tin đặt bàn. \nCòn khi nhân viên đã xác nhận thành công thì khách hàng phải liên hệ \ntrực tiếp đến nhà hàng để yêu cầu nhân viên chỉnh sửa thông tin đơn đặt.\n");
         jScrollPane7.setViewportView(jTextArea2);
 
+        lblBackDS1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblBackDS1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo/BackMini.png"))); // NOI18N
+        lblBackDS1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblBackDS1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnChinhSachHuyBanLayout = new javax.swing.GroupLayout(pnChinhSachHuyBan);
         pnChinhSachHuyBan.setLayout(pnChinhSachHuyBanLayout);
         pnChinhSachHuyBanLayout.setHorizontalGroup(
             pnChinhSachHuyBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel30, javax.swing.GroupLayout.DEFAULT_SIZE, 804, Short.MAX_VALUE)
-            .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 804, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnChinhSachHuyBanLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblBackDS1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 673, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66))
         );
         pnChinhSachHuyBanLayout.setVerticalGroup(
             pnChinhSachHuyBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnChinhSachHuyBanLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 564, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(pnChinhSachHuyBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnChinhSachHuyBanLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnChinhSachHuyBanLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(lblBackDS1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pnDanhGia.setBackground(new java.awt.Color(255, 255, 255));
@@ -1587,7 +1620,9 @@ public class TrangChu extends javax.swing.JFrame {
         );
         LayerGiaoDienLayout.setVerticalGroup(
             LayerGiaoDienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LayerGiaoDienLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(pnHome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(LayerGiaoDienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(pnDatBan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(LayerGiaoDienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1958,6 +1993,11 @@ public class TrangChu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_lblDangXuatXTMouseClicked
 
+    private void lblBackDS1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBackDS1MouseClicked
+        pnChinhSachHuyBan.setVisible(false);
+        pnDonDat.setVisible(true);
+    }//GEN-LAST:event_lblBackDS1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -2013,6 +2053,7 @@ public class TrangChu extends javax.swing.JFrame {
     private javax.swing.JButton btnUser;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JComboBox<String> cboBanAn;
     private javax.swing.JComboBox<String> cboDDTimeBook;
     private javax.swing.JComboBox<String> cboLoaiMon;
     private javax.swing.JComboBox<String> cboTimeBook;
@@ -2041,6 +2082,7 @@ public class TrangChu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -2065,6 +2107,7 @@ public class TrangChu extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JLabel lblBackDS;
+    private javax.swing.JLabel lblBackDS1;
     private javax.swing.JLabel lblChinhSach;
     private javax.swing.JLabel lblDangNhap;
     private javax.swing.JLabel lblDangXuat;
@@ -2217,7 +2260,21 @@ public class TrangChu extends javax.swing.JFrame {
 
     // Code Đặt Bàn
     PhieuDatDAO daoPD = new PhieuDatDAO();
-
+    BanAnDAO daoBA = new BanAnDAO();
+    void fillComboBox() {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cboBanAn.getModel();
+        model.removeAllElements();
+        try {
+            List<BanAn> list = daoBA.select();
+            for (BanAn cd : list) {
+                model.addElement(cd.getSoBan());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            DialogHelper.alert(this, "Lỗi truy vấn dữ liệu!");
+        }
+    }
+    
     void datban() {
         PhieuDat model = getFormPD();
         try {
@@ -2340,15 +2397,21 @@ public class TrangChu extends javax.swing.JFrame {
     void deleteDonDat() {
         if (DialogHelper.confirm(this, "Bạn đã nắm rõ chính sách hủy bàn của nhà hàng chưa?")) {
             if (DialogHelper.confirm(this, "Bạn có thực sự muốn hủy đặt trước hay không?")) {
-                int mapd = (int) tblDonDat.getValueAt(this.index, 0);
-                try {
-                    daoPD.delete(mapd);
-                    this.fillTableDonDat();
-                    this.clear();
-                    DialogHelper.alert(this, "Hủy đặt bàn thành công!");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    DialogHelper.alert(this, "Hủy đặt bàn thất bại!");
+                PhieuDat model = getFormDonDat();
+                String tt = model.getTrangThai();
+                if (tt.equalsIgnoreCase("Chờ xác nhận")) {
+                    int mapd = (int) tblDonDat.getValueAt(this.index, 0);
+                    try {
+                        daoPD.delete(mapd);
+                        this.fillTableDonDat();
+                        this.clear();
+                        DialogHelper.alert(this, "Hủy đặt bàn thành công!");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        DialogHelper.alert(this, "Hủy đặt bàn thất bại!");
+                    }
+                } else {
+                    DialogHelper.alert(this, "Phiếu đặt đã được xác nhận. Cập nhật thất bại!\nVui lòng liên hệ trực tiếp qua số điện thoại của nhà hàng để cung cấp thông tin chỉnh sửa");
                 }
             }
         }

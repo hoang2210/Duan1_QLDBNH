@@ -134,8 +134,8 @@ public class Accout extends javax.swing.JFrame {
         txtUserName.setText(tblAccout.getValueAt(row, 0).toString());
         txtPassWord.setText(tblAccout.getValueAt(row, 1).toString());
 
-        int vaitro = Integer.parseInt(tblAccout.getValueAt(row, 2).toString());
-        if (vaitro == 1) {
+        String vaitro = tblAccout.getValueAt(row, 2).toString();
+        if (vaitro.equalsIgnoreCase("Nhân viên")){
             rdoNV.setSelected(true);
         } else {
             rdoCNH.setSelected(true);
