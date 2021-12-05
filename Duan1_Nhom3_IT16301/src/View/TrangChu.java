@@ -26,6 +26,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -156,6 +157,10 @@ public class TrangChu extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
         txtDDNgayDat = new com.toedter.calendar.JDateChooser();
         lblBackDS = new javax.swing.JLabel();
+        cboDDBanAn = new javax.swing.JComboBox<>();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        lblTrangThaiDD = new javax.swing.JLabel();
         pnLichSuDonDat = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -1021,6 +1026,16 @@ public class TrangChu extends javax.swing.JFrame {
 
         cboTimeBook.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         cboTimeBook.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00" }));
+        cboTimeBook.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboTimeBookItemStateChanged(evt);
+            }
+        });
+        cboTimeBook.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cboTimeBookMouseClicked(evt);
+            }
+        });
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Date.png"))); // NOI18N
@@ -1142,6 +1157,16 @@ public class TrangChu extends javax.swing.JFrame {
 
         cboDDTimeBook.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         cboDDTimeBook.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00" }));
+        cboDDTimeBook.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboDDTimeBookItemStateChanged(evt);
+            }
+        });
+        cboDDTimeBook.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cboDDTimeBookMouseClicked(evt);
+            }
+        });
 
         txtDDSoNguoi.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
 
@@ -1205,6 +1230,32 @@ public class TrangChu extends javax.swing.JFrame {
             }
         });
 
+        cboDDBanAn.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        cboDDBanAn.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboDDBanAnItemStateChanged(evt);
+            }
+        });
+        cboDDBanAn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cboDDBanAnMouseClicked(evt);
+            }
+        });
+
+        jLabel32.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo/chair.png"))); // NOI18N
+        jLabel32.setText("Số bàn    :");
+
+        jLabel33.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Properties.png"))); // NOI18N
+        jLabel33.setText("Trạng thái:");
+
+        lblTrangThaiDD.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        lblTrangThaiDD.setForeground(new java.awt.Color(255, 0, 0));
+        lblTrangThaiDD.setText("Trạng thái");
+
         javax.swing.GroupLayout pnDonDatLayout = new javax.swing.GroupLayout(pnDonDat);
         pnDonDat.setLayout(pnDonDatLayout);
         pnDonDatLayout.setHorizontalGroup(
@@ -1222,25 +1273,29 @@ public class TrangChu extends javax.swing.JFrame {
                         .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(54, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnDonDatLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(pnDonDatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
-                            .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnDonDatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane6)
-                            .addComponent(txtDDSoNguoi)
-                            .addComponent(cboDDTimeBook, 0, 293, Short.MAX_VALUE)
-                            .addComponent(btnUpdateDonDat)
-                            .addComponent(txtDDNgayDat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(182, 182, 182))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnDonDatLayout.createSequentialGroup()
                         .addComponent(lblBackDS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 672, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(66, 66, 66))))
+                        .addGap(66, 66, 66))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnDonDatLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(pnDonDatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnDonDatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnDonDatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jScrollPane6)
+                                .addComponent(txtDDSoNguoi)
+                                .addComponent(cboDDTimeBook, 0, 293, Short.MAX_VALUE)
+                                .addComponent(btnUpdateDonDat)
+                                .addComponent(txtDDNgayDat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cboDDBanAn, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lblTrangThaiDD, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)))))
         );
         pnDonDatLayout.setVerticalGroup(
             pnDonDatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1249,7 +1304,11 @@ public class TrangChu extends javax.swing.JFrame {
                 .addGroup(pnDonDatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblBackDS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
-                .addGap(32, 32, 32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnDonDatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(lblTrangThaiDD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addGroup(pnDonDatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtDDNgayDat, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
@@ -1257,6 +1316,10 @@ public class TrangChu extends javax.swing.JFrame {
                 .addGroup(pnDonDatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cboDDTimeBook, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnDonDatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cboDDBanAn)
+                    .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnDonDatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1267,7 +1330,7 @@ public class TrangChu extends javax.swing.JFrame {
                     .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnUpdateDonDat, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(pnDonDatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnHuyDat, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
@@ -1289,11 +1352,11 @@ public class TrangChu extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã phiếu đặt", "Ngày đặt", "Giờ đặt", "Số người", "Ghi chú"
+                "Mã phiếu đặt", "Ngày đặt", "Giờ đặt", "Số bàn", "Số người", "Ghi chú"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1353,25 +1416,22 @@ public class TrangChu extends javax.swing.JFrame {
         pnChinhSachHuyBan.setLayout(pnChinhSachHuyBanLayout);
         pnChinhSachHuyBanLayout.setHorizontalGroup(
             pnChinhSachHuyBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 804, Short.MAX_VALUE)
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnChinhSachHuyBanLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblBackDS1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblBackDS1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 673, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(66, 66, 66))
         );
         pnChinhSachHuyBanLayout.setVerticalGroup(
             pnChinhSachHuyBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnChinhSachHuyBanLayout.createSequentialGroup()
-                .addGroup(pnChinhSachHuyBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnChinhSachHuyBanLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnChinhSachHuyBanLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(lblBackDS1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addContainerGap(40, Short.MAX_VALUE)
+                .addGroup(pnChinhSachHuyBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblBackDS1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel30, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -1962,7 +2022,8 @@ public class TrangChu extends javax.swing.JFrame {
         if (evt.getClickCount() == 2) {
             this.index = tblDonDat.rowAtPoint(evt.getPoint());
             if (this.index >= 0) {
-                this.editDonDat();
+                fillComBoBoxSoBan();
+                this.editDonDat();              
                 pnLichSuDonDat.setVisible(false);
                 pnDonDat.setVisible(true);
             }
@@ -1993,10 +2054,34 @@ public class TrangChu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_lblDangXuatXTMouseClicked
 
+    private void cboTimeBookItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboTimeBookItemStateChanged
+        fillComboBoxBanAn();
+    }//GEN-LAST:event_cboTimeBookItemStateChanged
+
+    private void cboTimeBookMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboTimeBookMouseClicked
+        fillComboBoxBanAn();
+    }//GEN-LAST:event_cboTimeBookMouseClicked
+
     private void lblBackDS1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBackDS1MouseClicked
         pnChinhSachHuyBan.setVisible(false);
         pnDonDat.setVisible(true);
     }//GEN-LAST:event_lblBackDS1MouseClicked
+
+    private void cboDDTimeBookItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboDDTimeBookItemStateChanged
+        fillComBoBoxSoBan();
+    }//GEN-LAST:event_cboDDTimeBookItemStateChanged
+
+    private void cboDDTimeBookMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboDDTimeBookMouseClicked
+        fillComBoBoxSoBan();
+    }//GEN-LAST:event_cboDDTimeBookMouseClicked
+
+    private void cboDDBanAnItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboDDBanAnItemStateChanged
+        //fillComBoBoxSoBan();
+    }//GEN-LAST:event_cboDDBanAnItemStateChanged
+
+    private void cboDDBanAnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboDDBanAnMouseClicked
+        fillComBoBoxSoBan();
+    }//GEN-LAST:event_cboDDBanAnMouseClicked
 
     /**
      * @param args the command line arguments
@@ -2054,6 +2139,7 @@ public class TrangChu extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JComboBox<String> cboBanAn;
+    private javax.swing.JComboBox<String> cboDDBanAn;
     private javax.swing.JComboBox<String> cboDDTimeBook;
     private javax.swing.JComboBox<String> cboLoaiMon;
     private javax.swing.JComboBox<String> cboTimeBook;
@@ -2083,6 +2169,8 @@ public class TrangChu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -2129,6 +2217,7 @@ public class TrangChu extends javax.swing.JFrame {
     private javax.swing.JLabel lblThoat;
     private javax.swing.JLabel lblThongBao;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblTrangThaiDD;
     private javax.swing.JLabel lblXemThem;
     private javax.swing.JPanel pnChinhSachHuyBan;
     private javax.swing.JPanel pnDangNhap;
@@ -2179,9 +2268,11 @@ public class TrangChu extends javax.swing.JFrame {
 
         //Dat ban
         setFormTT();
+        fillComboBoxBanAn();
 
         //Đơn đặt
         fillTableDonDat();
+        fillComBoBoxSoBan();
 
         //Menu
         fillComboBoxLoaiMon();
@@ -2261,20 +2352,28 @@ public class TrangChu extends javax.swing.JFrame {
     // Code Đặt Bàn
     PhieuDatDAO daoPD = new PhieuDatDAO();
     BanAnDAO daoBA = new BanAnDAO();
-    void fillComboBox() {
+
+    void fillComboBoxBanAn() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboBanAn.getModel();
         model.removeAllElements();
         try {
-            List<BanAn> list = daoBA.select();
-            for (BanAn cd : list) {
-                model.addElement(cd.getSoBan());
+            String ngay = DateHelper.toString1(txtNgayDat.getDate());
+            String gio = (String) cboTimeBook.getSelectedItem();
+            String sql = "select SoBan from BanAn where SoBan\n"
+                + "    not in (Select ba.SoBan from BanAn ba join PhieuDat pd on ba.SoBan = pd.SoBan\n"
+                + "			where pd.DateBook = ? and pd.TimeBook = ?)";
+            
+            ResultSet rs = JdbcHelper.executeQuery(sql, ngay, gio);
+            while (rs.next()) {
+                String a = String.valueOf(rs.getInt("SoBan"));
+                model.addElement(a);
             }
         } catch (Exception e) {
             e.printStackTrace();
             DialogHelper.alert(this, "Lỗi truy vấn dữ liệu!");
         }
     }
-    
+
     void datban() {
         PhieuDat model = getFormPD();
         try {
@@ -2283,6 +2382,7 @@ public class TrangChu extends javax.swing.JFrame {
             DialogHelper.alert(this, "Đã gửi phiếu đặt thành công!\nVui lòng đợi phản hồi từ nhà hàng.");
             clearFormDatBan();
         } catch (Exception e) {
+            e.printStackTrace();
             DialogHelper.alert(this, "Đặt bàn thất bại!");
         }
     }
@@ -2290,6 +2390,9 @@ public class TrangChu extends javax.swing.JFrame {
     void clearFormDatBan() {
         txtNgayDat.setDate(null);
         cboTimeBook.setSelectedItem("08:30");
+        if(cboBanAn.getItemCount()>0){
+            cboBanAn.setSelectedIndex(0);
+        }
         txtSoNguoi.setText("Số người");
         txtGhiChu.setText("Ghi chú");
     }
@@ -2303,13 +2406,58 @@ public class TrangChu extends javax.swing.JFrame {
         model.setDateBook(txtNgayDat.getDate());
         String gio = (String) cboTimeBook.getSelectedItem();
         model.setTimeBook(DateHelper.toTime(gio));
+        model.setSoBan(Integer.parseInt(cboBanAn.getSelectedItem()+""));
         model.setSoNguoi(Integer.parseInt(txtSoNguoi.getText()));
         model.setGhiChu(txtGhiChu.getText());
         model.setTrangThai("Chờ xác nhận");
         return model;
     }
-
+    int MaPD = 0;
     //Code thông tin đơn đặt
+    void fillComBoBoxSoBan(){
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cboDDBanAn.getModel();
+        model.removeAllElements();
+        try {
+            String ngay = DateHelper.toString1(txtDDNgayDat.getDate());
+            String gio = (String) cboDDTimeBook.getSelectedItem();
+            if(tblDonDat.getRowCount()>0 && index >= 0){
+                MaPD = (int) tblDonDat.getValueAt(this.index, 0);
+                cboDDBanAn.setSelectedItem(tblDonDat.getValueAt(this.index, 3));
+            }            
+            String sql = "select SoBan from BanAn where SoBan\n"
+                + "    not in (Select ba.SoBan from BanAn ba join PhieuDat pd on ba.SoBan = pd.SoBan\n"
+                + "			where pd.DateBook = ? and pd.TimeBook = ? and MaPD != ?)";
+            
+            ResultSet rs = JdbcHelper.executeQuery(sql, ngay, gio, MaPD);
+            while (rs.next()) {
+                String a = String.valueOf(rs.getInt("SoBan"));
+                model.addElement(a);
+            }
+            if(tblDonDat.getRowCount()>0 && index >= 0){
+                model.setSelectedItem(tblDonDat.getValueAt(this.index, 3));
+            }  
+        } catch (Exception e) {
+            e.printStackTrace();
+            DialogHelper.alert(this, "Lỗi truy vấn dữ liệu!");
+        }
+    }
+    
+//    void fillAllSoBan() {
+//        DefaultComboBoxModel model = (DefaultComboBoxModel) cboDDBanAn.getModel();
+//        model.removeAllElements();
+//        try {
+//            List<BanAn> list = daoBA.select();
+//            if (!list.isEmpty()) {
+//                for (BanAn cd : list) {                   
+//                    model.addElement(cd.getSoBan());
+//                }
+//            }
+//
+//        } catch (Exception e) {
+//            DialogHelper.alert(this, "Lỗi truy vấn dữ liệu!");
+//        }
+//    }
+    
     void fillTableDonDat() {
         DefaultTableModel model = (DefaultTableModel) tblDonDat.getModel();
         model.setRowCount(0);
@@ -2324,6 +2472,7 @@ public class TrangChu extends javax.swing.JFrame {
                         pd.getMaPD(),
                         date_fm.format(pd.getDateBook()),
                         fm.format(pd.getTimeBook()),
+                        pd.getSoBan(),
                         pd.getSoNguoi(),
                         pd.getGhiChu()
                     };
@@ -2344,6 +2493,7 @@ public class TrangChu extends javax.swing.JFrame {
                 this.setFormDonDat(model);
             }
         } catch (Exception e) {
+            e.printStackTrace();
             DialogHelper.alert(this, "Lỗi truy vấn dữ liệu!");
         }
     }
@@ -2352,8 +2502,20 @@ public class TrangChu extends javax.swing.JFrame {
         txtDDNgayDat.setDate(model.getDateBook());
         String gio = DateHelper.timetoString(model.getTimeBook());
         cboDDTimeBook.setSelectedItem(gio);
+        cboDDBanAn.setSelectedItem(model.getSoBan());
         txtDDSoNguoi.setText(Integer.toString(model.getSoNguoi()));
         txtDDGhiChu.setText(model.getGhiChu());
+        if (model.getTrangThai().equals("Chờ xác nhận")) {
+            lblTrangThaiDD.setText("Đang chờ xác nhận");
+        } else if (model.getTrangThai().equals("Đã xác nhận")) {
+            String ngayXacNhan = DateHelper.toString(model.getDateXacNhan());
+            String timeXacNhan = DateHelper.timetoString(model.getTimeXacNhan());
+            lblTrangThaiDD.setText("Đã xác nhận lúc: " + timeXacNhan +" ngày "+ ngayXacNhan);
+        }else{
+            String ngayThanhToan = DateHelper.toString(model.getDateThanhToan());
+            String timeThanhToan = DateHelper.timetoString(model.getTimeThanToan());
+            lblTrangThaiDD.setText(model.getTrangThai()+ " lúc: " + timeThanhToan+" ngày "+ ngayThanhToan);
+        }
     }
 
     public PhieuDat getFormDonDat() {
@@ -2367,6 +2529,7 @@ public class TrangChu extends javax.swing.JFrame {
         model.setDateBook(txtDDNgayDat.getDate());
         String gio = (String) cboDDTimeBook.getSelectedItem();
         model.setTimeBook(DateHelper.toTime(gio));
+        model.setSoBan(Integer.parseInt(cboDDBanAn.getSelectedItem()+""));
         model.setSoNguoi(Integer.parseInt(txtDDSoNguoi.getText()));
         model.setGhiChu(txtDDGhiChu.getText());
         model.setTrangThai(list.getTrangThai());
