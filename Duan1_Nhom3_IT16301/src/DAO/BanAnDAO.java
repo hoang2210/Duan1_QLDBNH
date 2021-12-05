@@ -10,6 +10,7 @@ import Model.BanAn;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -46,5 +47,12 @@ public class BanAnDAO {
     public List<BanAn> select() {
         String sql = "SELECT * FROM BanAn";
         return select(sql);
+    }
+
+    public List<BanAn> selectSoBan(String datebook, String timebook) {
+        String sql = "select SoBan from BanAn where SoBan\n"
+                + "    not in (Select ba.SoBan from BanAn ba join PhieuDat pd on ba.SoBan = pd.SoBan\n"
+                + "			where pd.DateBook = ? and pd.TimeBook = ?)";
+        return select(sql, datebook, timebook);
     }
 }

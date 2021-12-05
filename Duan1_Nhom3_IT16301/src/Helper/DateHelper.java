@@ -96,7 +96,17 @@ public class DateHelper {
         now.setTime(now.getTime() + days * 24 * 60 * 60 * 1000);
         return now;
     }
-
+    static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    public static String toString1(Date date, String... pattern) {
+        if (pattern.length > 0) {
+            sdf.applyPattern(pattern[0]);
+        }
+        if (date == null) {
+            date = DateHelper.now();
+        }
+        return sdf.format(date);
+    }
+    
     static final SimpleDateFormat TIME_FORMATER = new SimpleDateFormat("HH:mm");
 
     public static Date toTime(String time, String... pattern) {

@@ -8,9 +8,46 @@ public class PhieuDat {
     private int MaKH;
     private Date dateBook;
     private Date TimeBook;
+    private int soBan;
     private int soNguoi;
+    private Date DateXacNhan;
     private Date TimeXacNhan;
+    private Date DateThanhToan;
+    private Date TimeThanToan;
     private String ghiChu;
+    private String TrangThai; 
+
+    public int getSoBan() {
+        return soBan;
+    }
+
+    public void setSoBan(int soBan) {
+        this.soBan = soBan;
+    }
+
+    public Date getDateXacNhan() {
+        return DateXacNhan;
+    }
+
+    public void setDateXacNhan(Date DateXacNhan) {
+        this.DateXacNhan = DateXacNhan;
+    }
+
+    public Date getDateThanhToan() {
+        return DateThanhToan;
+    }
+
+    public void setDateThanhToan(Date DateThanhToan) {
+        this.DateThanhToan = DateThanhToan;
+    }
+
+    public Date getTimeThanToan() {
+        return TimeThanToan;
+    }
+
+    public void setTimeThanToan(Date TimeThanToan) {
+        this.TimeThanToan = TimeThanToan;
+    }
 
     public Date getTimeBook() {
         return TimeBook;
@@ -27,8 +64,6 @@ public class PhieuDat {
     public void setTimeXacNhan(Date TimeXacNhan) {
         this.TimeXacNhan = TimeXacNhan;
     }
-
-    private String TrangThai; 
 
     public int getMaPD() {
         return MaPD;
