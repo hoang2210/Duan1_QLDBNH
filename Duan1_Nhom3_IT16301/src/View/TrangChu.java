@@ -1056,11 +1056,6 @@ public class TrangChu extends javax.swing.JFrame {
         jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo/chair.png"))); // NOI18N
 
         cboBanAn.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
-        cboBanAn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cboBanAnMouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout pnRightDBLayout = new javax.swing.GroupLayout(pnRightDB);
         pnRightDB.setLayout(pnRightDBLayout);
@@ -2058,10 +2053,6 @@ public class TrangChu extends javax.swing.JFrame {
             DialogHelper.alert(this, "Bạn chưa đăng nhập với tài khoản!\nKhông thể thực hiện đăng xuất lúc này.");
         }
     }//GEN-LAST:event_lblDangXuatXTMouseClicked
-
-    private void cboBanAnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboBanAnMouseClicked
-        fillComboBoxBanAn();
-    }//GEN-LAST:event_cboBanAnMouseClicked
 
     private void cboTimeBookItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboTimeBookItemStateChanged
         fillComboBoxBanAn();
