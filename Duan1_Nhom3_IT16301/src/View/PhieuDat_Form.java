@@ -7,12 +7,14 @@ package View;
 
 import DAO.BanAnDAO;
 import DAO.HoaDonDAO;
+import DAO.HoaDonDAO1;
 import DAO.PhieuDatDAO;
 import Helper.DateHelper;
 import Helper.DialogHelper;
 import Helper.JdbcHelper;
 import Helper.ShareHelper;
 import Model.HoaDon;
+import Model.HoaDon1;
 import Model.PhieuDat;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
@@ -32,7 +34,7 @@ public class PhieuDat_Form extends javax.swing.JFrame {
     PhieuDatDAO dao = new PhieuDatDAO();
     int index = 0;
     BanAnDAO BADao = new BanAnDAO();
-    HoaDonDAO hdDao = new HoaDonDAO();
+    HoaDonDAO1 hdDao = new HoaDonDAO1();
 
     public PhieuDat_Form() {
         initComponents();
@@ -149,18 +151,18 @@ public class PhieuDat_Form extends javax.swing.JFrame {
         }
     }
 
-    HoaDon GetModel() {
-        HoaDon model = new HoaDon();
+    HoaDon1 GetModel() {
+        HoaDon1 model = new HoaDon1();
         model.setMaPD(Integer.parseInt(lblMaPD.getText()));
         model.setSoBan(Integer.parseInt(cboBanAn.getSelectedItem() + ""));
         model.setNgayAn(txtNgayDat.getDate());
-        model.setGhiChu(txtGhiChu.getText());
+        model.setTongTien(0.0);
         model.setNguoiTao(String.valueOf(ShareHelper.USER));
         return model;
     }
 
     void Insert() {
-        HoaDon model = GetModel();
+        HoaDon1 model = GetModel();
         try {
             hdDao.insert(model);
             DialogHelper.alert(this, " Thành Công");
@@ -536,16 +538,16 @@ public class PhieuDat_Form extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblHoTen, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblSDT, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblMaPD, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)

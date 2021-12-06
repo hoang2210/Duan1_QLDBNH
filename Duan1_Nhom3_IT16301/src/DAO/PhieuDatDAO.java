@@ -152,4 +152,12 @@ public class PhieuDatDAO {
 //        List<PhieuDat> list = select(sql, user);
 //        return list.size() > 0 ? list.get(0) : null;
 //    }
+     public void updateTT(PhieuDat entity) {
+        String sql = "UPDATE PhieuDat SET DateThanhToan=?, TimeThanToan=?, TrangThai = ? WHERE MaPD=?";
+        JdbcHelper.executeUpdate(sql,
+                entity.getDateThanhToan(),
+                entity.getTimeThanToan(),
+                entity.getTrangThai(),
+                entity.getMaPD());
+    }
 }

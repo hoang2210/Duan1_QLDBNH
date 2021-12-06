@@ -6,10 +6,12 @@
 package View;
 
 import DAO.HoaDonDAO;
+import DAO.HoaDonDAO1;
 import DAO.PhieuDatDAO;
 import Helper.DialogHelper;
 import Helper.JdbcHelper;
 import Model.HoaDon;
+import Model.HoaDon1;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -34,21 +36,20 @@ public class HoaDonKH extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     int index = 0;
-    HoaDonDAO dao = new HoaDonDAO();
+    HoaDonDAO1 dao = new HoaDonDAO1();
     PhieuDatDAO PDDao = new PhieuDatDAO();
 
     void LoadTable() {
         DefaultTableModel model = (DefaultTableModel) tbl_HoaDon.getModel();
         model.setRowCount(0);
         try {
-            List<HoaDon> list = dao.select();
-            for (HoaDon cd : list) {
+            List<HoaDon1> list = dao.select();
+            for (HoaDon1 cd : list) {
                 Object[] obj = {
                     cd.getMaHD(),
                     cd.getMaPD(),
                     cd.getSoBan(),
                     cd.getNgayAn(),
-                    cd.getGhiChu(),
                     cd.getNguoiTao(),};
                 model.addRow(obj);
             }
@@ -56,7 +57,7 @@ public class HoaDonKH extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-    void setModel(HoaDon model) {
+    void setModel(HoaDon1 model) {
         lb_MaHD.setText(String.valueOf(model.getMaHD()));
         lb_SoBan.setText(String.valueOf(model.getSoBan()));
         lb_NgayHen.setText(String.valueOf(model.getNgayAn()));
@@ -66,7 +67,7 @@ public class HoaDonKH extends javax.swing.JFrame {
     void edit() {
         try {
             int a = Integer.parseInt(tbl_HoaDon.getValueAt(index, 0) + "");
-            HoaDon model = dao.findById(a);
+            HoaDon1 model = dao.findById(a);
             if (model != null) {
                 this.setModel(model);
             }
@@ -156,11 +157,11 @@ public class HoaDonKH extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã Hóa Đơn", "Mã Phiếu Đặt", "Số Bàn", "Ngày Hẹn", "Ghi Chú", "Người Tạo"
+                "Mã Hóa Đơn", "Mã Phiếu Đặt", "Số Bàn", "Ngày Hẹn", "Người Tạo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -379,7 +380,7 @@ public class HoaDonKH extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_HuyActionPerformed
 
     private void btn_ThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThanhToanActionPerformed
-       Integer MaHD = Integer.parseInt(lb_MaHD.getText());
+       Integer MaHD = Integer.valueOf(lb_MaHD.getText());
         new HoaDonForm(MaHD).setVisible(true);
     }//GEN-LAST:event_btn_ThanhToanActionPerformed
 
