@@ -546,7 +546,7 @@ if (evt.getClickCount() == 1) {
     }//GEN-LAST:event_jLabel12MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new HomeNhaHang().setVisible(true);
+        new QLLoaiMon().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

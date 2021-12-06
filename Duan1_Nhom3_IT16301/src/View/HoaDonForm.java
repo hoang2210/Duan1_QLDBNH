@@ -64,6 +64,7 @@ public class HoaDonForm extends javax.swing.JFrame {
         }
 
             LoadSoLuong();
+            this.setLocationRelativeTo(null);
     }
     Integer MaHD;
 

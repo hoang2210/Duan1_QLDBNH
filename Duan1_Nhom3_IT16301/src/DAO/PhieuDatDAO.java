@@ -126,13 +126,15 @@ public class PhieuDatDAO {
     public List<PhieuDat> select(String datenow, String timenow) {
         String sql = "select * from PhieuDat WHERE DateBook = ? "
                 + "AND  DATEDIFF(MINUTE, ?, TimeBook) <= 30 "
-                + "AND  DATEDIFF(MINUTE, ?, TimeBook) > 0";
+                + "AND  DATEDIFF(MINUTE, ?, TimeBook) > 0"
+                + "AND TrangThai = N'Đã xác nhận'";
         return select(sql, datenow, timenow, timenow);
     }
     
     public List<PhieuDat> select1(String datenow, String timenow) {
         String sql = "select * from PhieuDat WHERE DateBook = ? "
-                + "AND  DATEDIFF(MINUTE, ?, TimeBook) < 0 ";
+                + "AND  DATEDIFF(MINUTE, ?, TimeBook) < 0 "
+                + "AND TrangThai = N'Đã xác nhận'";;
         return select(sql, datenow, timenow);
     }
     /**

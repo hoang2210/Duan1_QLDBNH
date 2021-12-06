@@ -364,7 +364,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btn_ThanhToan">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Thanh To&#xe1;n"/>
+            <Property name="text" type="java.lang.String" value="G&#x1ecd;i m&#xf3;n"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ThanhToanActionPerformed"/>

@@ -103,7 +103,6 @@ public class HoaDonKH extends javax.swing.JFrame {
         int MaHD = Integer.parseInt(lb_MaHD.getText());
         int MaPD = Integer.parseInt(lb_MaPD.getText());
         try {
-
             dao.delete(MaHD);
             PDDao.delete(MaPD);
             DialogHelper.alert(this, "Hủy Thành Công");
@@ -219,7 +218,7 @@ public class HoaDonKH extends javax.swing.JFrame {
 
         lb_MaPD.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
 
-        btn_ThanhToan.setText("Thanh Toán");
+        btn_ThanhToan.setText("Gọi món");
         btn_ThanhToan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ThanhToanActionPerformed(evt);

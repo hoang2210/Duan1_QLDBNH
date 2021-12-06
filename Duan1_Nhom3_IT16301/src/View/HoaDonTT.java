@@ -42,6 +42,7 @@ public class HoaDonTT extends javax.swing.JFrame {
         LoadTableMeNu(MaHD);
         TongTien();
         LoadText();
+        this.setLocationRelativeTo(null);
     }
     Integer MaHD ;
 
