@@ -14,6 +14,13 @@ import Helper.JdbcHelper;
 import Model.CTHoaDon1;
 import Model.HoaDon1;
 import Model.PhieuDat;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileOutputStream;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -381,6 +388,7 @@ public class HoaDonTT extends javax.swing.JFrame {
     private void btn_ThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThanhToanActionPerformed
         UpdatePD();
         UpdateTien();
+        Loadpdf();
     }//GEN-LAST:event_btn_ThanhToanActionPerformed
 
     /**
@@ -431,6 +439,62 @@ public class HoaDonTT extends javax.swing.JFrame {
                 new HoaDonTT().setVisible(true);
             }
         });
+    }
+
+    void Loadpdf() {
+        try {
+            String file_name = "C:\\Users\\ADMIN\\Documents\\GitHub\\Duan1_QLDBNH\\Duan1_Nhom3_IT16301\\src\\File.pdf";
+            Document document = new Document();
+            PdfWriter.getInstance(document, new FileOutputStream(file_name));
+            document.open();
+            Paragraph para = new Paragraph("                                          Hoa Don Thanh Toan          ");
+            Paragraph paraa1 = new Paragraph("  ");
+            Paragraph para1 = new Paragraph("                 Ho Ten:" + lb_HoTen.getText());
+            Paragraph para2 = new Paragraph("                 So Dien Thoai:" + lb_SDT.getText());
+            Paragraph para3 = new Paragraph("                 So Nguoi:" + lb_SoNguoi.getText());
+            Paragraph para4 = new Paragraph("                 Ngay An :" + lb_NgayThang.getText());
+            Paragraph para5 = new Paragraph("                 Ma Hoa Don :" + lb_MaHD.getText());
+            Paragraph para6 = new Paragraph("                 Ma Phieu Dat :" + lb_MaPD.getText());
+            Paragraph para7 = new Paragraph("");
+            Paragraph para8 = new Paragraph("             ");
+            document.add(para);
+            document.add(para1);
+            document.add(para2);
+            document.add(para3);
+            document.add(para4);
+            document.add(para5);
+            document.add(para6);
+            document.add(para7);
+            document.add(para8);
+
+            PdfPTable table = new PdfPTable(4);
+            PdfPCell c1 = new PdfPCell(new Phrase("Ten Mon"));
+            table.addCell(c1);
+            c1 = new PdfPCell(new Phrase("So Luong"));
+            table.addCell(c1);
+            c1 = new PdfPCell(new Phrase("Don Gia"));
+            table.addCell(c1);
+            c1 = new PdfPCell(new Phrase("Thanh Tien"));
+            table.addCell(c1);
+            table.setHeaderRows(1);
+
+            for (int i = 0; i < lst.size(); i++) {
+                CTHoaDon1 s = lst.get(i);
+
+                table.addCell(s.getTenMon());
+                table.addCell(String.valueOf(s.getSoLuong()));
+                table.addCell(String.valueOf(s.getGiaTien()));
+                Double a = s.getSoLuong() * s.getGiaTien();
+                table.addCell(String.valueOf(a));
+            }
+
+            document.add(table);
+            Paragraph para9 = new Paragraph("                                                                                                   Tong Tien :" + lb_TongTien.getText());
+            document.add(para9);
+            document.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
