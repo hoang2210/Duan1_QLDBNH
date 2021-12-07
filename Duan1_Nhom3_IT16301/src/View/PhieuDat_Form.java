@@ -92,14 +92,21 @@ public class PhieuDat_Form extends javax.swing.JFrame {
         txtGhiChu.setText(model.getGhiChu());
         if (model.getTrangThai().equals("Chờ xác nhận")) {
             lblTrangThai.setText("Chờ xác nhận");
+            btnXacNhan.setEnabled(true);
+            btnTaoHoaDon.setEnabled(false);
+            btnCapNhat.setEnabled(true);
         } else if (model.getTrangThai().equals("Đã xác nhận")) {
             String ngayXacNhan = DateHelper.toString(model.getDateXacNhan());
             String timeXacNhan = DateHelper.timetoString(model.getTimeXacNhan());
             lblTrangThai.setText("Đã xác nhận lúc: " + timeXacNhan + " ngày " + ngayXacNhan);
+            btnTaoHoaDon.setEnabled(true);
+            btnCapNhat.setEnabled(true);
         } else {
             String ngayThanhToan = DateHelper.toString(model.getDateThanhToan());
             String timeThanhToan = DateHelper.timetoString(model.getTimeThanToan());
             lblTrangThai.setText(model.getTrangThai() + " lúc: " + timeThanhToan + " ngày " + ngayThanhToan);
+            btnTaoHoaDon.setEnabled(false);
+            btnCapNhat.setEnabled(false);
         }
     }
 
@@ -157,7 +164,10 @@ public class PhieuDat_Form extends javax.swing.JFrame {
         model.setSoBan(Integer.parseInt(cboBanAn.getSelectedItem() + ""));
         model.setNgayAn(txtNgayDat.getDate());
         model.setTongTien(0.0);
-        model.setNguoiTao(String.valueOf(ShareHelper.USER));
+        if (ShareHelper.USER != null) {
+            model.setNguoiTao(ShareHelper.USER.getUsername());
+        }
+
         return model;
     }
 
@@ -588,6 +598,7 @@ public class PhieuDat_Form extends javax.swing.JFrame {
 
         tab.addTab("Chi tiết phiếu đặt", jPanel2);
 
+        jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Home.png"))); // NOI18N
         jButton5.setText("Home");
@@ -603,7 +614,7 @@ public class PhieuDat_Form extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(tab)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addContainerGap()
                 .addComponent(jButton5)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -694,12 +705,14 @@ public class PhieuDat_Form extends javax.swing.JFrame {
         LoadDSSapDen();
         btnHuy.setEnabled(false);
         btnXacNhan.setEnabled(false);
+        btnTaoHoaDon.setEnabled(true);
     }//GEN-LAST:event_btnDSSapDenActionPerformed
 
     private void btnDSQuaGioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDSQuaGioActionPerformed
         LoadDSQuaGio();
         btnHuy.setEnabled(false);
         btnXacNhan.setEnabled(false);
+        btnTaoHoaDon.setEnabled(true);
     }//GEN-LAST:event_btnDSQuaGioActionPerformed
 
     /**

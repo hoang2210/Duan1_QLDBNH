@@ -5,10 +5,17 @@
  */
 package View;
 
+import Helper.DateHelper;
 import Helper.DialogHelper;
 import Helper.ShareHelper;
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.ImageIcon;
+import javax.swing.Timer;
 
 /**
  *
@@ -23,28 +30,13 @@ public class HomeNhaHang extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         this.getContentPane().setBackground(Color.WHITE);
-        ImageIcon user = new ImageIcon("src/Logo/2.jpg");
-        lblogo.setIcon(user);
-        ImageIcon dx = new ImageIcon("src/Logo/dangxuat1.png");
-        mniDangxuat.setIcon(dx);
-        ImageIcon dmk = new ImageIcon("src/Logo/Refresh.png");
-        mniDoiMK.setIcon(dmk);
-        ImageIcon thoat = new ImageIcon("src/Logo/off.png");
-        mniThoat.setIcon(thoat);
-        ImageIcon dondat = new ImageIcon("src/Logo/phieudat1.png");
-        mniPhieuDat.setIcon(dondat);
-        ImageIcon ttb = new ImageIcon("src/Logo/datban1.png");
-        mniTrangThaiBan.setIcon(ttb);
-        ImageIcon hoadon = new ImageIcon("src/Logo/bill.png");
-        mniHoaDon.setIcon(hoadon);
-        ImageIcon taikhoan = new ImageIcon("src/Logo/lock.png");
-        mniTaikhoan.setIcon(taikhoan);
-        ImageIcon nhanvien = new ImageIcon("src/Logo/add-user.png");
-        mniNhanVien.setIcon(nhanvien);
-        ImageIcon menu = new ImageIcon("src/Logo/menu.png");
-        mniThucDon.setIcon(menu);
-        ImageIcon dx1 = new ImageIcon("src/Logo/dangxuat1.png");
-        btnDXuat.setIcon(dx1);
+        init();
+        ImageIcon banner = new ImageIcon("src/Logo/banner.jpg");
+        Image im = banner.getImage();
+        ImageIcon icon = new ImageIcon(im.getScaledInstance(lblbanner.getWidth(), lblbanner.getHeight(), im.SCALE_SMOOTH));
+        lblbanner.setIcon(icon);
+        
+        
         ImageIcon dondat1 = new ImageIcon("src/Logo/phieudat1.png");
         btnPhieuDat.setIcon(dondat1);
         ImageIcon ttb1 = new ImageIcon("src/Logo/datban1.png");
@@ -55,14 +47,20 @@ public class HomeNhaHang extends javax.swing.JFrame {
         btnTaiKhoan.setIcon(taikhoan1);
         ImageIcon nhanvien1 = new ImageIcon("src/Logo/add-user.png");
         btnNhanVien.setIcon(nhanvien1);
-//        ImageIcon ngay = new ImageIcon("src/Logo/lich1.png");
-//        lblNgay.setIcon(ngay);
-//        ImageIcon gio = new ImageIcon("src/Logo/dongho2.png");
-//        lblGio.setIcon(gio);
-//        ImageIcon logo = new ImageIcon("src/Logo/LogoNH1.png");
-//        lb3.setIcon(logo);
     }
-
+    
+    void init(){
+        Date date = DateHelper.now();
+        new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Date time = new Date();
+                SimpleDateFormat fm = new SimpleDateFormat("hh:mm:ss a");
+                String text = fm.format(time);
+                lblDongHo.setText(text);
+            }
+        }).start();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -72,17 +70,6 @@ public class HomeNhaHang extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jSeparator4 = new javax.swing.JSeparator();
-        jSeparator9 = new javax.swing.JSeparator();
-        jSeparator10 = new javax.swing.JSeparator();
-        jSeparator13 = new javax.swing.JSeparator();
-        jSeparator14 = new javax.swing.JSeparator();
-        jSeparator15 = new javax.swing.JSeparator();
-        jSeparator16 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel2 = new javax.swing.JPanel();
-        lblogo = new javax.swing.JLabel();
         jToolBar1 = new javax.swing.JToolBar();
         btnDXuat = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
@@ -90,19 +77,18 @@ public class HomeNhaHang extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JToolBar.Separator();
         btnTTB = new javax.swing.JButton();
         jSeparator5 = new javax.swing.JToolBar.Separator();
-        jSeparator12 = new javax.swing.JToolBar.Separator();
         btnHoaDon = new javax.swing.JButton();
         jSeparator6 = new javax.swing.JToolBar.Separator();
         btnTaiKhoan = new javax.swing.JButton();
         jSeparator8 = new javax.swing.JToolBar.Separator();
-        jSeparator11 = new javax.swing.JToolBar.Separator();
         btnNhanVien = new javax.swing.JButton();
+        lblbanner = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        lblNgay = new javax.swing.JLabel();
-        lblGio = new javax.swing.JLabel();
-        lb3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        lblDongHo = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         mniDangxuat = new javax.swing.JCheckBoxMenuItem();
         mniDoiMK = new javax.swing.JCheckBoxMenuItem();
         mniThoat = new javax.swing.JCheckBoxMenuItem();
@@ -115,27 +101,14 @@ public class HomeNhaHang extends javax.swing.JFrame {
         mniThucDon = new javax.swing.JCheckBoxMenuItem();
         jMenu3 = new javax.swing.JMenu();
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(lblogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(844, 844, 844))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblogo, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
-        );
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jToolBar1.setRollover(true);
 
-        btnDXuat.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnDXuat.setText("Đăng xuất");
+        btnDXuat.setBackground(new java.awt.Color(255, 255, 255));
+        btnDXuat.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        btnDXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo/dangxuat1.png"))); // NOI18N
+        btnDXuat.setText("   Thoát   ");
         btnDXuat.setFocusable(false);
         btnDXuat.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnDXuat.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -147,8 +120,8 @@ public class HomeNhaHang extends javax.swing.JFrame {
         jToolBar1.add(btnDXuat);
         jToolBar1.add(jSeparator1);
 
-        btnPhieuDat.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnPhieuDat.setText("Đơn đặt");
+        btnPhieuDat.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        btnPhieuDat.setText("  Đơn đặt  ");
         btnPhieuDat.setFocusable(false);
         btnPhieuDat.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnPhieuDat.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -162,8 +135,8 @@ public class HomeNhaHang extends javax.swing.JFrame {
         jSeparator3.setForeground(new java.awt.Color(204, 153, 255));
         jToolBar1.add(jSeparator3);
 
-        btnTTB.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnTTB.setText("Món ăn");
+        btnTTB.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        btnTTB.setText("  Món ăn   ");
         btnTTB.setFocusable(false);
         btnTTB.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnTTB.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -174,10 +147,9 @@ public class HomeNhaHang extends javax.swing.JFrame {
         });
         jToolBar1.add(btnTTB);
         jToolBar1.add(jSeparator5);
-        jToolBar1.add(jSeparator12);
 
-        btnHoaDon.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnHoaDon.setText("Hóa đơn");
+        btnHoaDon.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        btnHoaDon.setText("  Hóa đơn  ");
         btnHoaDon.setFocusable(false);
         btnHoaDon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnHoaDon.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -189,8 +161,8 @@ public class HomeNhaHang extends javax.swing.JFrame {
         jToolBar1.add(btnHoaDon);
         jToolBar1.add(jSeparator6);
 
-        btnTaiKhoan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnTaiKhoan.setText("Tài khoản");
+        btnTaiKhoan.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        btnTaiKhoan.setText(" Tài khoản ");
         btnTaiKhoan.setFocusable(false);
         btnTaiKhoan.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnTaiKhoan.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -201,10 +173,9 @@ public class HomeNhaHang extends javax.swing.JFrame {
         });
         jToolBar1.add(btnTaiKhoan);
         jToolBar1.add(jSeparator8);
-        jToolBar1.add(jSeparator11);
 
-        btnNhanVien.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnNhanVien.setText("Nhân viên");
+        btnNhanVien.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        btnNhanVien.setText(" Nhân viên ");
         btnNhanVien.setFocusable(false);
         btnNhanVien.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnNhanVien.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -217,39 +188,40 @@ public class HomeNhaHang extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblNgay.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Monospaced", 0, 16)); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Info.png"))); // NOI18N
+        jLabel2.setText("Quản lý đặt bàn nhà hàng");
 
-        lblGio.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        lblDongHo.setFont(new java.awt.Font("Monospaced", 0, 16)); // NOI18N
+        lblDongHo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Clock.png"))); // NOI18N
+        lblDongHo.setText("hh:mm:aa");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblGio)
-                    .addComponent(lblNgay))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 744, Short.MAX_VALUE)
-                .addComponent(lb3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblDongHo, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lb3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblNgay)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                        .addComponent(lblGio)))
-                .addContainerGap())
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+            .addComponent(lblDongHo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Hệ thống");
 
-        mniDangxuat.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jMenuItem1.setFont(new java.awt.Font("Monospaced", 0, 16)); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Accept.png"))); // NOI18N
+        jMenuItem1.setText("Đăng nhập");
+        jMenu1.add(jMenuItem1);
+
+        mniDangxuat.setFont(new java.awt.Font("Monospaced", 0, 16)); // NOI18N
         mniDangxuat.setText("Đăng xuất");
+        mniDangxuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Log out.png"))); // NOI18N
         mniDangxuat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mniDangxuatActionPerformed(evt);
@@ -257,12 +229,14 @@ public class HomeNhaHang extends javax.swing.JFrame {
         });
         jMenu1.add(mniDangxuat);
 
-        mniDoiMK.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        mniDoiMK.setFont(new java.awt.Font("Monospaced", 0, 16)); // NOI18N
         mniDoiMK.setText("Đổi mật khẩu");
+        mniDoiMK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Refresh.png"))); // NOI18N
         jMenu1.add(mniDoiMK);
 
-        mniThoat.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        mniThoat.setFont(new java.awt.Font("Monospaced", 0, 16)); // NOI18N
         mniThoat.setText("Thoát");
+        mniThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Stop.png"))); // NOI18N
         mniThoat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mniThoatActionPerformed(evt);
@@ -274,8 +248,9 @@ public class HomeNhaHang extends javax.swing.JFrame {
 
         jMenu2.setText("Quản lý");
 
-        mniPhieuDat.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        mniPhieuDat.setFont(new java.awt.Font("Monospaced", 0, 16)); // NOI18N
         mniPhieuDat.setText("Đơn đặt");
+        mniPhieuDat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Notes.png"))); // NOI18N
         mniPhieuDat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mniPhieuDatActionPerformed(evt);
@@ -283,8 +258,9 @@ public class HomeNhaHang extends javax.swing.JFrame {
         });
         jMenu2.add(mniPhieuDat);
 
-        mniTrangThaiBan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        mniTrangThaiBan.setFont(new java.awt.Font("Monospaced", 0, 16)); // NOI18N
         mniTrangThaiBan.setText("Trạng thái bàn ");
+        mniTrangThaiBan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Conference.png"))); // NOI18N
         mniTrangThaiBan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mniTrangThaiBanActionPerformed(evt);
@@ -292,8 +268,9 @@ public class HomeNhaHang extends javax.swing.JFrame {
         });
         jMenu2.add(mniTrangThaiBan);
 
-        mniHoaDon.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        mniHoaDon.setFont(new java.awt.Font("Monospaced", 0, 16)); // NOI18N
         mniHoaDon.setText("Hóa đơn ");
+        mniHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Text.png"))); // NOI18N
         mniHoaDon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mniHoaDonActionPerformed(evt);
@@ -301,8 +278,9 @@ public class HomeNhaHang extends javax.swing.JFrame {
         });
         jMenu2.add(mniHoaDon);
 
-        mniTaikhoan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        mniTaikhoan.setFont(new java.awt.Font("Monospaced", 0, 16)); // NOI18N
         mniTaikhoan.setText("Tài khoản ");
+        mniTaikhoan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Unknown person.png"))); // NOI18N
         mniTaikhoan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mniTaikhoanActionPerformed(evt);
@@ -310,8 +288,9 @@ public class HomeNhaHang extends javax.swing.JFrame {
         });
         jMenu2.add(mniTaikhoan);
 
-        mniNhanVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        mniNhanVien.setFont(new java.awt.Font("Monospaced", 0, 16)); // NOI18N
         mniNhanVien.setText("Nhân viên");
+        mniNhanVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/User group.png"))); // NOI18N
         mniNhanVien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mniNhanVienActionPerformed(evt);
@@ -319,8 +298,9 @@ public class HomeNhaHang extends javax.swing.JFrame {
         });
         jMenu2.add(mniNhanVien);
 
-        mniThucDon.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        mniThucDon.setFont(new java.awt.Font("Monospaced", 0, 16)); // NOI18N
         mniThucDon.setText("Thực đơn");
+        mniThucDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Price list.png"))); // NOI18N
         mniThucDon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mniThucDonActionPerformed(evt);
@@ -339,23 +319,18 @@ public class HomeNhaHang extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(3, 3, 3)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 944, Short.MAX_VALUE)
+            .addComponent(lblbanner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(455, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(228, 228, 228)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(229, Short.MAX_VALUE)))
+                .addGap(1, 1, 1)
+                .addComponent(lblbanner, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -482,33 +457,21 @@ public class HomeNhaHang extends javax.swing.JFrame {
     private javax.swing.JButton btnPhieuDat;
     private javax.swing.JButton btnTTB;
     private javax.swing.JButton btnTaiKhoan;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JToolBar.Separator jSeparator1;
-    private javax.swing.JSeparator jSeparator10;
-    private javax.swing.JToolBar.Separator jSeparator11;
-    private javax.swing.JToolBar.Separator jSeparator12;
-    private javax.swing.JSeparator jSeparator13;
-    private javax.swing.JSeparator jSeparator14;
-    private javax.swing.JSeparator jSeparator15;
-    private javax.swing.JSeparator jSeparator16;
-    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JToolBar.Separator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JToolBar.Separator jSeparator5;
     private javax.swing.JToolBar.Separator jSeparator6;
     private javax.swing.JToolBar.Separator jSeparator8;
-    private javax.swing.JSeparator jSeparator9;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JToolBar jToolBar1;
-    private javax.swing.JLabel lb3;
-    private javax.swing.JLabel lblGio;
-    private javax.swing.JLabel lblNgay;
-    private javax.swing.JLabel lblogo;
+    private javax.swing.JLabel lblDongHo;
+    private javax.swing.JLabel lblbanner;
     private javax.swing.JCheckBoxMenuItem mniDangxuat;
     private javax.swing.JCheckBoxMenuItem mniDoiMK;
     private javax.swing.JCheckBoxMenuItem mniHoaDon;
