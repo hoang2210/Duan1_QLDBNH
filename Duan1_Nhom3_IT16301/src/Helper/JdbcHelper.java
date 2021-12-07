@@ -23,6 +23,18 @@ public class JdbcHelper {
     public static String password="12345678";
     
     //nạp driver
+    Connection conn = null;
+    public static Connection connect(){
+        try {
+            Class.forName(driver);
+               Connection conn = DriverManager.getConnection(dburl, username, password);
+               return conn;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return connect();
+    }
+    
     static{
         try {
             Class.forName(driver);
