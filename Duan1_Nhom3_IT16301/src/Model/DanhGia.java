@@ -4,7 +4,25 @@ package Model;
 public class DanhGia {
     private int MaID;
     private int MaKH;
+    private int MaPD;
     private int soSao;
+    private String nhanXet;
+
+    public int getMaPD() {
+        return MaPD;
+    }
+
+    public void setMaPD(int MaPD) {
+        this.MaPD = MaPD;
+    }
+
+    public String getNhanXet() {
+        return nhanXet;
+    }
+
+    public void setNhanXet(String nhanXet) {
+        this.nhanXet = nhanXet;
+    }
 
     public int getMaID() {
         return MaID;

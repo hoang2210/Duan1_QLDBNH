@@ -681,7 +681,7 @@ public class PhieuDat_Form extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTaoHoaDonActionPerformed
 
     private void cboTrangThaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTrangThaiActionPerformed
-        // TODO add your handling code here:
+        Cbb();
     }//GEN-LAST:event_cboTrangThaiActionPerformed
 
     private void cboTimeBookMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboTimeBookMouseClicked
