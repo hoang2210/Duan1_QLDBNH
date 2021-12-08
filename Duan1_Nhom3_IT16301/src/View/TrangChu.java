@@ -2831,6 +2831,8 @@ public class TrangChu extends javax.swing.JFrame {
         btnDonDat.setBackground(Color.WHITE);
         btnDanhGia.setBackground(Color.WHITE);
         btnDangXuat.setBackground(Color.WHITE);
+        btnDDDanhGia.setEnabled(false);
+        btnDanhGiaDD.setEnabled(false);
 
     }
     

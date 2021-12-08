@@ -815,8 +815,6 @@ public class PhieuDat_Form extends javax.swing.JFrame {
                 model.addElement(a);
             }
         } catch (Exception e) {
-            e.printStackTrace();
-            DialogHelper.alert(this, "Lỗi truy vấn dữ liệu!");
         }
     }
 
@@ -837,7 +835,6 @@ public class PhieuDat_Form extends javax.swing.JFrame {
                 model.addRow(obj);
             }
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
@@ -858,7 +855,6 @@ public class PhieuDat_Form extends javax.swing.JFrame {
                 model.addRow(obj);
             }
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
