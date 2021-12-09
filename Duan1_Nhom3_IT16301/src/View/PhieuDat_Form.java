@@ -676,7 +676,7 @@ public class PhieuDat_Form extends javax.swing.JFrame {
 
     private void btnTaoHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoHoaDonActionPerformed
         Insert();
-        new HoaDonKH().setVisible(true);
+        new QuanLyHoaDon().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnTaoHoaDonActionPerformed
 
