@@ -59,10 +59,9 @@ public class HoaDonDAO1 {
                 entity.getTongTien());
     }
 
-    public List<HoaDon1> select() {
-        String sql = "select *\n"
-                + "from HoaDon ";
-        return select(sql);
+    public List<HoaDon1> select(String trangthai) {
+        String sql = "select * from HoaDon join PhieuDat on HoaDon.MaPD = PhieuDat.MaPD where TrangThai = ?";
+        return select(sql, trangthai);
     }
     public HoaDon1 findById(int id) {
         String sql = "SELECT * FROM HoaDon WHERE MaHD=?";

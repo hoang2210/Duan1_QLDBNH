@@ -352,7 +352,7 @@ public class HomeNhaHang extends javax.swing.JFrame {
     }//GEN-LAST:event_mniNhanVienActionPerformed
 
     private void btnHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoaDonActionPerformed
-        new HoaDonKH().setVisible(true);
+        new QuanLyHoaDon().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnHoaDonActionPerformed
 
@@ -376,7 +376,7 @@ public class HomeNhaHang extends javax.swing.JFrame {
     }//GEN-LAST:event_mniTaikhoanActionPerformed
 
     private void mniHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniHoaDonActionPerformed
-        new HoaDonKH().setVisible(true);
+        new QuanLyHoaDon().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_mniHoaDonActionPerformed
 

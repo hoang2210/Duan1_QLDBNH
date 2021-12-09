@@ -14,12 +14,15 @@ import Helper.JdbcHelper;
 import Model.CTHoaDon1;
 import Model.HoaDon1;
 import Model.PhieuDat;
+import com.itextpdf.text.Anchor;
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -32,7 +35,7 @@ import java.io.FileOutputStream;
  *
  * @author ADMIN
  */
-public class HoaDonTT extends javax.swing.JFrame {
+public class HoaDonThanhToan extends javax.swing.JFrame {
 
     /**
      * Creates new form GoiMon
@@ -44,8 +47,11 @@ public class HoaDonTT extends javax.swing.JFrame {
     private DefaultTableModel model;
     SimpleDateFormat fm = new SimpleDateFormat("HH:mm");
     SimpleDateFormat date_fm = new SimpleDateFormat("dd/MM/yyyy");
+    private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
+    Font.BOLD);
+    private static Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 13);
 
-    public HoaDonTT() {
+    public HoaDonThanhToan() {
         initComponents();
         this.model = (DefaultTableModel) tbl_Mon.getModel();
         LoadTableMeNu(MaHD);
@@ -56,7 +62,7 @@ public class HoaDonTT extends javax.swing.JFrame {
     }
     Integer MaHD ;
 
-    HoaDonTT(Integer ID) {
+    HoaDonThanhToan(Integer ID) {
         initComponents();
         MaHD = ID;
         this.model = (DefaultTableModel) tbl_Mon.getModel();
@@ -93,7 +99,7 @@ public class HoaDonTT extends javax.swing.JFrame {
         try {
             String sql = "select *\n"
                     + "from ((HoaDon inner join PhieuDat on PhieuDat.MaPD = HoaDon.MaPD)\n"
-                    + "inner join ThongTinKH on ThongTinKH.MaKH=HoaDon.MaHD)\n"
+                    + "inner join ThongTinKH on ThongTinKH.MaKH= PhieuDat.MaKH)\n"
                     + "where MaHD=?";
             ResultSet rs = JdbcHelper.executeQuery(sql, MaHD);
             while (rs.next()) {
@@ -101,7 +107,7 @@ public class HoaDonTT extends javax.swing.JFrame {
                 lb_SDT.setText(rs.getString("SDT"));
                 lb_SoNguoi.setText(rs.getString("SoNguoi"));
                 lb_NhanVien.setText(rs.getString("NguoiTao"));
-                lb_NgayThang.setText(DateHelper.toString(rs.getDate("DateBook")));
+                lb_NgayThang.setText(date_fm.format(rs.getDate("DateBook")));
                 lb_MaHD.setText(String.valueOf(MaHD));
                 lb_MaPD.setText(String.valueOf(rs.getInt("MaPD")));
             }
@@ -169,7 +175,6 @@ public class HoaDonTT extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        lb_HoTen = new javax.swing.JLabel();
         lb_SDT = new javax.swing.JLabel();
         lb_SoNguoi = new javax.swing.JLabel();
         lb_NhanVien = new javax.swing.JLabel();
@@ -177,6 +182,7 @@ public class HoaDonTT extends javax.swing.JFrame {
         lb_MaHD = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         lb_MaPD = new javax.swing.JLabel();
+        lb_HoTen = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         lb_TongTien = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -236,8 +242,6 @@ public class HoaDonTT extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         jLabel7.setText("Ngày Tháng  :");
 
-        lb_HoTen.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
-
         lb_SDT.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
 
         lb_SoNguoi.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
@@ -252,6 +256,8 @@ public class HoaDonTT extends javax.swing.JFrame {
         jLabel8.setText("Mã Phiếu Đặt:");
 
         lb_MaPD.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+
+        lb_HoTen.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -295,11 +301,7 @@ public class HoaDonTT extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lb_SDT, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lb_HoTen, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lb_NgayThang, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -311,7 +313,11 @@ public class HoaDonTT extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(lb_MaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lb_HoTen, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lb_SDT, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -329,7 +335,7 @@ public class HoaDonTT extends javax.swing.JFrame {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel9.setText("Tổng Tiền: ");
 
-        lb_TongTien.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        lb_TongTien.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         lb_TongTien.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
         btn_ThanhToan.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
@@ -365,7 +371,7 @@ public class HoaDonTT extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel9)
                         .addGap(18, 18, 18)
                         .addComponent(lb_TongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -386,9 +392,9 @@ public class HoaDonTT extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lb_TongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(lb_TongTien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
@@ -433,14 +439,30 @@ public class HoaDonTT extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HoaDonTT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HoaDonThanhToan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HoaDonTT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HoaDonThanhToan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HoaDonTT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HoaDonThanhToan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HoaDonTT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HoaDonThanhToan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -461,24 +483,29 @@ public class HoaDonTT extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HoaDonTT().setVisible(true);
+                new HoaDonThanhToan().setVisible(true);
             }
         });
     }
  void Loadpdf() {
         try {
-            String file_name = "C:\\Users\\ADMIN\\Documents\\NetBeansProjects\\DuAnK4\\testa.pdf";
+            String file_name = "C:\\Users\\Hi\\Desktop\\FPT Polytechnic\\Dự án 1\\testa.pdf";
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream(file_name));
             document.open();
-            Paragraph para = new Paragraph("                                          Hoa Don Thanh Toan          ");
+            Anchor anchor = new Anchor("                                                     Hoa Don Thanh Toan", catFont);
+            anchor.setName("Hoa Don Thanh Toan");
+
+        // Second parameter is the number of the chapter
+            Paragraph para = new Paragraph(anchor);
             Paragraph paraa1 = new Paragraph("  ");
-            Paragraph para1 = new Paragraph("                 Ho Ten:" + lb_HoTen.getText());
-            Paragraph para2 = new Paragraph("                 So Dien Thoai:" + lb_SDT.getText());
-            Paragraph para3 = new Paragraph("                 So Nguoi:" + lb_SoNguoi.getText());
-            Paragraph para4 = new Paragraph("                 Ngay An :" + lb_NgayThang.getText());
-            Paragraph para5 = new Paragraph("                 Ma Hoa Don :" + lb_MaHD.getText());
-            Paragraph para6 = new Paragraph("                 Ma Phieu Dat :" + lb_MaPD.getText());
+            Paragraph paraa2 = new Paragraph("  ");
+            Paragraph para1 = new Paragraph("                Ho Ten: " + lb_HoTen.getText(), subFont);
+            Paragraph para2 = new Paragraph("                So Dien Thoai: " + lb_SDT.getText(),subFont);
+            Paragraph para3 = new Paragraph("                So Nguoi: " + lb_SoNguoi.getText(),subFont);
+            Paragraph para4 = new Paragraph("                Ngay An : " + lb_NgayThang.getText(),subFont);
+            Paragraph para5 = new Paragraph("                Ma Hoa Don: " + lb_MaHD.getText(),subFont);
+            Paragraph para6 = new Paragraph("                Ma Phieu Dat: " + lb_MaPD.getText(),subFont);
             Paragraph para7 = new Paragraph("");
             Paragraph para8 = new Paragraph("             ");
             document.add(para);
@@ -493,12 +520,16 @@ public class HoaDonTT extends javax.swing.JFrame {
 
             PdfPTable table = new PdfPTable(4);
             PdfPCell c1 = new PdfPCell(new Phrase("Ten Mon"));
+            c1.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(c1);
             c1 = new PdfPCell(new Phrase("So Luong"));
+            c1.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(c1);
             c1 = new PdfPCell(new Phrase("Don Gia"));
+            c1.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(c1);
             c1 = new PdfPCell(new Phrase("Thanh Tien"));
+            c1.setHorizontalAlignment(Element.ALIGN_CENTER);           
             table.addCell(c1);
             table.setHeaderRows(1);
 
@@ -513,7 +544,7 @@ public class HoaDonTT extends javax.swing.JFrame {
             }
 
             document.add(table);
-            Paragraph para9 = new Paragraph("                                                                                                   Tong Tien :" + lb_TongTien.getText());
+            Paragraph para9 = new Paragraph("                                                                                             Tong Tien :" + lb_TongTien.getText() + " VND");
             document.add(para9);
             document.close();
         } catch (Exception e) {

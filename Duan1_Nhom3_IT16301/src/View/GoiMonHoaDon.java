@@ -29,7 +29,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ADMIN
  */
-public class HoaDonForm extends javax.swing.JFrame {
+public class GoiMonHoaDon extends javax.swing.JFrame {
 
     /**
      * Creates new form HoaDon
@@ -49,7 +49,7 @@ public class HoaDonForm extends javax.swing.JFrame {
     MonAnDAO MAdao = new MonAnDAO();
     CTHoaDonDAO1 CTHDDao = new CTHoaDonDAO1();
 
-    public HoaDonForm() {
+    public GoiMonHoaDon() {
         initComponents();
         fillTable();
         
@@ -70,7 +70,7 @@ public class HoaDonForm extends javax.swing.JFrame {
     }
     Integer MaHD;
 
-    HoaDonForm(Integer ID) {
+    GoiMonHoaDon(Integer ID) {
         initComponents();
         MaHD = ID;
         fillTable();
@@ -502,7 +502,7 @@ public class HoaDonForm extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         jLabel10.setText("Mã Hóa Đơn:");
 
-        txt_SoNguoi.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        txt_SoNguoi.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         txt_SoNguoi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         txt_TenKhach.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
@@ -638,6 +638,7 @@ public class HoaDonForm extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tbl_HoaDon);
 
         btnUpdate.setBackground(new java.awt.Color(255, 255, 255));
+        btnUpdate.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         btnUpdate.setText("Sửa");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -646,6 +647,7 @@ public class HoaDonForm extends javax.swing.JFrame {
         });
 
         btnChuyen.setBackground(new java.awt.Color(255, 255, 255));
+        btnChuyen.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         btnChuyen.setText("Thêm");
         btnChuyen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -654,6 +656,7 @@ public class HoaDonForm extends javax.swing.JFrame {
         });
 
         btn_Clear.setBackground(new java.awt.Color(255, 255, 255));
+        btn_Clear.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         btn_Clear.setText("Clear");
         btn_Clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -712,7 +715,7 @@ public class HoaDonForm extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lb_ChuaLen, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+                    .addComponent(lb_ChuaLen, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lb_TongMon, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -786,17 +789,14 @@ public class HoaDonForm extends javax.swing.JFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnChuyen, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_Clear, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnChuyen, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_Clear, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_ThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5))
@@ -859,7 +859,7 @@ public class HoaDonForm extends javax.swing.JFrame {
 
     private void btn_ThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThanhToanActionPerformed
         Integer MaHD = Integer.valueOf(txt_MaHD.getText());
-        new HoaDonTT(MaHD).setVisible(true);
+        new HoaDonThanhToan(MaHD).setVisible(true);
     }//GEN-LAST:event_btn_ThanhToanActionPerformed
 
     private void mnLenMonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnLenMonActionPerformed
@@ -928,14 +928,22 @@ public class HoaDonForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HoaDonForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GoiMonHoaDon.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HoaDonForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GoiMonHoaDon.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HoaDonForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GoiMonHoaDon.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HoaDonForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GoiMonHoaDon.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -948,7 +956,7 @@ public class HoaDonForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HoaDonForm().setVisible(true);
+                new GoiMonHoaDon().setVisible(true);
             }
         });
     }
