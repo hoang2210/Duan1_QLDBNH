@@ -94,6 +94,8 @@
                           <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                           <Component id="btnPhieuDat" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
+                          <Component id="btnHDChiTiet" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                           <Component id="btn_ThanhToan" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -164,6 +166,7 @@
                       <Component id="btn_ThanhToan" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButton5" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnPhieuDat" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnHDChiTiet" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -374,7 +377,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Monospaced" size="18" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Phi&#x1ebf;u &#x111;&#x1eb7;t"/>
+            <Property name="text" type="java.lang.String" value="V&#x1ec1; phi&#x1ebf;u &#x111;&#x1eb7;t"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPhieuDatActionPerformed"/>
@@ -447,6 +450,20 @@
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnHDChiTiet">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Monospaced" size="18" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="H&#xf3;a &#x111;&#x1a1;n chi ti&#x1ebf;t"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHDChiTietActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

@@ -58,6 +58,7 @@ public class QuanLyHoaDon extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
+
     void setModel(HoaDon1 model) {
         lb_MaHD.setText(String.valueOf(model.getMaHD()));
         lb_SoBan.setText(String.valueOf(model.getSoBan()));
@@ -65,6 +66,7 @@ public class QuanLyHoaDon extends javax.swing.JFrame {
         lb_NguoiTao.setText(model.getNguoiTao());
         lb_MaPD.setText(String.valueOf(model.getMaPD()));
     }
+
     void edit() {
         try {
             int a = Integer.parseInt(tbl_HoaDon.getValueAt(index, 0) + "");
@@ -76,14 +78,15 @@ public class QuanLyHoaDon extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
+
     private void LoadText() {
-      
+
         try {
-           
+
             String sql = "select *\n"
                     + "from PhieuDat inner join ThongTinKH on ThongTinKH.MaKH = PhieuDat.MaKH\n"
                     + "where MaPD=?";
-           ResultSet rs = JdbcHelper.executeQuery(sql, lb_MaPD.getText());
+            ResultSet rs = JdbcHelper.executeQuery(sql, lb_MaPD.getText());
             while (rs.next()) {
                 lb_HoTen.setText(rs.getString("Hoten"));
                 lb_Sdt.setText(rs.getString("SDT"));
@@ -94,12 +97,11 @@ public class QuanLyHoaDon extends javax.swing.JFrame {
                 lb_GioHen.setText(String.valueOf(ppstime));
                 lb_MaPD.setText(rs.getString("MaPD"));
             }
-         
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -136,6 +138,7 @@ public class QuanLyHoaDon extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         cboTrangThai = new javax.swing.JComboBox<>();
+        btnHDChiTiet = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -217,7 +220,7 @@ public class QuanLyHoaDon extends javax.swing.JFrame {
 
         btnPhieuDat.setBackground(new java.awt.Color(255, 255, 255));
         btnPhieuDat.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
-        btnPhieuDat.setText("Phiếu đặt");
+        btnPhieuDat.setText("Về phiếu đặt");
         btnPhieuDat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPhieuDatActionPerformed(evt);
@@ -257,6 +260,15 @@ public class QuanLyHoaDon extends javax.swing.JFrame {
         cboTrangThai.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cboTrangThaiItemStateChanged(evt);
+            }
+        });
+
+        btnHDChiTiet.setBackground(new java.awt.Color(255, 255, 255));
+        btnHDChiTiet.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        btnHDChiTiet.setText("Hóa đơn chi tiết");
+        btnHDChiTiet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHDChiTietActionPerformed(evt);
             }
         });
 
@@ -305,6 +317,8 @@ public class QuanLyHoaDon extends javax.swing.JFrame {
                         .addGap(31, 31, 31)
                         .addComponent(btnPhieuDat)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnHDChiTiet)
+                        .addGap(36, 36, 36)
                         .addComponent(btn_ThanhToan)))
                 .addContainerGap())
         );
@@ -358,7 +372,8 @@ public class QuanLyHoaDon extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_ThanhToan)
                     .addComponent(jButton5)
-                    .addComponent(btnPhieuDat))
+                    .addComponent(btnPhieuDat)
+                    .addComponent(btnHDChiTiet))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -390,9 +405,10 @@ public class QuanLyHoaDon extends javax.swing.JFrame {
     }//GEN-LAST:event_tbl_HoaDonMouseClicked
 
     private void btn_ThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThanhToanActionPerformed
-       Integer MaHD = Integer.valueOf(lb_MaHD.getText());
-       new GoiMonHoaDon(MaHD).setVisible(true);
-       this.dispose();
+        Integer MaHD = Integer.valueOf(lb_MaHD.getText());
+        GoiMonHoaDon gmhd = new GoiMonHoaDon(MaHD);
+        gmhd.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        gmhd.setVisible(true);
     }//GEN-LAST:event_btn_ThanhToanActionPerformed
 
     private void btnPhieuDatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPhieuDatActionPerformed
@@ -408,6 +424,14 @@ public class QuanLyHoaDon extends javax.swing.JFrame {
     private void cboTrangThaiItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboTrangThaiItemStateChanged
         LoadTable();
     }//GEN-LAST:event_cboTrangThaiItemStateChanged
+
+    private void btnHDChiTietActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHDChiTietActionPerformed
+        int vitri = tbl_HoaDon.getSelectedRow();
+        int a = Integer.parseInt(tbl_HoaDon.getValueAt(vitri, 0).toString());
+        ChiTietHoaDon CTHD = new ChiTietHoaDon(a);
+        CTHD.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        CTHD.setVisible(true);
+    }//GEN-LAST:event_btnHDChiTietActionPerformed
 
     /**
      * @param args the command line arguments
@@ -446,6 +470,7 @@ public class QuanLyHoaDon extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnHDChiTiet;
     private javax.swing.JButton btnPhieuDat;
     private javax.swing.JButton btn_ThanhToan;
     private javax.swing.JComboBox<String> cboTrangThai;

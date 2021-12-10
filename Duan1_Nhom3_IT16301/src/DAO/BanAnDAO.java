@@ -52,7 +52,26 @@ public class BanAnDAO {
     public List<BanAn> selectSoBan(String datebook, String timebook) {
         String sql = "select SoBan from BanAn where SoBan\n"
                 + "    not in (Select ba.SoBan from BanAn ba join PhieuDat pd on ba.SoBan = pd.SoBan\n"
-                + "			where pd.DateBook = ? and pd.TimeBook = ?)";
+                + "			where pd.DateBook = ? and pd.TimeBook = ? and TrangThaiHD = N'Đang hoạt động')";
         return select(sql, datebook, timebook);
+    }
+    
+    public void insert(BanAn entity) {
+        String sql = "INSERT INTO BanAn(SoBan, TrangThaiHD) VALUES (?, ?)";
+        JdbcHelper.executeUpdate(sql,
+                entity.getSoBan(),
+                entity.getTrangThaiHD());
+    }
+
+    /**
+     * Cập nhật thực thể vào CSDL
+     *
+     * @param entity là thực thể chứa thông tin bản ghi cần cập nhật
+     */
+    public void update(BanAn entity) {
+        String sql = "UPDATE BanAn SET TrangThaiHD=? WHERE SoBan=?";
+        JdbcHelper.executeUpdate(sql,
+                entity.getTrangThaiHD(),
+                entity.getSoBan());
     }
 }

@@ -259,7 +259,7 @@ public class HomeNhaHang extends javax.swing.JFrame {
         jMenu2.add(mniPhieuDat);
 
         mniTrangThaiBan.setFont(new java.awt.Font("Monospaced", 0, 16)); // NOI18N
-        mniTrangThaiBan.setText("Trạng thái bàn ");
+        mniTrangThaiBan.setText("Bàn ăn");
         mniTrangThaiBan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Conference.png"))); // NOI18N
         mniTrangThaiBan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -367,7 +367,9 @@ public class HomeNhaHang extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNhanVienActionPerformed
 
     private void mniTrangThaiBanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniTrangThaiBanActionPerformed
-        
+        QLBan ban = new QLBan();
+        ban.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        ban.setVisible(true);
     }//GEN-LAST:event_mniTrangThaiBanActionPerformed
 
     private void mniTaikhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniTaikhoanActionPerformed
