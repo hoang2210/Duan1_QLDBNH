@@ -85,7 +85,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Monospaced" size="16" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Tr&#x1ea1;ng th&#xe1;i b&#xe0;n "/>
+                <Property name="text" type="java.lang.String" value="B&#xe0;n &#x103;n"/>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/icon/Conference.png"/>
                 </Property>

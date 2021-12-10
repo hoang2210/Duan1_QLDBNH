@@ -231,7 +231,8 @@ public class GoiMonHoaDon extends javax.swing.JFrame {
         model.setTrangThaiMon("Đã Hủy");
         String tien = String.valueOf(tbl_HoaDon.getValueAt(vitriMonAn, 4));
         model.setGiaTien(Double.parseDouble(tien));
-        model.setSoLuong(0);
+        String sl = String.valueOf(tbl_HoaDon.getValueAt(vitriMonAn, 3));
+        model.setSoLuong(Integer.parseInt(sl));
         return model;
     }
 
@@ -751,10 +752,10 @@ public class GoiMonHoaDon extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                        .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
                         .addGap(813, 813, 813)
                         .addComponent(btn_ThanhToan))
                     .addGroup(layout.createSequentialGroup()
@@ -767,19 +768,19 @@ public class GoiMonHoaDon extends javax.swing.JFrame {
                                 .addComponent(btn_Clear, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane1)
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(19, 19, 19))
+                .addContainerGap())
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -859,7 +860,10 @@ public class GoiMonHoaDon extends javax.swing.JFrame {
 
     private void btn_ThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThanhToanActionPerformed
         Integer MaHD = Integer.valueOf(txt_MaHD.getText());
-        new HoaDonThanhToan(MaHD).setVisible(true);
+        HoaDonThanhToan hdtt = new HoaDonThanhToan(MaHD);
+        hdtt.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        hdtt.setVisible(true);
+
     }//GEN-LAST:event_btn_ThanhToanActionPerformed
 
     private void mnLenMonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnLenMonActionPerformed
