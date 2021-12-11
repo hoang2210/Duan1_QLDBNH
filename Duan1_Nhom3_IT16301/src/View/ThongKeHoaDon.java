@@ -9,6 +9,7 @@ import DAO.CTHoaDonDAO1;
 import DAO.HoaDonDAO;
 import DAO.HoaDonDAO1;
 import Helper.DateHelper;
+import Helper.DialogHelper;
 import Helper.JdbcHelper;
 import static Helper.JdbcHelper.driver;
 import Model.CTHoaDon1;
@@ -19,6 +20,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.regex.Pattern;
 import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
@@ -728,7 +730,13 @@ public class ThongKeHoaDon extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_HoaDon1ActionPerformed
 
     private void btn_TimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TimActionPerformed
-       LoadTableTab4();
+        Pattern year = Pattern.compile("^(19|20)\\d{2}$");
+        if (year.matcher(txt_Nam.getText()).find()) {
+             LoadTableTab4();
+        }else{
+            DialogHelper.alert(this, "Năm không hợp lệ");
+            return;
+        } 
     }//GEN-LAST:event_btn_TimActionPerformed
 
     /**

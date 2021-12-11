@@ -4,11 +4,14 @@
  * and open the template in the editor.
  */
 package View;
+
+import DAO.LoaiMonDAO;
 import DAO.MonAnDAO;
 import DAO.NhanVienDAO;
 import Helper.DateHelper;
 import Helper.DialogHelper;
 import Helper.ShareHelper;
+import Model.LoaiMon;
 import Model.MonAn;
 import Model.NhanVien;
 import java.awt.Image;
@@ -16,6 +19,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 
@@ -24,8 +28,9 @@ import javax.swing.table.DefaultTableModel;
  * @author DELL 7480
  */
 public class QLMonAn extends javax.swing.JFrame {
-    
-     int index = 0;
+
+    int index = 0;
+    private List<LoaiMon> list;
 
     /**
      * Creates new form QLMonAn
@@ -34,8 +39,11 @@ public class QLMonAn extends javax.swing.JFrame {
         initComponents();
         Load();
         setLocationRelativeTo(null);
+        list = LMDao.select();
     }
-    MonAnDAO dao =new MonAnDAO();
+    MonAnDAO dao = new MonAnDAO();
+    LoaiMonDAO LMDao = new LoaiMonDAO();
+
     MonAn getModel() {
         MonAn mode = new MonAn();
         mode.setMaMon(txt_mamon.getText());
@@ -46,6 +54,7 @@ public class QLMonAn extends javax.swing.JFrame {
         mode.setGioiThieu(txt_gioithieu.getText());
         return mode;
     }
+
     void Insert() {
         MonAn model = getModel();
         try {
@@ -58,7 +67,8 @@ public class QLMonAn extends javax.swing.JFrame {
             DialogHelper.alert(this, "Thêm Món Ăn Thất Bại");
         }
     }
-     void selectImage() {
+
+    void selectImage() {
         if (jFileChooser1.showOpenDialog(this) == jFileChooser1.APPROVE_OPTION) {
             File file = jFileChooser1.getSelectedFile();
             if (ShareHelper.saveLogo(file)) {
@@ -70,6 +80,7 @@ public class QLMonAn extends javax.swing.JFrame {
             }
         }
     }
+
     void Update() {
         MonAn model = getModel();
         try {
@@ -82,6 +93,7 @@ public class QLMonAn extends javax.swing.JFrame {
             DialogHelper.alert(this, "Cập Nhật Món Ăn Thất Bại");
         }
     }
+
     void Delete() {
         try {
             String MaMon = txt_mamon.getText();
@@ -93,6 +105,7 @@ public class QLMonAn extends javax.swing.JFrame {
             DialogHelper.alert(this, "xóa Món Ăn Thất Bại");
         }
     }
+
     void Load() {
         DefaultTableModel model = (DefaultTableModel) tbl_monan.getModel();
         model.setRowCount(0);
@@ -105,42 +118,39 @@ public class QLMonAn extends javax.swing.JFrame {
                     cd.getTenMon(),
                     cd.getGiaTien(),
                     cd.getHinhAnh(),
-                    cd.getGioiThieu(),
-                    
-                };
+                    cd.getGioiThieu(),};
                 model.addRow(obj);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     void clear() {
         this.setModel(new MonAn());
         this.setStatus(true);
         lb_Anh.setIcon(null);
     }
+
     void setModel(MonAn model) {
         txt_mamon.setText(model.getMaMon());
         txt_maloaimon.setText(model.getMaLoaiMon());
         txt_tenmon.setText(model.getTenMon());
-        txt_giatien.setText(model.getGiaTien()+"");
-       txt_gioithieu.setText(model.getGioiThieu());
-       
-        
+        txt_giatien.setText(model.getGiaTien() + "");
+        txt_gioithieu.setText(model.getGioiThieu());
 
 //        ImageIcon icon1 = ShareHelper.readLogo(file.getName());
 //        Image im = icon1.getImage();
 //        ImageIcon icon = new ImageIcon(im.getScaledInstance(lb_Avatar.getWidth(), lb_Avatar.getHeight(), im.SCALE_SMOOTH));
 //        lb_Avatar.setIcon(icon);
-
         lb_Anh.setToolTipText(model.getHinhAnh());
-        if (model.getHinhAnh()!= null) {
+        if (model.getHinhAnh() != null) {
             ImageIcon icon = ShareHelper.readLogo(model.getHinhAnh());
             Image im = icon.getImage();
             ImageIcon icon1 = new ImageIcon(im.getScaledInstance(lb_Anh.getWidth(), lb_Anh.getHeight(), im.SCALE_SMOOTH));
             lb_Anh.setIcon(icon1);
         }
-         
+
     }
 
     void setStatus(boolean insertable) {
@@ -151,6 +161,7 @@ public class QLMonAn extends javax.swing.JFrame {
         btnLast.setEnabled(!insertable && last);
         btnNext.setEnabled(!insertable && last);
     }
+
     void edit() {
         try {
             String Mamonan = (String) tbl_monan.getValueAt(this.index, 0);
@@ -454,7 +465,7 @@ public class QLMonAn extends javax.swing.JFrame {
                             .addComponent(btn_Them, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btn_Sua, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btn_Xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -464,11 +475,12 @@ public class QLMonAn extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnFisrt)
-                    .addComponent(btnPrev)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnNext)
-                    .addComponent(btnLast))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnFisrt)
+                        .addComponent(btnPrev)
+                        .addComponent(btnLast)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
@@ -536,15 +548,22 @@ public class QLMonAn extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_maloaimonActionPerformed
 
     private void btn_ThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThemActionPerformed
-        Insert();
+        if (Check() == true) {
+            Insert();
+        }
     }//GEN-LAST:event_btn_ThemActionPerformed
 
     private void btn_SuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SuaActionPerformed
-        Update();
+        if (Check() == true) {
+            Update();
+        }
     }//GEN-LAST:event_btn_SuaActionPerformed
 
     private void btn_XoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_XoaActionPerformed
-        Delete();
+        if (Check() == true) {
+            Delete();
+        }
+
     }//GEN-LAST:event_btn_XoaActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -573,7 +592,7 @@ public class QLMonAn extends javax.swing.JFrame {
 
     private void tbl_monanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_monanMouseClicked
 //        
-if (evt.getClickCount() == 1) {
+        if (evt.getClickCount() == 1) {
             this.index = tbl_monan.rowAtPoint(evt.getPoint());
             if (this.index >= 0) {
                 this.edit();
@@ -626,6 +645,37 @@ if (evt.getClickCount() == 1) {
         });
     }
 
+    public boolean Check() {
+        for (int i = 0; i < list.size(); i++) {
+            LoaiMon s = list.get(i);
+            String maMon = s.getMaLoaiMon();
+            Pattern tien = Pattern.compile("[0-9]");
+            try {
+                if (txt_mamon.getText().equals("")) {
+                    DialogHelper.alert(this, "Mã món trống");
+                    return false;
+                } else if (txt_maloaimon.getText().equals("")) {
+                    DialogHelper.alert(this, "Mã loại món trống");
+                    return false;
+                } else if (txt_tenmon.getText().equals("")) {
+                    DialogHelper.alert(this, "Tên món trống");
+                    return false;
+                } else if (!tien.matcher(txt_giatien.getText()).find()) {
+                    DialogHelper.alert(this, "Giá món  không hợp lệ");
+                    return false;
+                } else if (txt_gioithieu.getText().equals("")) {
+                    DialogHelper.alert(this, "Giới thiệu  món trống");
+                    return false;
+                } else if (lb_Anh.getIcon() == null) {
+                    DialogHelper.alert(this, "Ảnh  món trống");
+                    return false;
+                }
+            } catch (Exception e) {
+            }
+
+        }
+        return true;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFisrt;
     private javax.swing.JButton btnLast;

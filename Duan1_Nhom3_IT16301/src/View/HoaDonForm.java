@@ -22,6 +22,7 @@ import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.regex.Pattern;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -52,7 +53,7 @@ public class HoaDonForm extends javax.swing.JFrame {
     public HoaDonForm() {
         initComponents();
         fillTable();
-        
+        lst = CTHDDao.getAll(MaHD);
         this.model = (DefaultTableModel) tblMonAn.getModel();
         this.model1 = (DefaultTableModel) tbl_HoaDon.getModel();
         list = LMdao.select();
@@ -231,7 +232,7 @@ public class HoaDonForm extends javax.swing.JFrame {
         model.setTrangThaiMon("Đã Hủy");
         String tien = String.valueOf(tbl_HoaDon.getValueAt(vitriMonAn, 4));
         model.setGiaTien(Double.parseDouble(tien));
-        model.setSoLuong(0);
+      model.setSoLuong(Integer.parseInt(tbl_HoaDon.getValueAt(vitri, 3).toString()));
         return model;
     }
 
@@ -831,26 +832,33 @@ public class HoaDonForm extends javax.swing.JFrame {
     }//GEN-LAST:event_tblMonAnMouseClicked
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        UpdateSuaMon();
-        //        Double giaTien = Double.parseDouble(lb_Giatien.getText());
-        //        String SoLuong = txt_SoLuong.getText();
-        //        Double tien = Double.parseDouble(SoLuong) * giaTien;
-        //        tbl_HoaDon.setValueAt(txt_SoLuong.getText(), vitri, 3);
-        //        tbl_HoaDon.setValueAt(tien, vitri, 4);
-        LoadTableMeNu(MaHD);
-        LoadSoLuong();
+      if (Check() == false) {
+            UpdateSuaMon();
+            //        Double giaTien = Double.parseDouble(lb_Giatien.getText());
+            //        String SoLuong = txt_SoLuong.getText();
+            //        Double tien = Double.parseDouble(SoLuong) * giaTien;
+            //        tbl_HoaDon.setValueAt(txt_SoLuong.getText(), vitri, 3);
+            //        tbl_HoaDon.setValueAt(tien, vitri, 4);
+            LoadTableMeNu(MaHD);
+            LoadSoLuong();
+        }
+
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnChuyenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChuyenActionPerformed
-        InsertMonAn();
-        LoadSoLuong();
-        //        String tenMon = lb_TenMon.getText();
-        //        Double giaTien = Double.parseDouble(lb_Giatien.getText());
-        //        String SoLuong = txt_SoLuong.getText();
-        //        String gc = txt_GhiChu.getText();
-        //        CTHDDao.LoadCTHoaDon(tbl_HoaDon, tenMon, giaTien, SoLuong, gc, "Chưa Lên");
-        LoadTableMeNu(MaHD);
-        clear();
+     if (Check() == false) {
+            InsertMonAn();
+            LoadSoLuong();
+            //        String tenMon = lb_TenMon.getText();
+            //        Double giaTien = Double.parseDouble(lb_Giatien.getText());
+            //        String SoLuong = txt_SoLuong.getText();
+            //        String gc = txt_GhiChu.getText();
+            //        CTHDDao.LoadCTHoaDon(tbl_HoaDon, tenMon, giaTien, SoLuong, gc, "Chưa Lên");
+            LoadTableMeNu(MaHD);
+            clear();
+        }
+
+
     }//GEN-LAST:event_btnChuyenActionPerformed
 
     private void btn_ClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ClearActionPerformed
@@ -858,6 +866,15 @@ public class HoaDonForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_ClearActionPerformed
 
     private void btn_ThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThanhToanActionPerformed
+       for (int i = 0; i < lst.size(); i++) {
+            CTHoaDon1 s = lst.get(i);
+            String a = String.valueOf(s.getMaHD());
+            if (a.equalsIgnoreCase(txt_MaHD.getText()) && s.getTrangThaiMon().equalsIgnoreCase("Chưa Lên")) {
+                DialogHelper.alert(this, "Món chưa lên hết, không thể thanh toán");
+                return;
+
+            }
+        }
         Integer MaHD = Integer.valueOf(txt_MaHD.getText());
         new HoaDonTT(MaHD).setVisible(true);
     }//GEN-LAST:event_btn_ThanhToanActionPerformed
@@ -1003,6 +1020,27 @@ public class HoaDonForm extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public boolean Check() {
+        Pattern sl = Pattern.compile("[0-9]");
+        try {
+            if (lb_TenMon.getText().equals("")) {
+                DialogHelper.alert(this, "Mời bạn chọn món");
+                return true;
+            } else if (txt_SoLuong.getText().equals("")) {
+                DialogHelper.alert(this, "Mời bạn ghi số lượng");
+                return true;
+            } else if (!sl.matcher(txt_SoLuong.getText()).find()) {
+                DialogHelper.alert(this, "Số Lượng Không hợp lệ");
+                return true;
+            } else if (txt_GhiChu.getText().equals("")) {
+                DialogHelper.alert(this, "Mời bạn ghi ghi chú");
+                return true;
+            }
+        } catch (Exception e) {
+
+        }
+        return false;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChuyen;

@@ -19,6 +19,7 @@ import Model.PhieuDat;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.regex.Pattern;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -651,22 +652,28 @@ public class PhieuDat_Form extends javax.swing.JFrame {
     }//GEN-LAST:event_tblDonDatMouseClicked
 
     private void btnXacNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXacNhanActionPerformed
+       if (check() == false) {
         XacNhan();
         Cbb();
+        }
     }//GEN-LAST:event_btnXacNhanActionPerformed
 
     private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatActionPerformed
-        UpdatePD();
-        Cbb();
-        tab.setSelectedIndex(0);
-        tblDonDat.setRowSelectionInterval(i, i);
+     if (check() == false) {
+            UpdatePD();
+            Cbb();
+            tab.setSelectedIndex(0);
+            tblDonDat.setRowSelectionInterval(i, i);
+        }
     }//GEN-LAST:event_btnCapNhatActionPerformed
 
     private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
+         if (check() == false) {
         if (DialogHelper.confirm(this, "Bạn có muốn hủy đơn này không?")) {
             Delete();
             Cbb();
             tab.setSelectedIndex(0);
+        }
         }
     }//GEN-LAST:event_btnHuyActionPerformed
 
@@ -675,9 +682,12 @@ public class PhieuDat_Form extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnTaoHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoHoaDonActionPerformed
+       if (check() == false) {
         Insert();
         new HoaDonKH().setVisible(true);
         this.dispose();
+        }
+
     }//GEN-LAST:event_btnTaoHoaDonActionPerformed
 
     private void cboTrangThaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTrangThaiActionPerformed
@@ -918,6 +928,20 @@ public class PhieuDat_Form extends javax.swing.JFrame {
         });
     }
 
+     public boolean check() {
+          Pattern soNguoi = Pattern.compile("[0-9]");
+        if (lblMaPD.getText().equals("")) {
+            DialogHelper.alert(this, "Mời bạn chọn Phiếu đặt");
+            return true;
+        } else if (txtSoNguoi.getText().equals("")) {
+            DialogHelper.alert(this, "Mời bạn ghi số người");
+            return true;
+        } else if (!soNguoi.matcher(txtSoNguoi.getText()).find()) {
+            DialogHelper.alert(this, "Số người không hợp lệ");
+            return true;
+        }
+        return false;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapNhat;
     private javax.swing.JButton btnClear;

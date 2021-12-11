@@ -29,6 +29,7 @@ public class Accout extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         rdoNV.setSelected(true);
         Load();
+         list = dao.select();
         
         this.getContentPane().setBackground(Color.white);
         
@@ -329,10 +330,11 @@ public class Accout extends javax.swing.JFrame {
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPassWord, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rdoCNH)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rdoNV))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(rdoCNH)
+                        .addComponent(rdoNV)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd)
@@ -358,18 +360,28 @@ public class Accout extends javax.swing.JFrame {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
 
-        Insert();
+    
+ if (Check1() == true) {
+            if (Check()==true) {
+                Insert();
+            }
+        }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeActionPerformed
         // TODO add your handling code here:
-        Update();
+     if (Check() == true) {
+            Update();
+        }
+
 
     }//GEN-LAST:event_btnChangeActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        Delete();
+    if (Check() == true) {
+            Delete();
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
@@ -419,6 +431,33 @@ public class Accout extends javax.swing.JFrame {
                 new Accout().setVisible(true);
             }
         });
+    } public boolean Check() {
+        for (int i = 0; i < list.size(); i++) {
+            TaiKhoanNV s = list.get(i);
+            String user = s.getUsername();
+            try {
+                if (txtUserName.getText().equals(user)) {
+                    DialogHelper.alert(this, "Username đã tồn tại ");
+                    return false;
+                }
+            } catch (Exception e) {
+            }
+        }
+        return true;
+    }
+
+    public boolean Check1() {
+        try {
+            if (txtUserName.getText().equals("")) {
+                DialogHelper.alert(this, "Mã nhân viên trống");
+                return false;
+            } else if (txtPassWord.getText().equals("")) {
+                DialogHelper.alert(this, "Password trống");
+                return false;
+            }
+        } catch (Exception e) {
+        }
+        return true;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

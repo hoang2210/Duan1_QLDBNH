@@ -380,9 +380,15 @@ public class HoaDonKH extends javax.swing.JFrame {
     }//GEN-LAST:event_tbl_HoaDonMouseClicked
 
     private void btn_ThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThanhToanActionPerformed
-       Integer MaHD = Integer.valueOf(lb_MaHD.getText());
+       if (!lb_MaHD.getText().equals("")) {
+            Integer MaHD = Integer.valueOf(lb_MaHD.getText());
        new HoaDonForm(MaHD).setVisible(true);
        this.dispose();
+        }else{
+            DialogHelper.alert(this, "Mời bạn chọn hóa đơn");
+            return;
+            
+        }
     }//GEN-LAST:event_btn_ThanhToanActionPerformed
 
     private void btnPhieuDatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPhieuDatActionPerformed

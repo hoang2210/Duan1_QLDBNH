@@ -5,7 +5,6 @@
  */
 package View;
 
-
 import DAO.TaiKhoanNVDAO;
 import java.awt.Color;
 import java.awt.event.FocusEvent;
@@ -32,7 +31,7 @@ public class Login_NV extends javax.swing.JFrame {
         txt_Password.setForeground(Color.GRAY);
         ImageIcon logo = new ImageIcon("src/Logo/LogoNH.png");
         lb_Logo.setIcon(logo);
-       
+
     }
     TaiKhoanNVDAO tknv = new TaiKhoanNVDAO();
 
@@ -49,7 +48,7 @@ public class Login_NV extends javax.swing.JFrame {
             if (tk != null) {
                 String ps1 = tk.getPass();
                 if (ps.equals(ps1)) {
-                    ShareHelper.USER=tk;
+                    ShareHelper.USER = tk;
                     DialogHelper.alert(this, "Đăng nhập thành công !");
                     new HomeNhaHang().setVisible(true);
                     this.dispose();
@@ -226,7 +225,9 @@ public class Login_NV extends javax.swing.JFrame {
     }//GEN-LAST:event_cbx_HienthiActionPerformed
 
     private void btn_DangnhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DangnhapActionPerformed
-        Login();
+        if (Check()==false) {
+            Login();
+        }
     }//GEN-LAST:event_btn_DangnhapActionPerformed
 
     /**
@@ -262,6 +263,20 @@ public class Login_NV extends javax.swing.JFrame {
                 new Login_NV().setVisible(true);
             }
         });
+    }
+
+    public boolean Check() {
+        if (txt_Username.getText().equals("") || txt_Username.getText().equals("Tài Khoản")) {
+            DialogHelper.alert(this, "Username Không được trống");
+            txt_Username.requestFocus();
+            return true;
+        }
+        if (txt_Password.getText().equals("") || txt_Password.getText().equals("Mật Khẩu")) {
+            DialogHelper.alert(this, "Pass Không được trống");
+            txt_Password.requestFocus();
+            return true;
+        }
+        return false;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
