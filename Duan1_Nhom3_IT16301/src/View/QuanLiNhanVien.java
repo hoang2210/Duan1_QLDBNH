@@ -577,15 +577,17 @@ public class QuanLiNhanVien extends javax.swing.JFrame {
     }//GEN-LAST:event_lb_AvatarMouseClicked
 
     private void btn_ThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThemActionPerformed
-         if (Check()==false) {
-             Insert();
+        if (Check() == false) {
+            if (checkc() == true) {
+                Insert();
+            }
         }
-        
+
     }//GEN-LAST:event_btn_ThemActionPerformed
 
     private void btn_SuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SuaActionPerformed
-       if (Check()==false) {
-               Update();
+        if (Check() == false) {
+            Update();
         }
     }//GEN-LAST:event_btn_SuaActionPerformed
 
@@ -667,7 +669,8 @@ public class QuanLiNhanVien extends javax.swing.JFrame {
             }
         });
     }
- public boolean Check() {
+
+    public boolean Check() {
         for (int i = 0; i < list.size(); i++) {
             Pattern phone = Pattern.compile("^[0-9]{10}$");
             NhanVien s = list.get(i);
@@ -703,7 +706,7 @@ public class QuanLiNhanVien extends javax.swing.JFrame {
                     DialogHelper.alert(this, "ĐịaChỉ không được trống");
                     txt_DiaChi.requestFocus();
                     return true;
-                } else if (lb_Avatar.getIcon()==null) {
+                } else if (lb_Avatar.getIcon() == null) {
                     DialogHelper.alert(this, " Ảnh không được trống");
                     return true;
                 }
@@ -713,6 +716,22 @@ public class QuanLiNhanVien extends javax.swing.JFrame {
             }
         }
         return false;
+    }
+
+    public boolean checkc() {
+        long millis = System.currentTimeMillis();
+        java.sql.Date date = new java.sql.Date(millis);
+        SimpleDateFormat dmyFormat = new SimpleDateFormat("yyyy");
+        String datechooser = dmyFormat.format(date_chooser.getDate());
+        String ngayhientai = dmyFormat.format(date);
+        int a = Integer.parseInt(datechooser);
+        int b = Integer.parseInt(ngayhientai);
+        int age = b-a;
+        if (age < 18) {
+            DialogHelper.alert(this, "Sai ngay");
+            return false;
+        }
+        return true;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFisrt;
