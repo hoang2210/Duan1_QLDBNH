@@ -16,14 +16,19 @@ import javax.swing.table.DefaultTableModel;
  * @author DELL 7480
  */
 public class QLLoaiMon extends javax.swing.JFrame {
+
     int index = 0;
     /**
      * Creates new form QLLoaiMon
      */
+    private List<LoaiMon> list;
+
     public QLLoaiMon() {
         initComponents();
         Load();
         setLocationRelativeTo(null);
+        list = dao.select();
+
     }
     LoaiMonDAO dao = new LoaiMonDAO();
 
@@ -35,6 +40,7 @@ public class QLLoaiMon extends javax.swing.JFrame {
 
         return mode;
     }
+
     void Load() {
         DefaultTableModel model = (DefaultTableModel) tbl_loaimon.getModel();
         model.setRowCount(0);
@@ -50,16 +56,19 @@ public class QLLoaiMon extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
+
     void clear() {
         this.setModel(new LoaiMon());
 //        this.setStatus(true);
-        
+
     }
+
     void setModel(LoaiMon model) {
-        
+
         txt_maloaimon.setText(model.getMaLoaiMon());
         txt_tenloaimon.setText(model.getTenLoaiMon());
     }
+
     void edit() {
         try {
             String Maloaimon = (String) tbl_loaimon.getValueAt(this.index, 0);
@@ -72,6 +81,7 @@ public class QLLoaiMon extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
+
     void Insert() {
         LoaiMon model = getModel();
         try {
@@ -84,7 +94,8 @@ public class QLLoaiMon extends javax.swing.JFrame {
             DialogHelper.alert(this, "Thêm Loại Món Thất Bại");
         }
     }
-     void Update() {
+
+    void Update() {
         LoaiMon model = getModel();
         try {
             dao.update(model);
@@ -96,7 +107,8 @@ public class QLLoaiMon extends javax.swing.JFrame {
             DialogHelper.alert(this, "Cập Nhật Loại Món Thất Bại");
         }
     }
-     void Delete() {
+
+    void Delete() {
         try {
             String Maloaimon = txt_maloaimon.getText();
             dao.delete(Maloaimon);
@@ -108,7 +120,7 @@ public class QLLoaiMon extends javax.swing.JFrame {
             DialogHelper.alert(this, "xóa Loại Món Thất Bại");
         }
     }
-            
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -249,17 +261,19 @@ public class QLLoaiMon extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_maloaimon)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_Them, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_Sua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_Them, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_Sua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_tenloaimon, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_Xoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_Xoa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txt_tenloaimon, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(32, 32, 32)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
@@ -311,15 +325,26 @@ public class QLLoaiMon extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_ThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThemActionPerformed
-        Insert();
+        if (Check() == true) {
+            if (Check1() == true) {
+
+                Insert();
+
+            }
+
+        }
     }//GEN-LAST:event_btn_ThemActionPerformed
 
     private void btn_SuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SuaActionPerformed
-        Update();
+        if (Check() == true) {
+            Update();
+        }
     }//GEN-LAST:event_btn_SuaActionPerformed
 
     private void btn_XoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_XoaActionPerformed
-        Delete();
+        if (Check() == true) {
+            Delete();
+        }
     }//GEN-LAST:event_btn_XoaActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -382,6 +407,39 @@ public class QLLoaiMon extends javax.swing.JFrame {
         });
     }
 
+    public boolean Check() {
+
+        try {
+            if (txt_maloaimon.getText().equals("")) {
+                DialogHelper.alert(this, "Mã Món trống");
+                return false;
+            } else if (txt_tenloaimon.getText().equals("")) {
+                DialogHelper.alert(this, "Tên Món trống");
+                return false;
+            }
+        } catch (Exception e) {
+        }
+
+        return true;
+
+    }
+
+    public boolean Check1() {
+        for (int i = 0; i < list.size(); i++) {
+            LoaiMon s = list.get(i);
+            String maMon = s.getMaLoaiMon();
+            String tenMon = s.getTenLoaiMon();
+            if (txt_maloaimon.getText().equals(maMon)) {
+                DialogHelper.alert(this, "Mã Món đã tồn tại");
+                return false;
+            } else if (txt_tenloaimon.getText().equals(tenMon)) {
+                DialogHelper.alert(this, "Tên Món đã tồn tại");
+                return false;
+            }
+        }
+        return true;
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Sua;
     private javax.swing.JButton btn_Them;

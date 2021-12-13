@@ -405,10 +405,16 @@ public class QuanLyHoaDon extends javax.swing.JFrame {
     }//GEN-LAST:event_tbl_HoaDonMouseClicked
 
     private void btn_ThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThanhToanActionPerformed
-        Integer MaHD = Integer.valueOf(lb_MaHD.getText());
-        GoiMonHoaDon gmhd = new GoiMonHoaDon(MaHD);
-        gmhd.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        gmhd.setVisible(true);
+        if (!lb_MaHD.getText().equals("")) {
+            Integer MaHD = Integer.valueOf(lb_MaHD.getText());
+            GoiMonHoaDon gmhd = new GoiMonHoaDon(MaHD);
+            gmhd.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            gmhd.setVisible(true);
+        } else {
+            DialogHelper.alert(this, "Mời bạn chọn hóa đơn");
+            return;
+        }
+
     }//GEN-LAST:event_btn_ThanhToanActionPerformed
 
     private void btnPhieuDatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPhieuDatActionPerformed

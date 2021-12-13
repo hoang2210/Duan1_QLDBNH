@@ -6,16 +6,19 @@
 package View;
 
 import DAO.NhanVienDAO;
+import DAO.TaiKhoanNVDAO;
 import Helper.DateHelper;
 import Helper.DialogHelper;
 import Helper.ShareHelper;
 import Model.MonAn;
 import Model.NhanVien;
+import Model.TaiKhoanNV;
 import java.awt.Image;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,14 +32,19 @@ public class QuanLiNhanVien extends javax.swing.JFrame {
      * Creates new form QuanLiNhanVien
      */
     int index = 0;
+    private List<NhanVien> list;
+    SimpleDateFormat dmyFormat1 = new SimpleDateFormat("dd-MM-yyyy");
 
     public QuanLiNhanVien() {
         initComponents();
         Load();
         setLocationRelativeTo(null);
         rd_Nam.setSelected(true);
-
+        list = dao.select();
+          
+        
     }
+    TaiKhoanNVDAO tkdao = new TaiKhoanNVDAO();
     NhanVienDAO dao = new NhanVienDAO();
 
     /**
@@ -107,6 +115,10 @@ public class QuanLiNhanVien extends javax.swing.JFrame {
     void Delete() {
         try {
             String MaNV = txt_MaNV.getText();
+            if (MaNV.equals("")) {
+                DialogHelper.alert(this, "Mời bạn chọn nhân viên");
+                return;
+            }
             dao.delete(MaNV);
             DialogHelper.alert(this, "Xóa Nhân viên Thành Công");
             clear();
@@ -143,7 +155,7 @@ public class QuanLiNhanVien extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-
+    
     void setModel(NhanVien model) {
         txt_MaNV.setText(model.getMaNV());
         txt_HoTen.setText(model.getHoTen());
@@ -159,7 +171,6 @@ public class QuanLiNhanVien extends javax.swing.JFrame {
 //        Image im = icon1.getImage();
 //        ImageIcon icon = new ImageIcon(im.getScaledInstance(lb_Avatar.getWidth(), lb_Avatar.getHeight(), im.SCALE_SMOOTH));
 //        lb_Avatar.setIcon(icon);
-
         lb_Avatar.setToolTipText(model.getAvatar());
         if (model.getAvatar() != null) {
             ImageIcon icon = ShareHelper.readLogo(model.getAvatar());
@@ -396,11 +407,11 @@ public class QuanLiNhanVien extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnFisrt)
-                    .addComponent(btnPrev)
-                    .addComponent(btnNext)
-                    .addComponent(btnLast)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnFisrt, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnPrev, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnNext, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnLast, javax.swing.GroupLayout.Alignment.TRAILING)))
         );
 
         tbl_NhanVien.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
@@ -453,23 +464,20 @@ public class QuanLiNhanVien extends javax.swing.JFrame {
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(24, 24, 24)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txt_MaNV)
-                                    .addComponent(txt_HoTen)
-                                    .addComponent(txt_user)
-                                    .addComponent(date_chooser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txt_Phone, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txt_DiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(rd_Nam)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(rd_Nu, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txt_MaNV)
+                                .addComponent(txt_HoTen)
+                                .addComponent(txt_user)
+                                .addComponent(date_chooser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txt_Phone, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txt_DiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(rd_Nam)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(rd_Nu, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(68, 68, 68)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -492,7 +500,7 @@ public class QuanLiNhanVien extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(13, Short.MAX_VALUE)
                 .addComponent(jLabel9)
                 .addGap(1, 1, 1)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -559,7 +567,7 @@ public class QuanLiNhanVien extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton5))
         );
@@ -572,11 +580,18 @@ public class QuanLiNhanVien extends javax.swing.JFrame {
     }//GEN-LAST:event_lb_AvatarMouseClicked
 
     private void btn_ThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThemActionPerformed
-        Insert();
+        if (Check() == false) {
+            if (checkc() == true) {
+                Insert();
+            }
+        }
     }//GEN-LAST:event_btn_ThemActionPerformed
 
     private void btn_SuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SuaActionPerformed
-        Update();
+        if (Check() == false) {
+            Update();
+        }
+
     }//GEN-LAST:event_btn_SuaActionPerformed
 
     private void btn_XoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_XoaActionPerformed
@@ -658,6 +673,69 @@ public class QuanLiNhanVien extends javax.swing.JFrame {
         });
     }
 
+    public boolean Check() {
+        for (int i = 0; i < list.size(); i++) {
+            Pattern phone = Pattern.compile("^[0-9]{10}$");
+            NhanVien s = list.get(i);
+            String MaNV = s.getMaNV();
+            String us = txt_user.getText();
+              TaiKhoanNV tk = tkdao.findById(us);
+            try {
+                if (txt_MaNV.getText().equals("") || txt_MaNV.getText().length() > 15) {
+                    DialogHelper.alert(this, "Mã Nhân viên không hợp lệ");
+                    txt_MaNV.requestFocus();
+                    return true;
+                } else if (txt_MaNV.getText().equals(MaNV)) {
+                    DialogHelper.alert(this, "Mã Nhân viên đã tồn tại");
+                    txt_MaNV.requestFocus();
+                    return true;
+                } else if (txt_HoTen.getText().equals("")) {
+                    DialogHelper.alert(this, "Tên Nhân viên không được trống");
+                    txt_HoTen.requestFocus();
+                    return true;
+                } else if (txt_Phone.getText().equals("")) {
+                    DialogHelper.alert(this, "Số Điện Thoại không được trống");
+                    txt_Phone.requestFocus();
+                    return true;
+                } else if (tk ==null) {
+                    DialogHelper.alert(this, "Username không tồn tại");
+                    txt_user.requestFocus();
+                    return true;
+                } else if (!phone.matcher(txt_Phone.getText()).find()) {
+                    DialogHelper.alert(this, "Số Điện Thoại không hợp lệ");
+                    txt_Phone.requestFocus();
+                    return true;
+                } else if (txt_DiaChi.getText().equals("")) {
+                    DialogHelper.alert(this, "ĐịaChỉ không được trống");
+                    txt_DiaChi.requestFocus();
+                    return true;
+                } else if (lb_Avatar.getIcon() == null) {
+                    DialogHelper.alert(this, " Ảnh không được trống");
+                    return true;
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+ 
+        return false;
+    }
+    public boolean checkc() {
+        long millis = System.currentTimeMillis();
+        java.sql.Date date = new java.sql.Date(millis);
+        SimpleDateFormat dmyFormat = new SimpleDateFormat("yyyy");
+        String datechooser = dmyFormat.format(date_chooser.getDate());
+        String ngayhientai = dmyFormat.format(date);
+        int a = Integer.parseInt(datechooser);
+        int b = Integer.parseInt(ngayhientai);
+        int age = b - a;
+        if (age < 18) {
+            DialogHelper.alert(this, "Nhân viên dưới 18 tuổi");
+            return false;
+        }
+        return true;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFisrt;
     private javax.swing.JButton btnLast;
