@@ -20,7 +20,9 @@ import javax.swing.table.DefaultTableModel;
  * @author Dieu Le
  */
 public class Accout extends javax.swing.JFrame {
-    List<TaiKhoanNV> list= new ArrayList<>();
+
+    List<TaiKhoanNV> list = new ArrayList<>();
+
     /**
      * Creates new form Accout
      */
@@ -28,10 +30,11 @@ public class Accout extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         rdoNV.setSelected(true);
+        list = dao.select();
         Load();
-        
+
         this.getContentPane().setBackground(Color.white);
-        
+
     }
     TaiKhoanNVDAO dao = new TaiKhoanNVDAO();
 
@@ -41,8 +44,6 @@ public class Accout extends javax.swing.JFrame {
         rdoNV.setSelected(true);
     }
 
-    
-      
     void Load() {
         DefaultTableModel model = (DefaultTableModel) tblAccout.getModel();
         model.setRowCount(0);
@@ -76,16 +77,16 @@ public class Accout extends javax.swing.JFrame {
     void Insert() {
         TaiKhoanNV model = getModel();
         try {
-            
-              if (txtUserName.getText().length() == 0) {
+
+            if (txtUserName.getText().length() == 0) {
                 JOptionPane.showMessageDialog(this, "Tên tài khoản  không được để trống ");
                 return;
-            } 
-              if (txtPassWord.getText().length() == 0) {
+            }
+            if (txtPassWord.getText().length() == 0) {
                 JOptionPane.showMessageDialog(this, "Mật khẩu  không được để trống ");
                 return;
             }
-            
+
             dao.insert(model);
             DialogHelper.alert(this, "Thêm Accout thành công");
             Load();
@@ -129,7 +130,7 @@ public class Accout extends javax.swing.JFrame {
         txtPassWord.setText(tblAccout.getValueAt(row, 1).toString());
 
         String vaitro = tblAccout.getValueAt(row, 2).toString();
-        if (vaitro.equalsIgnoreCase("Nhân viên")){
+        if (vaitro.equalsIgnoreCase("Nhân viên")) {
             rdoNV.setSelected(true);
         } else {
             rdoCNH.setSelected(true);
@@ -359,18 +360,24 @@ public class Accout extends javax.swing.JFrame {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
 
-        Insert();
+        if (Check1() == true) {
+            if (Check() == true) {
+                Insert();
+            }
+        }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeActionPerformed
         // TODO add your handling code here:
-        Update();
-
+        if (Check() == true) {
+            Update();
+        }
     }//GEN-LAST:event_btnChangeActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-        Delete();
+        if (Check() == true) {
+            Delete();
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
@@ -422,6 +429,34 @@ public class Accout extends javax.swing.JFrame {
         });
     }
 
+    public boolean Check() {
+        for (int i = 0; i < list.size(); i++) {
+            TaiKhoanNV s = list.get(i);
+            String user = s.getUsername();
+            try {
+                if (txtUserName.getText().equals(user)) {
+                    DialogHelper.alert(this, "Username đã tồn tại ");
+                    return false;
+                }
+            } catch (Exception e) {
+            }
+        }
+        return true;
+    }
+
+    public boolean Check1() {
+        try {
+            if (txtUserName.getText().equals("")) {
+                DialogHelper.alert(this, "Mã nhân viên trống");
+                return false;
+            } else if (txtPassWord.getText().equals("")) {
+                DialogHelper.alert(this, "Password trống");
+                return false;
+            }
+        } catch (Exception e) {
+        }
+        return true;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnChange;
