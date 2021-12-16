@@ -6,12 +6,7 @@
 package View;
 
 import DAO.TaiKhoanKHDAO;
-import DAO.TaiKhoanNVDAO;
-import Helper.DialogHelper;
-import Helper.ShareHelper;
-import Helper.utilityHelper;
 import Model.TaiKhoanKH;
-import Model.TaiKhoanNV;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 

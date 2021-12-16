@@ -15,6 +15,7 @@ public class DanhGiaDAO {
         model.setMaPD(rs.getInt("MaPD"));
         model.setSoSao(rs.getInt("SoSao"));
         model.setNhanXet(rs.getString("NhanXet"));
+        model.setUser(rs.getString("Username"));
         return model;
     }
 
@@ -37,7 +38,15 @@ public class DanhGiaDAO {
     }
 
     public List<DanhGia> select() {
-        String sql = "SELECT * FROM DanhGia";
+        String sql = "select * from DanhGia join ThongTinKH on DanhGia.MaKH = ThongTinKH.MaKH";
+        return select(sql);
+    }
+    public List<DanhGia> select(int sosao) {
+        String sql = "select * from DanhGia join ThongTinKH on DanhGia.MaKH = ThongTinKH.MaKH where SoSao = ?";
+        return select(sql, sosao);
+    }
+    public List<DanhGia> select1() {
+        String sql = "select * from DanhGia join ThongTinKH on DanhGia.MaKH = ThongTinKH.MaKH where NhanXet is not null";
         return select(sql);
     }
     

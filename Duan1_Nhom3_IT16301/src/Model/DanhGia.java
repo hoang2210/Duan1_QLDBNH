@@ -7,7 +7,16 @@ public class DanhGia {
     private int MaPD;
     private int soSao;
     private String nhanXet;
+    private String user;
 
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+   
     public int getMaPD() {
         return MaPD;
     }

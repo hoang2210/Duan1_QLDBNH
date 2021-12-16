@@ -37,7 +37,6 @@ public class DateHelper {
             if (date == null) {
                 return DateHelper.now();
             }
-            System.out.println(date);
             return DATE_FORMATER.parse(date);
         } catch (ParseException ex) {
             throw new RuntimeException(ex);
@@ -119,7 +118,6 @@ public class DateHelper {
             if (time == null) {
                 //return DateHelper.now();
             }
-            System.out.println(time);
             return TIME_FORMATER.parse(time);
         } catch (ParseException ex) {
             throw new RuntimeException(ex);
