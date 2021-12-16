@@ -99,6 +99,11 @@ public class PhieuDatDAO {
         String sql = "DELETE FROM PhieuDat WHERE MaPD=?";
         JdbcHelper.executeUpdate(sql, id);
     }
+    
+    public void delete1(int id) {
+        String sql = "UPDATE PhieuDat SET TrangThai = N'Đã hủy' WHERE MaPD=?";
+        JdbcHelper.executeUpdate(sql, id);
+    }
 
     /**
      * Truy vấn tất cả các các thực thể
@@ -119,9 +124,9 @@ public class PhieuDatDAO {
                 + "WHERE TrangThai =N'Đã thanh toán'";
         return select(sql);
     }
-    public List<PhieuDat> select(int id) {
-        String sql = "SELECT * FROM PhieuDat WHERE MaKH=?";
-        return select(sql, id);
+    public List<PhieuDat> select(int id, String trangthai) {
+        String sql = "	SELECT * FROM PhieuDat WHERE MaKH = ? and TrangThai = ?";
+        return select(sql, id, trangthai);
     }
     public List<PhieuDat> select(String datenow, String timenow) {
         String sql = "select * from PhieuDat WHERE DateBook = ? "
@@ -145,6 +150,12 @@ public class PhieuDatDAO {
      */
     public PhieuDat findById(int id) {
         String sql = "SELECT * FROM PhieuDat WHERE MaPD=?";
+        List<PhieuDat> list = select(sql, id);
+        return list.size() > 0 ? list.get(0) : null;
+    }
+    
+    public PhieuDat findByIdInDG(int id) {
+        String sql = "	select * from PhieuDat a join DanhGia b on a.MaPD = b.MaPD where a.MaPD in (Select MaPD from DanhGia where MaPD = ?)";
         List<PhieuDat> list = select(sql, id);
         return list.size() > 0 ? list.get(0) : null;
     }

@@ -4,11 +4,17 @@ import DAO.KhachHangDAO;
 import DAO.TaiKhoanKHDAO;
 import Helper.DateHelper;
 import Helper.DialogHelper;
+import Helper.utilityHelper;
 import Model.KhachHang;
 import Model.TaiKhoanKH;
+import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
+import static java.awt.Color.pink;
+import static java.awt.Color.white;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.util.Date;
+import javax.swing.JTextField;
 
 public class DangKy extends javax.swing.JFrame {
 
@@ -80,7 +86,7 @@ public class DangKy extends javax.swing.JFrame {
         txtHoTen.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtHoTen.setForeground(new java.awt.Color(153, 153, 153));
         txtHoTen.setText("Họ tên");
-        txtHoTen.setName("Tài khoản"); // NOI18N
+        txtHoTen.setName("Họ tên"); // NOI18N
         txtHoTen.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtHoTenFocusGained(evt);
@@ -104,6 +110,7 @@ public class DangKy extends javax.swing.JFrame {
         txtSDT.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtSDT.setForeground(new java.awt.Color(153, 153, 153));
         txtSDT.setText("Số điện thoại");
+        txtSDT.setName("Số điện thoại"); // NOI18N
         txtSDT.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtSDTFocusGained(evt);
@@ -148,6 +155,7 @@ public class DangKy extends javax.swing.JFrame {
 
         txtMatKhau.setForeground(new java.awt.Color(153, 153, 153));
         txtMatKhau.setText("Mật khẩu");
+        txtMatKhau.setName("Mật khẩu"); // NOI18N
         txtMatKhau.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtMatKhauFocusGained(evt);
@@ -170,6 +178,7 @@ public class DangKy extends javax.swing.JFrame {
         txtUserName.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtUserName.setForeground(new java.awt.Color(153, 153, 153));
         txtUserName.setText("Tên đăng nhập");
+        txtUserName.setName("UserName"); // NOI18N
         txtUserName.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtUserNameFocusGained(evt);
@@ -182,6 +191,7 @@ public class DangKy extends javax.swing.JFrame {
         });
 
         txtNgaySinh.setDateFormatString("dd/MM/yyyy");
+        txtNgaySinh.setName("Ngày sinh"); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -419,9 +429,54 @@ public class DangKy extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUserNameMouseClicked
 
     private void btnDangKyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangKyActionPerformed
-        dangky();
+        if (utilityHelper.checkNullTextDK(txtHoTen)
+                && utilityHelper.checkNullText(txtNgaySinh)
+                && utilityHelper.checkNullTextDK(txtSDT)
+                && utilityHelper.checkNullTextDK(txtUserName)
+                && utilityHelper.checkNullTextDK(txtMatKhau)) {
+            if (utilityHelper.checkName(txtHoTen)
+                    && checkTuoi(txtNgaySinh)
+                    && utilityHelper.checkSDT(txtSDT)
+                    && utilityHelper.checkUser(txtUserName)) {
+                if(checkTrungMa(txtUserName)){
+                    dangky();
+                }
+            }
+        }
+        
     }//GEN-LAST:event_btnDangKyActionPerformed
+    public boolean checkTuoi(JDateChooser txt) {
+        txt.setBackground(white);
+        //SimpleDateFormat fm = new SimpleDateFormat("HH:mm");
+        //SimpleDateFormat date_fm = new SimpleDateFormat("dd/MM/yyyy");
+        java.util.Date date = new java.util.Date();
+        Date dateChooser = txt.getDate();
+        long diff = date.getTime() - dateChooser.getTime();
+//        long diffSeconds = diff / 1000 % 60;
+//        long diffMinutes = diff / (60 * 1000) % 60;
+//        long diffHours = diff / (60 * 60 * 1000) % 24;
+        long diffDays = diff / (24 * 60 * 60 * 1000);
+        long diffYears = diffDays / 365;
 
+        if (diffYears > 16) {
+            return true;
+        } else {
+            txt.setBackground(pink);
+            DialogHelper.alert(this, "Tuổi phải lớn hơn 16");
+            return false;
+        }
+    }
+
+    public boolean checkTrungMa(JTextField txt) {
+        txt.setBackground(white);
+        if (dao.findById(txt.getText()) == null) {
+            return true;
+        } else {
+            txt.setBackground(pink);
+            DialogHelper.alert(this, txt.getName() + " đã bị tồn tại.");
+            return false;
+        }
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
