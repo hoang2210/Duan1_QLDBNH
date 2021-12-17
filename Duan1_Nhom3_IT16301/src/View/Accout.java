@@ -370,14 +370,29 @@ public class Accout extends javax.swing.JFrame {
 
     private void btnChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeActionPerformed
         // TODO add your handling code here:
-        if (Check() == true) {
-            Update();
+        if (Check1() == true) {
+            String manv = txtUserName.getText();
+            TaiKhoanNV tk = dao.findById(manv);
+            if (tk!=null) {
+                Update();
+            }else{
+                DialogHelper.alert(this, "Mã Nhân viên không tồn tại");
+                return;
+            }
+            
         }
     }//GEN-LAST:event_btnChangeActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         if (Check() == true) {
-            Delete();
+        String manv = txtUserName.getText();
+            TaiKhoanNV tk = dao.findById(manv);
+            if (tk!=null) {
+                Delete();
+            }else{
+                DialogHelper.alert(this, "Mã Nhân viên không tồn tại");
+                return;
+            }
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 

@@ -337,13 +337,28 @@ public class QLLoaiMon extends javax.swing.JFrame {
 
     private void btn_SuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SuaActionPerformed
         if (Check() == true) {
-            Update();
+            String maLMon = txt_maloaimon.getText();
+            LoaiMon lm = dao.findbyID(maLMon);
+            if (lm!=null) {
+                       Update();
+            }else{
+                DialogHelper.alert(this, "Mã Loại Món không tồn tại");
+                return;
+            }
+     
         }
     }//GEN-LAST:event_btn_SuaActionPerformed
 
     private void btn_XoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_XoaActionPerformed
         if (Check() == true) {
-            Delete();
+           String maLMon = txt_maloaimon.getText();
+            LoaiMon lm = dao.findbyID(maLMon);
+            if (lm!=null) {
+                       Delete();
+            }else{
+                DialogHelper.alert(this, "Mã Loại Món không tồn tại");
+                return;
+            }
         }
     }//GEN-LAST:event_btn_XoaActionPerformed
 

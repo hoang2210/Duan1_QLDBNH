@@ -41,8 +41,7 @@ public class QuanLiNhanVien extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         rd_Nam.setSelected(true);
         list = dao.select();
-          
-        
+
     }
     TaiKhoanNVDAO tkdao = new TaiKhoanNVDAO();
     NhanVienDAO dao = new NhanVienDAO();
@@ -155,7 +154,7 @@ public class QuanLiNhanVien extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-    
+
     void setModel(NhanVien model) {
         txt_MaNV.setText(model.getMaNV());
         txt_HoTen.setText(model.getHoTen());
@@ -582,20 +581,41 @@ public class QuanLiNhanVien extends javax.swing.JFrame {
     private void btn_ThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThemActionPerformed
         if (Check() == false) {
             if (checkc() == true) {
-                Insert();
+                String manv = txt_MaNV.getText();
+                NhanVien ma = dao.findById(manv);
+                if (ma==null) {
+                      Insert();
+                }else{
+                    DialogHelper.alert(this, "Mã nhân viên đã tồn tại");
+                    return;
+                }
+                
             }
         }
+
     }//GEN-LAST:event_btn_ThemActionPerformed
 
     private void btn_SuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SuaActionPerformed
         if (Check() == false) {
-            Update();
-        }
+            String manv = txt_MaNV.getText();
+            NhanVien ma = dao.findById(manv);
+            if (ma != null) {
+                Update();
+            } else {
+                DialogHelper.alert(this, "Mã nhân viên không tồn tại");
+                return;
+            }
 
+        }
     }//GEN-LAST:event_btn_SuaActionPerformed
 
     private void btn_XoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_XoaActionPerformed
-        Delete();
+        if(ShareHelper.USER.isVaiTro()==false){
+            Delete();
+        }else{
+          DialogHelper.alert(this, "Chỉ chủ cửa hàng mới được xóa");
+          return;
+        }
     }//GEN-LAST:event_btn_XoaActionPerformed
 
     private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
@@ -674,53 +694,50 @@ public class QuanLiNhanVien extends javax.swing.JFrame {
     }
 
     public boolean Check() {
-        for (int i = 0; i < list.size(); i++) {
-            Pattern phone = Pattern.compile("^[0-9]{10}$");
-            NhanVien s = list.get(i);
-            String MaNV = s.getMaNV();
-            String us = txt_user.getText();
-              TaiKhoanNV tk = tkdao.findById(us);
-            try {
-                if (txt_MaNV.getText().equals("") || txt_MaNV.getText().length() > 15) {
-                    DialogHelper.alert(this, "Mã Nhân viên không hợp lệ");
-                    txt_MaNV.requestFocus();
-                    return true;
-                } else if (txt_MaNV.getText().equals(MaNV)) {
-                    DialogHelper.alert(this, "Mã Nhân viên đã tồn tại");
-                    txt_MaNV.requestFocus();
-                    return true;
-                } else if (txt_HoTen.getText().equals("")) {
-                    DialogHelper.alert(this, "Tên Nhân viên không được trống");
-                    txt_HoTen.requestFocus();
-                    return true;
-                } else if (txt_Phone.getText().equals("")) {
-                    DialogHelper.alert(this, "Số Điện Thoại không được trống");
-                    txt_Phone.requestFocus();
-                    return true;
-                } else if (tk ==null) {
-                    DialogHelper.alert(this, "Username không tồn tại");
-                    txt_user.requestFocus();
-                    return true;
-                } else if (!phone.matcher(txt_Phone.getText()).find()) {
-                    DialogHelper.alert(this, "Số Điện Thoại không hợp lệ");
-                    txt_Phone.requestFocus();
-                    return true;
-                } else if (txt_DiaChi.getText().equals("")) {
-                    DialogHelper.alert(this, "ĐịaChỉ không được trống");
-                    txt_DiaChi.requestFocus();
-                    return true;
-                } else if (lb_Avatar.getIcon() == null) {
-                    DialogHelper.alert(this, " Ảnh không được trống");
-                    return true;
-                }
+        Pattern phone = Pattern.compile("^[0-9]{10}$");
+        String us = txt_user.getText();
+        TaiKhoanNV tk = tkdao.findById(us);
+        try {
+            if (txt_MaNV.getText().equals("") || txt_MaNV.getText().length() > 15) {
+                DialogHelper.alert(this, "Mã Nhân viên không hợp lệ");
+                txt_MaNV.requestFocus();
+                return true;
 
-            } catch (Exception e) {
-                e.printStackTrace();
+            } else if (txt_HoTen.getText().equals("")) {
+                DialogHelper.alert(this, "Tên Nhân viên không được trống");
+                txt_HoTen.requestFocus();
+                return true;
+            } else if (date_chooser.getDate() == null) {
+                DialogHelper.alert(this, "Ngày không được trống");
+                return true;
+            } else if (txt_Phone.getText().equals("")) {
+                DialogHelper.alert(this, "Số Điện Thoại không được trống");
+                txt_Phone.requestFocus();
+                return true;
+            } else if (tk == null) {
+                DialogHelper.alert(this, "Username không tồn tại");
+                txt_user.requestFocus();
+                return true;
+            } else if (!phone.matcher(txt_Phone.getText()).find()) {
+                DialogHelper.alert(this, "Số Điện Thoại không hợp lệ");
+                txt_Phone.requestFocus();
+                return true;
+            } else if (txt_DiaChi.getText().equals("")) {
+                DialogHelper.alert(this, "ĐịaChỉ không được trống");
+                txt_DiaChi.requestFocus();
+                return true;
+            } else if (lb_Avatar.getIcon() == null) {
+                DialogHelper.alert(this, " Ảnh không được trống");
+                return true;
             }
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
- 
+
         return false;
     }
+
     public boolean checkc() {
         long millis = System.currentTimeMillis();
         java.sql.Date date = new java.sql.Date(millis);
