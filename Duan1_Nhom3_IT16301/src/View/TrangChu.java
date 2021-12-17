@@ -2257,7 +2257,6 @@ public class TrangChu extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSoNguoiFocusGained
 
     private void txtSoNguoiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSoNguoiMouseClicked
-        fillComboBoxBanAn();
         txtSoNguoi.setBackground(new java.awt.Color(220, 204, 255));
         if (txtSoNguoi.getText().equals("Số người")) {
             txtSoNguoi.setText("");
@@ -2451,8 +2450,9 @@ public class TrangChu extends javax.swing.JFrame {
     }//GEN-LAST:event_lblTenMouseClicked
 
     private void lblDoiMKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDoiMKMouseClicked
-        new ChangePassWord().setVisible(true);
-        this.dispose();
+        ChangePassWord a = new ChangePassWord();
+        a.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        a.setVisible(true);
     }//GEN-LAST:event_lblDoiMKMouseClicked
 
     private void btnCapNhatTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatTTActionPerformed
@@ -2575,7 +2575,7 @@ public class TrangChu extends javax.swing.JFrame {
 
     private void tblDonDatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDonDatMouseClicked
         if (evt.getClickCount() == 2) {
-            this.index = tblDonDat.rowAtPoint(evt.getPoint());
+            this.index = tblDonDat.getSelectedRow();
             if (this.index >= 0) {
                 fillComBoBoxSoBan();
                 this.editDonDat();
@@ -2649,12 +2649,12 @@ public class TrangChu extends javax.swing.JFrame {
                 pnDonDat.setVisible(false);
                 pnDanhGia.setVisible(true);
                 btnDanhGiaDD.setEnabled(true);
-            } else{
+            } else {
                 DialogHelper.alert(this, "Bạn đã đánh giá cho đơn đặt này rồi!");
             }
 
         } catch (Exception e) {
-            e.printStackTrace();          
+            e.printStackTrace();
         }
 
     }//GEN-LAST:event_btnDDDanhGiaActionPerformed
@@ -2960,7 +2960,7 @@ public class TrangChu extends javax.swing.JFrame {
 
         //Đơn đặt
         fillTableDonDat();
-        fillComBoBoxSoBan();
+        //fillComBoBoxSoBan();
 
         //Menu
         fillComboBoxLoaiMon();
@@ -3052,7 +3052,7 @@ public class TrangChu extends javax.swing.JFrame {
             String gio = (String) cboTimeBook.getSelectedItem();
             String sql = "select SoBan from BanAn where SoBan\n"
                     + "    not in (Select ba.SoBan from BanAn ba join PhieuDat pd on ba.SoBan = pd.SoBan\n"
-                    + "			where pd.DateBook = ? and pd.TimeBook = ?)";
+                    + "			where pd.DateBook = ? and pd.TimeBook = ? and (TrangThai = N'Đã xác nhận' or TrangThai = N'Chờ xác nhận'))";
 
             ResultSet rs = JdbcHelper.executeQuery(sql, ngay, gio);
             while (rs.next()) {
@@ -3112,25 +3112,19 @@ public class TrangChu extends javax.swing.JFrame {
         try {
             String ngay = DateHelper.toString1(txtDDNgayDat.getDate());
             String gio = (String) cboDDTimeBook.getSelectedItem();
-            if (tblDonDat.getRowCount() > 0 && index >= 0) {
-                MaPD = (int) tblDonDat.getValueAt(this.index, 0);
-                cboDDBanAn.setSelectedItem(tblDonDat.getValueAt(this.index, 3));
-            }
+            MaPD = (int) tblDonDat.getValueAt(this.index, 0);
+            model.setSelectedItem(tblDonDat.getValueAt(this.index, 3));
             String sql = "select SoBan from BanAn where SoBan\n"
                     + "    not in (Select ba.SoBan from BanAn ba join PhieuDat pd on ba.SoBan = pd.SoBan\n"
-                    + "			where pd.DateBook = ? and pd.TimeBook = ? and MaPD != ?)";
+                    + "			where pd.DateBook = ? and pd.TimeBook = ? and MaPD != ? and (TrangThai = N'Đã xác nhận' or TrangThai = N'Chờ xác nhận'))";
 
             ResultSet rs = JdbcHelper.executeQuery(sql, ngay, gio, MaPD);
             while (rs.next()) {
                 String a = String.valueOf(rs.getInt("SoBan"));
                 model.addElement(a);
             }
-            if (tblDonDat.getRowCount() > 0 && index >= 0) {
-                model.setSelectedItem(tblDonDat.getValueAt(this.index, 3));
-            }
         } catch (Exception e) {
-            e.printStackTrace();
-            DialogHelper.alert(this, "Lỗi truy vấn dữ liệu!");
+
         }
     }
 
@@ -3204,7 +3198,7 @@ public class TrangChu extends javax.swing.JFrame {
         txtDDSoNguoi.setText(Integer.toString(model.getSoNguoi()));
         txtDDGhiChu.setText(model.getGhiChu());
         if (model.getTrangThai().equals("Chờ xác nhận")) {
-            lblTrangThaiDD.setText("Đang chờ xác nhận");           
+            lblTrangThaiDD.setText("Đang chờ xác nhận");
             btnDDDanhGia.setEnabled(false);
             btnHuyDat.setEnabled(true);
             btnUpdateDonDat.setEnabled(true);
@@ -3272,11 +3266,12 @@ public class TrangChu extends javax.swing.JFrame {
                 if (tt.equalsIgnoreCase("Chờ xác nhận")) {
                     int mapd = (int) tblDonDat.getValueAt(this.index, 0);
                     try {
-                        daoPD.delete(mapd);
+                        daoPD.delete1(mapd);
                         this.fillTableDonDat();
                         this.clear();
                         DialogHelper.alert(this, "Hủy đặt bàn thành công!");
-                        btnHuyDat.setEnabled(false);
+                        pnDonDat.setVisible(false);
+                        pnLichSuDonDat.setVisible(true);
                     } catch (Exception e) {
                         e.printStackTrace();
                         DialogHelper.alert(this, "Hủy đặt bàn thất bại!");

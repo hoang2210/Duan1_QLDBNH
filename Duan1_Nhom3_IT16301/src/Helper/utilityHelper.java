@@ -293,6 +293,21 @@ public class utilityHelper {
         }
     }
     
+    public static boolean checkNullTextDN(JTextField txt) {
+        txt.setBackground(white);
+        if (txt.getText().equals("Tài Khoản")) {
+            txt.setBackground(pink);
+            DialogHelper.alert(txt.getRootPane(), "Tài khoản không được để trống ");
+            return false;
+        } else if (txt.getText().equals("Mật Khẩu")){
+            txt.setBackground(pink);
+            DialogHelper.alert(txt.getRootPane(), "Mật khẩu không được để trống ");
+            return false;
+        } else{
+            return true;
+        }
+    }
+    
     public static boolean checkNullTextSN(JTextField txt) {
         txt.setBackground(white);
         if (txt.getText().equalsIgnoreCase("Số người")) {
