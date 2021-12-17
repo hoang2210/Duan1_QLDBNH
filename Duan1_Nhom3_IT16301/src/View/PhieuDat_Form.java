@@ -187,7 +187,7 @@ public class PhieuDat_Form extends javax.swing.JFrame {
     void Delete() {
         int id = Integer.parseInt(lblMaPD.getText());
         try {
-            dao.delete(id);
+            dao.delete1(id);
             DialogHelper.alert(this, "Xóa thành công");
             Clear();
             LoadTable();
@@ -720,7 +720,7 @@ public class PhieuDat_Form extends javax.swing.JFrame {
 
     private void btnDSQuaGioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDSQuaGioActionPerformed
         LoadDSQuaGio();
-        btnHuy.setEnabled(false);
+        btnHuy.setEnabled(true);
         btnXacNhan.setEnabled(false);
         btnTaoHoaDon.setEnabled(true);
     }//GEN-LAST:event_btnDSQuaGioActionPerformed
@@ -877,7 +877,7 @@ public class PhieuDat_Form extends javax.swing.JFrame {
         }
         if (a == 1) {
             LoadTableDPH();
-            btnHuy.setEnabled(false);
+            btnHuy.setEnabled(true);
             btnXacNhan.setEnabled(false);
             Clear();
         }

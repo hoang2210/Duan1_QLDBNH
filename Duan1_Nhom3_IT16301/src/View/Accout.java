@@ -251,6 +251,7 @@ public class Accout extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblAccout.setRowHeight(30);
         tblAccout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblAccoutMouseClicked(evt);

@@ -9,6 +9,7 @@ import DAO.KhachHangDAO;
 import DAO.TaiKhoanKHDAO;
 import Helper.DialogHelper;
 import Helper.ShareHelper;
+import Helper.utilityHelper;
 import Model.KhachHang;
 import Model.TaiKhoanKH;
 import java.awt.Color;
@@ -261,7 +262,10 @@ public class Login_KH extends javax.swing.JFrame {
     }//GEN-LAST:event_cbx_HienthiActionPerformed
 
     private void btn_DangnhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DangnhapActionPerformed
-        Login();
+        if (utilityHelper.checkNullTextDN(txt_Username) && 
+                utilityHelper.checkNullTextDN(txt_Password)) {
+            Login();
+        }
     }//GEN-LAST:event_btn_DangnhapActionPerformed
 
     private void txt_QuenmkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_QuenmkMouseClicked
