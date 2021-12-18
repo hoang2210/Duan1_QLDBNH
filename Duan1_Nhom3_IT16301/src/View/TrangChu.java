@@ -3239,7 +3239,7 @@ public class TrangChu extends javax.swing.JFrame {
     }
 
     void updateDonDat() {
-        PhieuDat model = getFormDonDat();
+        PhieuDat model = getFormDonDat(); 
         String tt = model.getTrangThai();
         if (tt.equalsIgnoreCase("Chờ xác nhận")) {
             try {
@@ -3273,7 +3273,6 @@ public class TrangChu extends javax.swing.JFrame {
                         pnDonDat.setVisible(false);
                         pnLichSuDonDat.setVisible(true);
                     } catch (Exception e) {
-                        e.printStackTrace();
                         DialogHelper.alert(this, "Hủy đặt bàn thất bại!");
                     }
                 } else {
