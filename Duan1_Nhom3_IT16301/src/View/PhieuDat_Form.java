@@ -296,9 +296,6 @@ public class PhieuDat_Form extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tblDonDat);
-        if (tblDonDat.getColumnModel().getColumnCount() > 0) {
-            tblDonDat.getColumnModel().getColumn(5).setHeaderValue("Time Xác Nhận");
-        }
 
         jLabel4.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         jLabel4.setText("Trạng thái:");
