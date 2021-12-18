@@ -34,7 +34,6 @@ public class QLMonAn extends javax.swing.JFrame {
     /**
      * Creates new form QLMonAn
      */
-
     private List<MonAn> lst;
 
     public QLMonAn() {
@@ -553,19 +552,41 @@ public class QLMonAn extends javax.swing.JFrame {
 
     private void btn_ThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThemActionPerformed
         if (Check() == true) {
-            Insert();
+            String mamon = txt_mamon.getText();
+            MonAn monan = dao.findbyID(mamon);
+            if (monan == null) {
+                Insert();
+            } else {
+                DialogHelper.alert(this, "Mã món đã tồn tại");
+                return;
+            }
+
         }
     }//GEN-LAST:event_btn_ThemActionPerformed
 
     private void btn_SuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SuaActionPerformed
         if (Check() == true) {
-            Update();
+            String mamon = txt_mamon.getText();
+            MonAn monan = dao.findbyID(mamon);
+            if (monan != null) {
+                Update();
+            } else {
+                DialogHelper.alert(this, "Mã món không tồn tại");
+                return;
+            }
         }
     }//GEN-LAST:event_btn_SuaActionPerformed
 
     private void btn_XoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_XoaActionPerformed
         if (Check() == true) {
-            Delete();
+            String mamon = txt_mamon.getText();
+            MonAn monan = dao.findbyID(mamon);
+            if (monan != null) {
+                Delete();
+            } else {
+                DialogHelper.alert(this, "Mã món không tồn tại");
+                return;
+            }
         }
     }//GEN-LAST:event_btn_XoaActionPerformed
 
@@ -650,43 +671,34 @@ public class QLMonAn extends javax.swing.JFrame {
 
     public boolean Check() {
         String MaLM = txt_maloaimon.getText();
-       LoaiMon lm = LMDao.findbyID(MaLM);
-            Pattern tien = Pattern.compile("[0-9]");
-            try {
-                if (txt_mamon.getText().equals("")) {
-                    DialogHelper.alert(this, "Mã món trống");
-                    return false;
-                } else if (txt_maloaimon.getText().equals("")) {
-                    DialogHelper.alert(this, "Mã loại món trống");
-                    return false;
-                } else if (txt_tenmon.getText().equals("")) {
-                    DialogHelper.alert(this, "Tên món trống");
-                    return false;
-                } else if (lm ==null) {
-                    DialogHelper.alert(this, "Mã Loại Món không tồn tại ");
-                    return false;
-                } else if (!tien.matcher(txt_giatien.getText()).find()) {
-                    DialogHelper.alert(this, "Giá món  không hợp lệ");
-                    return false;
-                } else if (txt_gioithieu.getText().equals("")) {
-                    DialogHelper.alert(this, "Giới thiệu  món trống");
-                    return false;
-                } else if (lb_Anh.getIcon() == null) {
-                    DialogHelper.alert(this, "Ảnh  món trống");
-                    return false;
-                }   
-            } catch (Exception e) {
+        LoaiMon lm = LMDao.findbyID(MaLM);
+        Pattern tien = Pattern.compile("[0-9]");
+        try {
+            if (txt_mamon.getText().equals("")) {
+                DialogHelper.alert(this, "Mã món trống");
+                return false;
+            } else if (txt_maloaimon.getText().equals("")) {
+                DialogHelper.alert(this, "Mã loại món trống");
+                return false;
+            } else if (txt_tenmon.getText().equals("")) {
+                DialogHelper.alert(this, "Tên món trống");
+                return false;
+            } else if (lm == null) {
+                DialogHelper.alert(this, "Mã Loại Món không tồn tại ");
+                return false;
+            } else if (!tien.matcher(txt_giatien.getText()).find()) {
+                DialogHelper.alert(this, "Giá món  không hợp lệ");
+                return false;
+            } else if (txt_gioithieu.getText().equals("")) {
+                DialogHelper.alert(this, "Giới thiệu  món trống");
+                return false;
+            } else if (lb_Anh.getIcon() == null) {
+                DialogHelper.alert(this, "Ảnh  món trống");
+                return false;
             }
+        } catch (Exception e) {
+        }
 
-        
-      for (int i = 0; i < lst.size(); i++) {
-            MonAn s = lst.get(i);
-            String monan = s.getMaMon();
-            if (txt_mamon.getText().equals(monan)) {
-              DialogHelper.alert(this, "Mã món đã tồn tại;");
-              return false;
-          }
-      }
         return true;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -9,8 +9,10 @@ import DAO.CTHoaDonDAO1;
 import DAO.HoaDonDAO;
 import DAO.HoaDonDAO1;
 import Helper.DateHelper;
+import Helper.DialogHelper;
 import Helper.JdbcHelper;
 import static Helper.JdbcHelper.driver;
+import Helper.ShareHelper;
 import Model.CTHoaDon1;
 import Model.HoaDon1;
 import java.awt.Color;
@@ -20,6 +22,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.regex.Pattern;
 import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
@@ -56,7 +59,10 @@ public class ThongKeHoaDon extends javax.swing.JFrame {
         model = (DefaultTableModel) tbl_HoaDon.getModel();
         lst = CTHDDao.getAll(10);
         LoadTableTK();
-        
+        if (ShareHelper.USER.isVaiTro()==true) {
+            jPanel5.removeAll();
+            jPanel1.removeAll();
+        }
     }
 
     void LoadTable() {
@@ -662,8 +668,14 @@ public class ThongKeHoaDon extends javax.swing.JFrame {
     }//GEN-LAST:event_date_chooserMouseClicked
 
     private void btn_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SearchActionPerformed
-        LoadTable();
+        if (date_chooser.getDate()!=null) {
+              LoadTable();
         TongTien();
+        }else{
+            DialogHelper.alert(this, "Ngày không được trống");
+            return;
+        }
+      
     }//GEN-LAST:event_btn_SearchActionPerformed
 
     private void btn_ThuNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThuNhapActionPerformed
@@ -710,7 +722,14 @@ public class ThongKeHoaDon extends javax.swing.JFrame {
     }//GEN-LAST:event_tbl_HoaDonMouseClicked
 
     private void btn_TimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TimActionPerformed
-       LoadTableTab4();
+       Pattern nam = Pattern.compile("^[12][0-9]{3}$");
+        if (!nam.matcher(txt_Nam.getText()).find()) {
+            DialogHelper.alert(this, "Năm không hợp lệ ");
+            return;
+        }else{
+             LoadTableTab4();
+        }
+       
     }//GEN-LAST:event_btn_TimActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened

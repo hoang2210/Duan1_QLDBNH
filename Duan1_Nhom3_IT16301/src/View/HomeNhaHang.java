@@ -35,8 +35,7 @@ public class HomeNhaHang extends javax.swing.JFrame {
         Image im = banner.getImage();
         ImageIcon icon = new ImageIcon(im.getScaledInstance(lblbanner.getWidth(), lblbanner.getHeight(), im.SCALE_SMOOTH));
         lblbanner.setIcon(icon);
-        
-        
+
         ImageIcon dondat1 = new ImageIcon("src/Logo/phieudat1.png");
         btnPhieuDat.setIcon(dondat1);
         ImageIcon ttb1 = new ImageIcon("src/Logo/datban1.png");
@@ -48,8 +47,8 @@ public class HomeNhaHang extends javax.swing.JFrame {
         ImageIcon nhanvien1 = new ImageIcon("src/Logo/add-user.png");
         btnNhanVien.setIcon(nhanvien1);
     }
-    
-    void init(){
+
+    void init() {
         Date date = DateHelper.now();
         new Timer(1000, new ActionListener() {
             @Override
@@ -61,6 +60,7 @@ public class HomeNhaHang extends javax.swing.JFrame {
             }
         }).start();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -216,7 +216,12 @@ public class HomeNhaHang extends javax.swing.JFrame {
 
         jMenuItem1.setFont(new java.awt.Font("Monospaced", 0, 16)); // NOI18N
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Accept.png"))); // NOI18N
-        jMenuItem1.setText("Đăng nhập");
+        jMenuItem1.setText("Refresh");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         mniDangxuat.setFont(new java.awt.Font("Monospaced", 0, 16)); // NOI18N
@@ -347,23 +352,27 @@ public class HomeNhaHang extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mniNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniNhanVienActionPerformed
-        new QuanLiNhanVien().setVisible(true);
-        this.dispose();
+        QuanLiNhanVien qlnv = new QuanLiNhanVien();
+        qlnv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        qlnv.setVisible(true);
     }//GEN-LAST:event_mniNhanVienActionPerformed
 
     private void btnHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoaDonActionPerformed
-        new QuanLyHoaDon().setVisible(true);
-        this.dispose();
+        QuanLyHoaDon hd = new QuanLyHoaDon();
+        hd.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        hd.setVisible(true);
     }//GEN-LAST:event_btnHoaDonActionPerformed
 
     private void btnTaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaiKhoanActionPerformed
-        new Accout().setVisible(true);
-        this.dispose();
+        Accout acc = new Accout();
+        acc.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        acc.setVisible(true);
     }//GEN-LAST:event_btnTaiKhoanActionPerformed
 
     private void btnNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhanVienActionPerformed
-        new QuanLiNhanVien().setVisible(true);
-        this.dispose();
+        QuanLiNhanVien qlnv = new QuanLiNhanVien();
+        qlnv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        qlnv.setVisible(true);
     }//GEN-LAST:event_btnNhanVienActionPerformed
 
     private void mniTrangThaiBanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniTrangThaiBanActionPerformed
@@ -373,35 +382,40 @@ public class HomeNhaHang extends javax.swing.JFrame {
     }//GEN-LAST:event_mniTrangThaiBanActionPerformed
 
     private void mniTaikhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniTaikhoanActionPerformed
-        new Accout().setVisible(true);
-        this.dispose();
+        Accout acc = new Accout();
+        acc.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        acc.setVisible(true);
     }//GEN-LAST:event_mniTaikhoanActionPerformed
 
     private void mniHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniHoaDonActionPerformed
-        new QuanLyHoaDon().setVisible(true);
-        this.dispose();
+        QuanLyHoaDon hd = new QuanLyHoaDon();
+        hd.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        hd.setVisible(true);
     }//GEN-LAST:event_mniHoaDonActionPerformed
 
     private void btnTTBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTTBActionPerformed
-        new QLMonAn().setVisible(true);
-        this.dispose();
+        QLMonAn monan = new QLMonAn();
+        monan.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        monan.setVisible(true);
     }//GEN-LAST:event_btnTTBActionPerformed
 
     private void btnPhieuDatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPhieuDatActionPerformed
-        new PhieuDat_Form().setVisible(true);
-        this.dispose();
+        PhieuDat_Form pd = new PhieuDat_Form();
+        pd.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        pd.setVisible(true);
     }//GEN-LAST:event_btnPhieuDatActionPerformed
 
     private void mniDangxuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDangxuatActionPerformed
         ShareHelper.logoff();
-        new Login_NV().setVisible(true);
-        this.dispose();
+        Login_NV login = new Login_NV();
+        login.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        login.setVisible(true);
     }//GEN-LAST:event_mniDangxuatActionPerformed
 
     private void btnDXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDXuatActionPerformed
-        ShareHelper.logoff();
-        new Login_NV().setVisible(true);
-        this.dispose();
+        Login_NV login = new Login_NV();
+        login.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        login.setVisible(true);
     }//GEN-LAST:event_btnDXuatActionPerformed
 
     private void mniThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniThoatActionPerformed
@@ -411,23 +425,34 @@ public class HomeNhaHang extends javax.swing.JFrame {
     }//GEN-LAST:event_mniThoatActionPerformed
 
     private void mniPhieuDatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniPhieuDatActionPerformed
-        new PhieuDat_Form().setVisible(true);
-        this.dispose();
+        PhieuDat_Form pd = new PhieuDat_Form();
+        pd.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        pd.setVisible(true);
     }//GEN-LAST:event_mniPhieuDatActionPerformed
 
     private void mniThucDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniThucDonActionPerformed
-        new QLLoaiMon().setVisible(true);
-        this.dispose();
+        QLLoaiMon loaimon = new QLLoaiMon();
+        loaimon.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        loaimon.setVisible(true);
     }//GEN-LAST:event_mniThucDonActionPerformed
 
     private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
-        new ThongKeHoaDon().setVisible(true);
+        ThongKeHoaDon tk = new ThongKeHoaDon();
+        tk.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        tk.setVisible(true);
     }//GEN-LAST:event_jMenu3ActionPerformed
 
     private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
-        new ThongKeHoaDon().setVisible(true);
-        this.dispose();
+        ThongKeHoaDon tk = new ThongKeHoaDon();
+        tk.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        tk.setVisible(true);
     }//GEN-LAST:event_jMenu3MouseClicked
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        HomeNhaHang hm = new HomeNhaHang();
+        hm.setVisible(false);
+        hm.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments

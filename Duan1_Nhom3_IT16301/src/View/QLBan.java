@@ -10,6 +10,7 @@ import Helper.DialogHelper;
 import Model.BanAn;
 import java.awt.Color;
 import java.util.List;
+import java.util.regex.Pattern;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -205,12 +206,30 @@ public class QLBan extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        Insert();
+        if (Check()==true) {
+            String soban = txtSoBan.getText();
+            BanAn ban = dao.findbyID(soban);
+            if (ban==null) {
+                Insert();
+            }else{
+                DialogHelper.alert(this, "Số bàn đã tồn tại");
+                return;
+            }
+        }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeActionPerformed
         // TODO add your handling code here:
-        Update();
+         if (Check()==true) {
+            String soban = txtSoBan.getText();
+            BanAn ban = dao.findbyID(soban);
+            if (ban!=null) {
+                Update();
+            }else{
+                DialogHelper.alert(this, "Số bàn không tồn tại");
+                return;
+            }
+        }
     }//GEN-LAST:event_btnChangeActionPerformed
 
     private void tblBanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBanMouseClicked
@@ -345,7 +364,19 @@ public class QLBan extends javax.swing.JFrame {
             }
         });
     }
+ public boolean Check() {
+      Pattern soBan = Pattern.compile("[0-9]");
+     if (txtSoBan.getText().equals("")) {
+         DialogHelper.alert(this, "Số bàn trống");
+         return false;
+     }else if (!soBan.matcher(txtSoBan.getText()).find()) {
+          DialogHelper.alert(this, "Số bàn không hợp lệ");
+            return false;
+     }
+         return true;
+    }
 
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnChange;

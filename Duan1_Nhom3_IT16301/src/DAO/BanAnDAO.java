@@ -62,7 +62,11 @@ public class BanAnDAO {
                 entity.getSoBan(),
                 entity.getTrangThaiHD());
     }
-
+ public BanAn findbyID(String id) {
+        String sql = "SELECT * FROM BanAn WHERE SoBan=?";
+        List<BanAn> list = select(sql, id);
+        return list.size() > 0 ? list.get(0) : null;
+    }
     /**
      * Cập nhật thực thể vào CSDL
      *
