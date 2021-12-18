@@ -83,7 +83,6 @@ public class TrangChu extends javax.swing.JFrame {
         lblDanhGia = new javax.swing.JLabel();
         btnDangXuat = new javax.swing.JPanel();
         lblDangXuat = new javax.swing.JLabel();
-        lbrefresh = new javax.swing.JLabel();
         pnNhan = new javax.swing.JPanel();
         btnLogin = new javax.swing.JButton();
         lblTenNH = new javax.swing.JLabel();
@@ -370,7 +369,7 @@ public class TrangChu extends javax.swing.JFrame {
         );
         btnDanhGiaLayout.setVerticalGroup(
             btnDanhGiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblDanhGia, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
+            .addComponent(lblDanhGia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
         );
 
         btnDangXuat.setBackground(new java.awt.Color(255, 255, 255));
@@ -385,36 +384,17 @@ public class TrangChu extends javax.swing.JFrame {
             }
         });
 
-        lbrefresh.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
-        lbrefresh.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lbrefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo/Refresh.png"))); // NOI18N
-        lbrefresh.setText("Refresh");
-        lbrefresh.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lbrefreshMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout btnDangXuatLayout = new javax.swing.GroupLayout(btnDangXuat);
         btnDangXuat.setLayout(btnDangXuatLayout);
         btnDangXuatLayout.setHorizontalGroup(
             btnDangXuatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnDangXuatLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(btnDangXuatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblDangXuat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(btnDangXuatLayout.createSequentialGroup()
-                        .addComponent(lbrefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnDangXuatLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         btnDangXuatLayout.setVerticalGroup(
             btnDangXuatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnDangXuatLayout.createSequentialGroup()
-                .addComponent(lbrefresh, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblDangXuat, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                .addGap(22, 22, 22))
+            .addComponent(lblDangXuat, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
         );
 
         pnNhan.setBackground(new java.awt.Color(220, 204, 255));
@@ -2093,7 +2073,7 @@ public class TrangChu extends javax.swing.JFrame {
             LayerGiaoDienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(LayerGiaoDienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(pnDatBan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 807, Short.MAX_VALUE))
+                .addComponent(pnDatBan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 817, Short.MAX_VALUE))
             .addGroup(LayerGiaoDienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(pnQLTaiKhoan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(LayerGiaoDienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2758,12 +2738,6 @@ public class TrangChu extends javax.swing.JFrame {
         SelectDanhGia1();
     }//GEN-LAST:event_btnCoNXActionPerformed
 
-    private void lbrefreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbrefreshMouseClicked
-          TrangChu tc = new TrangChu();
-        tc.setVisible(false);
-        tc.setVisible(true);
-    }//GEN-LAST:event_lbrefreshMouseClicked
-
     /**
      * @param args the command line arguments
      */
@@ -2916,7 +2890,6 @@ public class TrangChu extends javax.swing.JFrame {
     private javax.swing.JLabel lblTrangThaiDD;
     private javax.swing.JLabel lblUserDG;
     private javax.swing.JLabel lblXemThem;
-    private javax.swing.JLabel lbrefresh;
     private javax.swing.JLabel page;
     private javax.swing.JLabel page1;
     private javax.swing.JLabel page2;
